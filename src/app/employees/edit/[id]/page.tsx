@@ -42,7 +42,7 @@ export default async function EditEmployeePage({ params }: { params: Promise<{ i
     const birthDate = birthDateStr ? new Date(birthDateStr) : null;
     
     const joinDateStr = formData.get('joinDate') as string;
-    const joinDate = joinDateStr ? new Date(joinDateStr) : employee.joinDate;
+    const joinDate = joinDateStr ? new Date(joinDateStr) : employee!.joinDate;
 
     await prisma.employee.update({
       where: { id: employeeId },
