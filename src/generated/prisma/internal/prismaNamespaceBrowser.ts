@@ -74,6 +74,7 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const TenantScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  employeePrefix: 'employeePrefix',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

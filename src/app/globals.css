@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme {
+:root {
   --color-brand-50: #eef2ff;
   --color-brand-100: #e0e7ff;
   --color-brand-500: #6366f1;
@@ -9,5 +9,14 @@
 }
 
 body {
-  @apply bg-[#f8fafc] dark:bg-[#0b1120]; /* Menggunakan warna yang lebih pekat */
+  /* Mode terang: abu-abu sangat muda. Mode gelap: Navy pekat (#0f172a) */
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #0f172a;
+    color: #e2e8f0;
+  }
 }
