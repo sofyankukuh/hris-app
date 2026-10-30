@@ -18,20 +18,55 @@ model Tenant {
 }
 
 model Employee {
-  id             String   @id @default(cuid())
+  id             String         @id @default(cuid())
   tenantId       String
-  employeeNumber String
+  
+  // 1. IDENTITAS UTAMA
+  employeeNumber String         // NIK (Otomatis BKP-)
   fullName       String
   email          String
   phoneNumber    String?
+  joinDate       DateTime
+  status         EmployeeStatus @default(ACTIVE)
+  
+  // 2. DATA PRIBADI
+  birthDate      DateTime?
+  birthPlace     String?
+  gender         String?        // L / P
+  religion       String?        // Islam, Kristen, dll
+  maritalStatus  String?        // TK/0, K/1, dll (Rumusan Pajak)
+  motherName     String?        // Nama Ibu
+  spouseName     String?        // Nama Suami/Istri
+  childrenCount  Int?           @default(0)
+  
+  // 3. IDENTITAS & ALAMAT
+  ktpNumber      String?        // No KTP
+  npwpNumber     String?        // No NPWP
+  jamsostekNumber String?       // No BPJS
+  address        String?        // Alamat Lengkap
+  
+  // 4. DATA KEPEGAWAIAN
   department     String
   position       String
-  joinDate       DateTime
-  status         EmployeeStatus   @default(ACTIVE)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  education      String?        // Pendidikan (S1, SMA, dll)
+  customer       String?        // Customer (Produk/Service)
+  branchCode     String?        // K. Cabang
+  outlet         String?        // Outlet
+  
+  // 5. DATA KONTRAK
+  contractStart  DateTime?
+  contractEnd    DateTime?
+  contractNumber String?
+  exitDate       DateTime?      // Tgl Keluar
 
-  tenant         Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  // 6. DATA FINANSIAL
+  bankName       String?
+  bankAccount    String?
+  
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  tenant         Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
 
   @@unique([tenantId, employeeNumber])
   @@unique([tenantId, email])

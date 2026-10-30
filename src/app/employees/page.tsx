@@ -1,77 +1,22 @@
+// src/app/employees/page.tsx
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import Link from 'next/link';
-
+import DeleteButton from '@/components/DeleteButton';
 
 export default async function EmployeesPage() {
   const employees = await prisma.employee.findMany({
     orderBy: { fullName: 'asc' },
   });
 
-    async function addEmployee(formData: FormData) {
-    'use server';
-    const fullName = formData.get('fullName') as string;
-    const email = formData.get('email') as string;
-    const department = formData.get('department') as string;
-    const position = formData.get('position') as string;
-
-    const tenant = await prisma.tenant.findFirst();
-    if (!tenant) throw new Error('Tenant tidak ditemukan');
-
-    // --- LOGIKA AUTO-GENERATE NIK AMAN ---
-    const prefix = tenant.employeePrefix; // "BKP-"
-    
-    // Ambil SEMUA karyawan yang punya prefix BKP- (hanya ambil kolom NIK)
-    const existingEmployees = await prisma.employee.findMany({
-      where: { 
-        tenantId: tenant.id,
-        employeeNumber: { startsWith: prefix }
-      },
-      select: { employeeNumber: true }
-    });
-
-    let maxNumber = 0;
-    existingEmployees.forEach((emp) => {
-      // Ambil angka dari "BKP-001" menjadi 1
-      const numberPart = emp.employeeNumber.replace(prefix, "");
-      const parsed = parseInt(numberPart, 10);
-      if (!isNaN(parsed) && parsed > maxNumber) {
-        maxNumber = parsed;
-      }
-    });
-
-    // Angka berikutnya adalah yang paling besar + 1
-    const nextNumber = maxNumber + 1;
-    const formattedNumber = nextNumber.toString().padStart(3, '0'); // "001", "002"
-    const newEmployeeNumber = `${prefix}${formattedNumber}`; // "BKP-001"
-    // -------------------------------------
-
-    await prisma.employee.create({
-      data: {
-        tenantId: tenant.id,
-        employeeNumber: newEmployeeNumber, 
-        fullName, 
-        email, 
-        department, 
-        position,
-        joinDate: new Date(),
-        status: 'ACTIVE',
-      }
-    });
-
-    revalidatePath('/employees');
-  }
-
-    async function removeEmployee(formData: FormData) {
+  async function removeEmployee(formData: FormData) {
     'use server';
     const id = formData.get('id') as string;
-    
     try {
       await prisma.employee.delete({ where: { id } });
     } catch (error) {
       console.error("Gagal menghapus:", error);
     }
-    
     revalidatePath('/employees');
   }
 
@@ -90,130 +35,69 @@ export default async function EmployeesPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto h-[calc(100vh-8rem)] flex flex-col md:flex-row gap-8">
-      
-      {/* DAFTAR KARYAWAN (KIRI) */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <div className="flex justify-between items-end mb-6">
-          <div>
-            <h1 className="text-2xl font-black text-slate-800 dark:text-slate-100">Data Karyawan</h1>
-            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Total {employees.length} orang terdaftar</p>
-          </div>
+    <div className="max-w-6xl mx-auto">
+      {/* Header Halaman */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+        <div>
+          <h1 className="text-2xl font-black text-slate-900 dark:text-white">Data Karyawan</h1>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Total {employees.length} orang terdaftar</p>
         </div>
+        {/* TOMBOL INI AKAN MUNCUL */}
+        <Link href="/employees/create" className="px-6 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-all shadow-md shadow-indigo-500/20 active:scale-[0.98] flex items-center gap-2">
+          <span className="text-lg">+</span> Tambah Karyawan
+        </Link>
+      </div>
 
-        <div className="flex-1 overflow-y-auto pr-2 pb-10">
-          {employees.length === 0 ? (
-            <div className="h-full flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 bg-white dark:bg-slate-800/50 rounded-4xl border border-dashed border-slate-200 dark:border-slate-700">
-              <div className="text-5xl mb-4 opacity-50">👥</div>
-              <p className="font-semibold">Belum ada data</p>
-            </div>
-          ) : (
-            <div className="flex flex-col gap-3">
-              {employees.map((emp) => (
-                <div key={emp.id} className="bg-white dark:bg-slate-800/80 p-4 rounded-3xl border border-slate-100 dark:border-slate-700/50 flex items-center justify-between hover:shadow-sm transition-all group">
-                  <div className="flex items-center gap-4">
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-sm shrink-0 ${getAvatarColor(emp.fullName)}`}>
-                      {getInitials(emp.fullName)}
-                    </div>
-                    <div>
-                      <p className="text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-indigo-500 transition-colors">{emp.fullName}</p>
-                      <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mt-1">
-                        <span>{emp.department}</span>
-                        <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                        <span>{emp.position}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                                    <div className="flex items-center gap-4 text-right">
-                    {/* Info NIK & Status */}
-                    <div className="hidden sm:flex flex-col items-end">
-                      <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">{emp.employeeNumber}</p>
-                      <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider ${
-                        emp.status === 'ACTIVE' 
-                          ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400' 
-                          : 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400'
-                      }`}>
-                        {emp.status === 'ACTIVE' ? 'Aktif' : emp.status}
-                      </span>
-                    </div>
-
-                    {/* Tombol Aksi (Edit & Hapus) */}
-                    <div className="flex items-center gap-2 pl-4 border-l border-slate-100 dark:border-slate-700/50">
-                      <Link 
-                        href={`/employees/edit/${emp.id}`}
-                        className="p-2 text-slate-400 hover:text-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-500/20 rounded-lg transition-colors"
-                        title="Edit Karyawan"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
-                      </Link>
-                      
-                                            <form action={removeEmployee}>
-                        <input type="hidden" name="id" value={emp.id} />
-                        {/* Gunakan formAction atau trik HTML untuk konfirmasi */}
-                        <button 
-                          type="submit"
-                          formAction={async (formData) => {
-                            'use server';
-                            // Ini akan memunculkan konfirmasi di sisi server sebelum menghapus
-                            // Namun karena kita belum punya UI khusus, kita hapus langsung saja dulu
-                            await removeEmployee(formData);
-                          }}
-                          className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/20 rounded-lg transition-colors"
-                          title="Hapus Karyawan"
-                        >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                        </button>
-                      </form>
-                    </div>
+      {/* Daftar Karyawan */}
+      <div className="flex flex-col gap-3">
+        {employees.length === 0 ? (
+          <div className="h-64 flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 bg-white dark:bg-slate-800/50 rounded-[2rem] border border-dashed border-slate-200 dark:border-slate-700">
+            <div className="text-5xl mb-4 opacity-50">👥</div>
+            <p className="font-semibold text-lg">Belum ada data karyawan</p>
+            <p className="text-sm mt-1">Klik tombol Tambah Karyawan untuk memulai.</p>
+          </div>
+        ) : (
+          employees.map((emp) => (
+            <div key={emp.id} className="bg-white dark:bg-slate-800/80 p-5 rounded-3xl border border-slate-100 dark:border-slate-700/50 flex flex-col sm:flex-row sm:items-center justify-between hover:shadow-md transition-all group gap-4">
+              
+              <div className="flex items-center gap-4">
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center font-bold text-lg shrink-0 ${getAvatarColor(emp.fullName)}`}>
+                  {getInitials(emp.fullName)}
+                </div>
+                <div>
+                  <p className="text-lg font-bold text-slate-800 dark:text-slate-100 group-hover:text-indigo-500 transition-colors">{emp.fullName}</p>
+                  <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mt-1">
+                    <span className="font-medium bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded-md text-xs">{emp.employeeNumber}</span>
+                    <span>{emp.department}</span>
+                    <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+                    <span>{emp.position}</span>
                   </div>
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-                
-
-      {/* FORM TAMBAH (KANAN) */}
-      <div className="w-full md:w-96 shrink-0">
-        <div className="bg-white dark:bg-slate-800/80 rounded-4xl border border-slate-100 dark:border-slate-700/50 p-6 md:p-8 shadow-sm sticky top-0">
-          <div className="mb-6">
-            <h2 className="text-xl font-black text-slate-800 dark:text-slate-100">Karyawan Baru</h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Lengkapi form untuk menambahkan data.</p>
-          </div>
-          
-          <form action={addEmployee} className="flex flex-col gap-4">
-            <div>
-              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Nama Lengkap</label>
-              <input name="fullName" type="text" required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-800 dark:text-white text-sm" placeholder="Budi Santoso" />
-            </div>
-            <div>
-              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">NIK</label>
-              <input name="employeeNumber" type="text" required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-800 dark:text-white text-sm" placeholder="BKP-001" />
-            </div>
-            <div>
-              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Email</label>
-              <input name="email" type="email" required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-800 dark:text-white text-sm" placeholder="budi@perusahaan.com" />
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Dept.</label>
-                <input name="department" type="text" required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-800 dark:text-white text-sm" placeholder="IT" />
               </div>
-              <div>
-                <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Jabatan</label>
-                <input name="position" type="text" required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-800 dark:text-white text-sm" placeholder="Staff" />
-              </div>
-            </div>
-            
-            <button type="submit" className="w-full mt-4 px-6 py-3.5 bg-indigo-500 text-white font-bold rounded-xl hover:bg-indigo-600 transition-all shadow-sm active:scale-[0.98]">
-              Simpan Data
-            </button>
-          </form>
-        </div>
-      </div>
 
+              <div className="flex items-center gap-4 self-end sm:self-auto">
+                <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider ${
+                  emp.status === 'ACTIVE' 
+                    ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400' 
+                    : 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400'
+                }`}>
+                  {emp.status === 'ACTIVE' ? 'Aktif' : emp.status}
+                </span>
+
+                <div className="flex items-center gap-1 pl-4 border-l border-slate-100 dark:border-slate-700">
+                  <Link href={`/employees/edit/${emp.id}`} className="p-2.5 text-slate-400 hover:text-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-500/20 rounded-xl transition-colors" title="Edit Karyawan">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                  </Link>
+                  
+                                    {/* GANTI BAGIAN FORM LAMA DENGAN INI */}
+                                    <DeleteButton formAction={removeEmployee} id={emp.id} />
+                </div>
+              </div>
+
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 }

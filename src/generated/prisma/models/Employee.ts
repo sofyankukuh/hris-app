@@ -20,8 +20,18 @@ export type EmployeeModel = runtime.Types.Result.DefaultSelection<Prisma.$Employ
 
 export type AggregateEmployee = {
   _count: EmployeeCountAggregateOutputType | null
+  _avg: EmployeeAvgAggregateOutputType | null
+  _sum: EmployeeSumAggregateOutputType | null
   _min: EmployeeMinAggregateOutputType | null
   _max: EmployeeMaxAggregateOutputType | null
+}
+
+export type EmployeeAvgAggregateOutputType = {
+  childrenCount: number | null
+}
+
+export type EmployeeSumAggregateOutputType = {
+  childrenCount: number | null
 }
 
 export type EmployeeMinAggregateOutputType = {
@@ -31,10 +41,32 @@ export type EmployeeMinAggregateOutputType = {
   fullName: string | null
   email: string | null
   phoneNumber: string | null
-  department: string | null
-  position: string | null
   joinDate: Date | null
   status: $Enums.EmployeeStatus | null
+  birthDate: Date | null
+  birthPlace: string | null
+  gender: string | null
+  religion: string | null
+  maritalStatus: string | null
+  motherName: string | null
+  spouseName: string | null
+  childrenCount: number | null
+  ktpNumber: string | null
+  npwpNumber: string | null
+  jamsostekNumber: string | null
+  address: string | null
+  department: string | null
+  position: string | null
+  education: string | null
+  customer: string | null
+  branchCode: string | null
+  outlet: string | null
+  contractStart: Date | null
+  contractEnd: Date | null
+  contractNumber: string | null
+  exitDate: Date | null
+  bankName: string | null
+  bankAccount: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -46,10 +78,32 @@ export type EmployeeMaxAggregateOutputType = {
   fullName: string | null
   email: string | null
   phoneNumber: string | null
-  department: string | null
-  position: string | null
   joinDate: Date | null
   status: $Enums.EmployeeStatus | null
+  birthDate: Date | null
+  birthPlace: string | null
+  gender: string | null
+  religion: string | null
+  maritalStatus: string | null
+  motherName: string | null
+  spouseName: string | null
+  childrenCount: number | null
+  ktpNumber: string | null
+  npwpNumber: string | null
+  jamsostekNumber: string | null
+  address: string | null
+  department: string | null
+  position: string | null
+  education: string | null
+  customer: string | null
+  branchCode: string | null
+  outlet: string | null
+  contractStart: Date | null
+  contractEnd: Date | null
+  contractNumber: string | null
+  exitDate: Date | null
+  bankName: string | null
+  bankAccount: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -61,15 +115,45 @@ export type EmployeeCountAggregateOutputType = {
   fullName: number
   email: number
   phoneNumber: number
-  department: number
-  position: number
   joinDate: number
   status: number
+  birthDate: number
+  birthPlace: number
+  gender: number
+  religion: number
+  maritalStatus: number
+  motherName: number
+  spouseName: number
+  childrenCount: number
+  ktpNumber: number
+  npwpNumber: number
+  jamsostekNumber: number
+  address: number
+  department: number
+  position: number
+  education: number
+  customer: number
+  branchCode: number
+  outlet: number
+  contractStart: number
+  contractEnd: number
+  contractNumber: number
+  exitDate: number
+  bankName: number
+  bankAccount: number
   createdAt: number
   updatedAt: number
   _all: number
 }
 
+
+export type EmployeeAvgAggregateInputType = {
+  childrenCount?: true
+}
+
+export type EmployeeSumAggregateInputType = {
+  childrenCount?: true
+}
 
 export type EmployeeMinAggregateInputType = {
   id?: true
@@ -78,10 +162,32 @@ export type EmployeeMinAggregateInputType = {
   fullName?: true
   email?: true
   phoneNumber?: true
-  department?: true
-  position?: true
   joinDate?: true
   status?: true
+  birthDate?: true
+  birthPlace?: true
+  gender?: true
+  religion?: true
+  maritalStatus?: true
+  motherName?: true
+  spouseName?: true
+  childrenCount?: true
+  ktpNumber?: true
+  npwpNumber?: true
+  jamsostekNumber?: true
+  address?: true
+  department?: true
+  position?: true
+  education?: true
+  customer?: true
+  branchCode?: true
+  outlet?: true
+  contractStart?: true
+  contractEnd?: true
+  contractNumber?: true
+  exitDate?: true
+  bankName?: true
+  bankAccount?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -93,10 +199,32 @@ export type EmployeeMaxAggregateInputType = {
   fullName?: true
   email?: true
   phoneNumber?: true
-  department?: true
-  position?: true
   joinDate?: true
   status?: true
+  birthDate?: true
+  birthPlace?: true
+  gender?: true
+  religion?: true
+  maritalStatus?: true
+  motherName?: true
+  spouseName?: true
+  childrenCount?: true
+  ktpNumber?: true
+  npwpNumber?: true
+  jamsostekNumber?: true
+  address?: true
+  department?: true
+  position?: true
+  education?: true
+  customer?: true
+  branchCode?: true
+  outlet?: true
+  contractStart?: true
+  contractEnd?: true
+  contractNumber?: true
+  exitDate?: true
+  bankName?: true
+  bankAccount?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -108,10 +236,32 @@ export type EmployeeCountAggregateInputType = {
   fullName?: true
   email?: true
   phoneNumber?: true
-  department?: true
-  position?: true
   joinDate?: true
   status?: true
+  birthDate?: true
+  birthPlace?: true
+  gender?: true
+  religion?: true
+  maritalStatus?: true
+  motherName?: true
+  spouseName?: true
+  childrenCount?: true
+  ktpNumber?: true
+  npwpNumber?: true
+  jamsostekNumber?: true
+  address?: true
+  department?: true
+  position?: true
+  education?: true
+  customer?: true
+  branchCode?: true
+  outlet?: true
+  contractStart?: true
+  contractEnd?: true
+  contractNumber?: true
+  exitDate?: true
+  bankName?: true
+  bankAccount?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -155,6 +305,18 @@ export type EmployeeAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inter
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: EmployeeAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: EmployeeSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: EmployeeMinAggregateInputType
@@ -185,6 +347,8 @@ export type EmployeeGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   _count?: EmployeeCountAggregateInputType | true
+  _avg?: EmployeeAvgAggregateInputType
+  _sum?: EmployeeSumAggregateInputType
   _min?: EmployeeMinAggregateInputType
   _max?: EmployeeMaxAggregateInputType
 }
@@ -196,13 +360,37 @@ export type EmployeeGroupByOutputType = {
   fullName: string
   email: string
   phoneNumber: string | null
-  department: string
-  position: string
   joinDate: Date
   status: $Enums.EmployeeStatus
+  birthDate: Date | null
+  birthPlace: string | null
+  gender: string | null
+  religion: string | null
+  maritalStatus: string | null
+  motherName: string | null
+  spouseName: string | null
+  childrenCount: number | null
+  ktpNumber: string | null
+  npwpNumber: string | null
+  jamsostekNumber: string | null
+  address: string | null
+  department: string
+  position: string
+  education: string | null
+  customer: string | null
+  branchCode: string | null
+  outlet: string | null
+  contractStart: Date | null
+  contractEnd: Date | null
+  contractNumber: string | null
+  exitDate: Date | null
+  bankName: string | null
+  bankAccount: string | null
   createdAt: Date
   updatedAt: Date
   _count: EmployeeCountAggregateOutputType | null
+  _avg: EmployeeAvgAggregateOutputType | null
+  _sum: EmployeeSumAggregateOutputType | null
   _min: EmployeeMinAggregateOutputType | null
   _max: EmployeeMaxAggregateOutputType | null
 }
@@ -232,10 +420,32 @@ export type EmployeeWhereInput = {
   fullName?: Prisma.StringFilter<"Employee"> | string
   email?: Prisma.StringFilter<"Employee"> | string
   phoneNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
-  department?: Prisma.StringFilter<"Employee"> | string
-  position?: Prisma.StringFilter<"Employee"> | string
   joinDate?: Prisma.DateTimeFilter<"Employee"> | Date | string
   status?: Prisma.EnumEmployeeStatusFilter<"Employee"> | $Enums.EmployeeStatus
+  birthDate?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
+  birthPlace?: Prisma.StringNullableFilter<"Employee"> | string | null
+  gender?: Prisma.StringNullableFilter<"Employee"> | string | null
+  religion?: Prisma.StringNullableFilter<"Employee"> | string | null
+  maritalStatus?: Prisma.StringNullableFilter<"Employee"> | string | null
+  motherName?: Prisma.StringNullableFilter<"Employee"> | string | null
+  spouseName?: Prisma.StringNullableFilter<"Employee"> | string | null
+  childrenCount?: Prisma.IntNullableFilter<"Employee"> | number | null
+  ktpNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  npwpNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  jamsostekNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  address?: Prisma.StringNullableFilter<"Employee"> | string | null
+  department?: Prisma.StringFilter<"Employee"> | string
+  position?: Prisma.StringFilter<"Employee"> | string
+  education?: Prisma.StringNullableFilter<"Employee"> | string | null
+  customer?: Prisma.StringNullableFilter<"Employee"> | string | null
+  branchCode?: Prisma.StringNullableFilter<"Employee"> | string | null
+  outlet?: Prisma.StringNullableFilter<"Employee"> | string | null
+  contractStart?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
+  contractEnd?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
+  contractNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  exitDate?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
+  bankName?: Prisma.StringNullableFilter<"Employee"> | string | null
+  bankAccount?: Prisma.StringNullableFilter<"Employee"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
@@ -248,10 +458,32 @@ export type EmployeeOrderByWithRelationInput = {
   fullName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrderInput | Prisma.SortOrder
-  department?: Prisma.SortOrder
-  position?: Prisma.SortOrder
   joinDate?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  birthDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  birthPlace?: Prisma.SortOrderInput | Prisma.SortOrder
+  gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  religion?: Prisma.SortOrderInput | Prisma.SortOrder
+  maritalStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  motherName?: Prisma.SortOrderInput | Prisma.SortOrder
+  spouseName?: Prisma.SortOrderInput | Prisma.SortOrder
+  childrenCount?: Prisma.SortOrderInput | Prisma.SortOrder
+  ktpNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  npwpNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  jamsostekNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  address?: Prisma.SortOrderInput | Prisma.SortOrder
+  department?: Prisma.SortOrder
+  position?: Prisma.SortOrder
+  education?: Prisma.SortOrderInput | Prisma.SortOrder
+  customer?: Prisma.SortOrderInput | Prisma.SortOrder
+  branchCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  outlet?: Prisma.SortOrderInput | Prisma.SortOrder
+  contractStart?: Prisma.SortOrderInput | Prisma.SortOrder
+  contractEnd?: Prisma.SortOrderInput | Prisma.SortOrder
+  contractNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  exitDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  bankName?: Prisma.SortOrderInput | Prisma.SortOrder
+  bankAccount?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   tenant?: Prisma.TenantOrderByWithRelationInput
@@ -269,10 +501,32 @@ export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
   fullName?: Prisma.StringFilter<"Employee"> | string
   email?: Prisma.StringFilter<"Employee"> | string
   phoneNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
-  department?: Prisma.StringFilter<"Employee"> | string
-  position?: Prisma.StringFilter<"Employee"> | string
   joinDate?: Prisma.DateTimeFilter<"Employee"> | Date | string
   status?: Prisma.EnumEmployeeStatusFilter<"Employee"> | $Enums.EmployeeStatus
+  birthDate?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
+  birthPlace?: Prisma.StringNullableFilter<"Employee"> | string | null
+  gender?: Prisma.StringNullableFilter<"Employee"> | string | null
+  religion?: Prisma.StringNullableFilter<"Employee"> | string | null
+  maritalStatus?: Prisma.StringNullableFilter<"Employee"> | string | null
+  motherName?: Prisma.StringNullableFilter<"Employee"> | string | null
+  spouseName?: Prisma.StringNullableFilter<"Employee"> | string | null
+  childrenCount?: Prisma.IntNullableFilter<"Employee"> | number | null
+  ktpNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  npwpNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  jamsostekNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  address?: Prisma.StringNullableFilter<"Employee"> | string | null
+  department?: Prisma.StringFilter<"Employee"> | string
+  position?: Prisma.StringFilter<"Employee"> | string
+  education?: Prisma.StringNullableFilter<"Employee"> | string | null
+  customer?: Prisma.StringNullableFilter<"Employee"> | string | null
+  branchCode?: Prisma.StringNullableFilter<"Employee"> | string | null
+  outlet?: Prisma.StringNullableFilter<"Employee"> | string | null
+  contractStart?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
+  contractEnd?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
+  contractNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  exitDate?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
+  bankName?: Prisma.StringNullableFilter<"Employee"> | string | null
+  bankAccount?: Prisma.StringNullableFilter<"Employee"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
@@ -285,15 +539,39 @@ export type EmployeeOrderByWithAggregationInput = {
   fullName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrderInput | Prisma.SortOrder
-  department?: Prisma.SortOrder
-  position?: Prisma.SortOrder
   joinDate?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  birthDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  birthPlace?: Prisma.SortOrderInput | Prisma.SortOrder
+  gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  religion?: Prisma.SortOrderInput | Prisma.SortOrder
+  maritalStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  motherName?: Prisma.SortOrderInput | Prisma.SortOrder
+  spouseName?: Prisma.SortOrderInput | Prisma.SortOrder
+  childrenCount?: Prisma.SortOrderInput | Prisma.SortOrder
+  ktpNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  npwpNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  jamsostekNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  address?: Prisma.SortOrderInput | Prisma.SortOrder
+  department?: Prisma.SortOrder
+  position?: Prisma.SortOrder
+  education?: Prisma.SortOrderInput | Prisma.SortOrder
+  customer?: Prisma.SortOrderInput | Prisma.SortOrder
+  branchCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  outlet?: Prisma.SortOrderInput | Prisma.SortOrder
+  contractStart?: Prisma.SortOrderInput | Prisma.SortOrder
+  contractEnd?: Prisma.SortOrderInput | Prisma.SortOrder
+  contractNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  exitDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  bankName?: Prisma.SortOrderInput | Prisma.SortOrder
+  bankAccount?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.EmployeeCountOrderByAggregateInput
+  _avg?: Prisma.EmployeeAvgOrderByAggregateInput
   _max?: Prisma.EmployeeMaxOrderByAggregateInput
   _min?: Prisma.EmployeeMinOrderByAggregateInput
+  _sum?: Prisma.EmployeeSumOrderByAggregateInput
 }
 
 export type EmployeeScalarWhereWithAggregatesInput = {
@@ -306,10 +584,32 @@ export type EmployeeScalarWhereWithAggregatesInput = {
   fullName?: Prisma.StringWithAggregatesFilter<"Employee"> | string
   email?: Prisma.StringWithAggregatesFilter<"Employee"> | string
   phoneNumber?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
-  department?: Prisma.StringWithAggregatesFilter<"Employee"> | string
-  position?: Prisma.StringWithAggregatesFilter<"Employee"> | string
   joinDate?: Prisma.DateTimeWithAggregatesFilter<"Employee"> | Date | string
   status?: Prisma.EnumEmployeeStatusWithAggregatesFilter<"Employee"> | $Enums.EmployeeStatus
+  birthDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Employee"> | Date | string | null
+  birthPlace?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  gender?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  religion?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  maritalStatus?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  motherName?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  spouseName?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  childrenCount?: Prisma.IntNullableWithAggregatesFilter<"Employee"> | number | null
+  ktpNumber?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  npwpNumber?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  jamsostekNumber?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  address?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  department?: Prisma.StringWithAggregatesFilter<"Employee"> | string
+  position?: Prisma.StringWithAggregatesFilter<"Employee"> | string
+  education?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  customer?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  branchCode?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  outlet?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  contractStart?: Prisma.DateTimeNullableWithAggregatesFilter<"Employee"> | Date | string | null
+  contractEnd?: Prisma.DateTimeNullableWithAggregatesFilter<"Employee"> | Date | string | null
+  contractNumber?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  exitDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Employee"> | Date | string | null
+  bankName?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
+  bankAccount?: Prisma.StringNullableWithAggregatesFilter<"Employee"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Employee"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Employee"> | Date | string
 }
@@ -320,10 +620,32 @@ export type EmployeeCreateInput = {
   fullName: string
   email: string
   phoneNumber?: string | null
-  department: string
-  position: string
   joinDate: Date | string
   status?: $Enums.EmployeeStatus
+  birthDate?: Date | string | null
+  birthPlace?: string | null
+  gender?: string | null
+  religion?: string | null
+  maritalStatus?: string | null
+  motherName?: string | null
+  spouseName?: string | null
+  childrenCount?: number | null
+  ktpNumber?: string | null
+  npwpNumber?: string | null
+  jamsostekNumber?: string | null
+  address?: string | null
+  department: string
+  position: string
+  education?: string | null
+  customer?: string | null
+  branchCode?: string | null
+  outlet?: string | null
+  contractStart?: Date | string | null
+  contractEnd?: Date | string | null
+  contractNumber?: string | null
+  exitDate?: Date | string | null
+  bankName?: string | null
+  bankAccount?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
@@ -336,10 +658,32 @@ export type EmployeeUncheckedCreateInput = {
   fullName: string
   email: string
   phoneNumber?: string | null
-  department: string
-  position: string
   joinDate: Date | string
   status?: $Enums.EmployeeStatus
+  birthDate?: Date | string | null
+  birthPlace?: string | null
+  gender?: string | null
+  religion?: string | null
+  maritalStatus?: string | null
+  motherName?: string | null
+  spouseName?: string | null
+  childrenCount?: number | null
+  ktpNumber?: string | null
+  npwpNumber?: string | null
+  jamsostekNumber?: string | null
+  address?: string | null
+  department: string
+  position: string
+  education?: string | null
+  customer?: string | null
+  branchCode?: string | null
+  outlet?: string | null
+  contractStart?: Date | string | null
+  contractEnd?: Date | string | null
+  contractNumber?: string | null
+  exitDate?: Date | string | null
+  bankName?: string | null
+  bankAccount?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -350,10 +694,32 @@ export type EmployeeUpdateInput = {
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  department?: Prisma.StringFieldUpdateOperationsInput | string
-  position?: Prisma.StringFieldUpdateOperationsInput | string
   joinDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  birthPlace?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maritalStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  motherName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  spouseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  childrenCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ktpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  npwpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jamsostekNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  department?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.StringFieldUpdateOperationsInput | string
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exitDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccount?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
@@ -366,10 +732,32 @@ export type EmployeeUncheckedUpdateInput = {
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  department?: Prisma.StringFieldUpdateOperationsInput | string
-  position?: Prisma.StringFieldUpdateOperationsInput | string
   joinDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  birthPlace?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maritalStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  motherName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  spouseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  childrenCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ktpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  npwpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jamsostekNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  department?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.StringFieldUpdateOperationsInput | string
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exitDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccount?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -381,10 +769,32 @@ export type EmployeeCreateManyInput = {
   fullName: string
   email: string
   phoneNumber?: string | null
-  department: string
-  position: string
   joinDate: Date | string
   status?: $Enums.EmployeeStatus
+  birthDate?: Date | string | null
+  birthPlace?: string | null
+  gender?: string | null
+  religion?: string | null
+  maritalStatus?: string | null
+  motherName?: string | null
+  spouseName?: string | null
+  childrenCount?: number | null
+  ktpNumber?: string | null
+  npwpNumber?: string | null
+  jamsostekNumber?: string | null
+  address?: string | null
+  department: string
+  position: string
+  education?: string | null
+  customer?: string | null
+  branchCode?: string | null
+  outlet?: string | null
+  contractStart?: Date | string | null
+  contractEnd?: Date | string | null
+  contractNumber?: string | null
+  exitDate?: Date | string | null
+  bankName?: string | null
+  bankAccount?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -395,10 +805,32 @@ export type EmployeeUpdateManyMutationInput = {
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  department?: Prisma.StringFieldUpdateOperationsInput | string
-  position?: Prisma.StringFieldUpdateOperationsInput | string
   joinDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  birthPlace?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maritalStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  motherName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  spouseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  childrenCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ktpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  npwpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jamsostekNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  department?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.StringFieldUpdateOperationsInput | string
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exitDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccount?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -410,10 +842,32 @@ export type EmployeeUncheckedUpdateManyInput = {
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  department?: Prisma.StringFieldUpdateOperationsInput | string
-  position?: Prisma.StringFieldUpdateOperationsInput | string
   joinDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  birthPlace?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maritalStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  motherName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  spouseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  childrenCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ktpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  npwpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jamsostekNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  department?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.StringFieldUpdateOperationsInput | string
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exitDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccount?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -445,12 +899,38 @@ export type EmployeeCountOrderByAggregateInput = {
   fullName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
-  department?: Prisma.SortOrder
-  position?: Prisma.SortOrder
   joinDate?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  birthDate?: Prisma.SortOrder
+  birthPlace?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  religion?: Prisma.SortOrder
+  maritalStatus?: Prisma.SortOrder
+  motherName?: Prisma.SortOrder
+  spouseName?: Prisma.SortOrder
+  childrenCount?: Prisma.SortOrder
+  ktpNumber?: Prisma.SortOrder
+  npwpNumber?: Prisma.SortOrder
+  jamsostekNumber?: Prisma.SortOrder
+  address?: Prisma.SortOrder
+  department?: Prisma.SortOrder
+  position?: Prisma.SortOrder
+  education?: Prisma.SortOrder
+  customer?: Prisma.SortOrder
+  branchCode?: Prisma.SortOrder
+  outlet?: Prisma.SortOrder
+  contractStart?: Prisma.SortOrder
+  contractEnd?: Prisma.SortOrder
+  contractNumber?: Prisma.SortOrder
+  exitDate?: Prisma.SortOrder
+  bankName?: Prisma.SortOrder
+  bankAccount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type EmployeeAvgOrderByAggregateInput = {
+  childrenCount?: Prisma.SortOrder
 }
 
 export type EmployeeMaxOrderByAggregateInput = {
@@ -460,10 +940,32 @@ export type EmployeeMaxOrderByAggregateInput = {
   fullName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
-  department?: Prisma.SortOrder
-  position?: Prisma.SortOrder
   joinDate?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  birthDate?: Prisma.SortOrder
+  birthPlace?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  religion?: Prisma.SortOrder
+  maritalStatus?: Prisma.SortOrder
+  motherName?: Prisma.SortOrder
+  spouseName?: Prisma.SortOrder
+  childrenCount?: Prisma.SortOrder
+  ktpNumber?: Prisma.SortOrder
+  npwpNumber?: Prisma.SortOrder
+  jamsostekNumber?: Prisma.SortOrder
+  address?: Prisma.SortOrder
+  department?: Prisma.SortOrder
+  position?: Prisma.SortOrder
+  education?: Prisma.SortOrder
+  customer?: Prisma.SortOrder
+  branchCode?: Prisma.SortOrder
+  outlet?: Prisma.SortOrder
+  contractStart?: Prisma.SortOrder
+  contractEnd?: Prisma.SortOrder
+  contractNumber?: Prisma.SortOrder
+  exitDate?: Prisma.SortOrder
+  bankName?: Prisma.SortOrder
+  bankAccount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -475,12 +977,38 @@ export type EmployeeMinOrderByAggregateInput = {
   fullName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
-  department?: Prisma.SortOrder
-  position?: Prisma.SortOrder
   joinDate?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  birthDate?: Prisma.SortOrder
+  birthPlace?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  religion?: Prisma.SortOrder
+  maritalStatus?: Prisma.SortOrder
+  motherName?: Prisma.SortOrder
+  spouseName?: Prisma.SortOrder
+  childrenCount?: Prisma.SortOrder
+  ktpNumber?: Prisma.SortOrder
+  npwpNumber?: Prisma.SortOrder
+  jamsostekNumber?: Prisma.SortOrder
+  address?: Prisma.SortOrder
+  department?: Prisma.SortOrder
+  position?: Prisma.SortOrder
+  education?: Prisma.SortOrder
+  customer?: Prisma.SortOrder
+  branchCode?: Prisma.SortOrder
+  outlet?: Prisma.SortOrder
+  contractStart?: Prisma.SortOrder
+  contractEnd?: Prisma.SortOrder
+  contractNumber?: Prisma.SortOrder
+  exitDate?: Prisma.SortOrder
+  bankName?: Prisma.SortOrder
+  bankAccount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type EmployeeSumOrderByAggregateInput = {
+  childrenCount?: Prisma.SortOrder
 }
 
 export type EmployeeCreateNestedManyWithoutTenantInput = {
@@ -533,16 +1061,50 @@ export type EnumEmployeeStatusFieldUpdateOperationsInput = {
   set?: $Enums.EmployeeStatus
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type EmployeeCreateWithoutTenantInput = {
   id?: string
   employeeNumber: string
   fullName: string
   email: string
   phoneNumber?: string | null
-  department: string
-  position: string
   joinDate: Date | string
   status?: $Enums.EmployeeStatus
+  birthDate?: Date | string | null
+  birthPlace?: string | null
+  gender?: string | null
+  religion?: string | null
+  maritalStatus?: string | null
+  motherName?: string | null
+  spouseName?: string | null
+  childrenCount?: number | null
+  ktpNumber?: string | null
+  npwpNumber?: string | null
+  jamsostekNumber?: string | null
+  address?: string | null
+  department: string
+  position: string
+  education?: string | null
+  customer?: string | null
+  branchCode?: string | null
+  outlet?: string | null
+  contractStart?: Date | string | null
+  contractEnd?: Date | string | null
+  contractNumber?: string | null
+  exitDate?: Date | string | null
+  bankName?: string | null
+  bankAccount?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -553,10 +1115,32 @@ export type EmployeeUncheckedCreateWithoutTenantInput = {
   fullName: string
   email: string
   phoneNumber?: string | null
-  department: string
-  position: string
   joinDate: Date | string
   status?: $Enums.EmployeeStatus
+  birthDate?: Date | string | null
+  birthPlace?: string | null
+  gender?: string | null
+  religion?: string | null
+  maritalStatus?: string | null
+  motherName?: string | null
+  spouseName?: string | null
+  childrenCount?: number | null
+  ktpNumber?: string | null
+  npwpNumber?: string | null
+  jamsostekNumber?: string | null
+  address?: string | null
+  department: string
+  position: string
+  education?: string | null
+  customer?: string | null
+  branchCode?: string | null
+  outlet?: string | null
+  contractStart?: Date | string | null
+  contractEnd?: Date | string | null
+  contractNumber?: string | null
+  exitDate?: Date | string | null
+  bankName?: string | null
+  bankAccount?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -597,10 +1181,32 @@ export type EmployeeScalarWhereInput = {
   fullName?: Prisma.StringFilter<"Employee"> | string
   email?: Prisma.StringFilter<"Employee"> | string
   phoneNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
-  department?: Prisma.StringFilter<"Employee"> | string
-  position?: Prisma.StringFilter<"Employee"> | string
   joinDate?: Prisma.DateTimeFilter<"Employee"> | Date | string
   status?: Prisma.EnumEmployeeStatusFilter<"Employee"> | $Enums.EmployeeStatus
+  birthDate?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
+  birthPlace?: Prisma.StringNullableFilter<"Employee"> | string | null
+  gender?: Prisma.StringNullableFilter<"Employee"> | string | null
+  religion?: Prisma.StringNullableFilter<"Employee"> | string | null
+  maritalStatus?: Prisma.StringNullableFilter<"Employee"> | string | null
+  motherName?: Prisma.StringNullableFilter<"Employee"> | string | null
+  spouseName?: Prisma.StringNullableFilter<"Employee"> | string | null
+  childrenCount?: Prisma.IntNullableFilter<"Employee"> | number | null
+  ktpNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  npwpNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  jamsostekNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  address?: Prisma.StringNullableFilter<"Employee"> | string | null
+  department?: Prisma.StringFilter<"Employee"> | string
+  position?: Prisma.StringFilter<"Employee"> | string
+  education?: Prisma.StringNullableFilter<"Employee"> | string | null
+  customer?: Prisma.StringNullableFilter<"Employee"> | string | null
+  branchCode?: Prisma.StringNullableFilter<"Employee"> | string | null
+  outlet?: Prisma.StringNullableFilter<"Employee"> | string | null
+  contractStart?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
+  contractEnd?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
+  contractNumber?: Prisma.StringNullableFilter<"Employee"> | string | null
+  exitDate?: Prisma.DateTimeNullableFilter<"Employee"> | Date | string | null
+  bankName?: Prisma.StringNullableFilter<"Employee"> | string | null
+  bankAccount?: Prisma.StringNullableFilter<"Employee"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Employee"> | Date | string
 }
@@ -611,10 +1217,32 @@ export type EmployeeCreateManyTenantInput = {
   fullName: string
   email: string
   phoneNumber?: string | null
-  department: string
-  position: string
   joinDate: Date | string
   status?: $Enums.EmployeeStatus
+  birthDate?: Date | string | null
+  birthPlace?: string | null
+  gender?: string | null
+  religion?: string | null
+  maritalStatus?: string | null
+  motherName?: string | null
+  spouseName?: string | null
+  childrenCount?: number | null
+  ktpNumber?: string | null
+  npwpNumber?: string | null
+  jamsostekNumber?: string | null
+  address?: string | null
+  department: string
+  position: string
+  education?: string | null
+  customer?: string | null
+  branchCode?: string | null
+  outlet?: string | null
+  contractStart?: Date | string | null
+  contractEnd?: Date | string | null
+  contractNumber?: string | null
+  exitDate?: Date | string | null
+  bankName?: string | null
+  bankAccount?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -625,10 +1253,32 @@ export type EmployeeUpdateWithoutTenantInput = {
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  department?: Prisma.StringFieldUpdateOperationsInput | string
-  position?: Prisma.StringFieldUpdateOperationsInput | string
   joinDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  birthPlace?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maritalStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  motherName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  spouseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  childrenCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ktpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  npwpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jamsostekNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  department?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.StringFieldUpdateOperationsInput | string
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exitDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccount?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -639,10 +1289,32 @@ export type EmployeeUncheckedUpdateWithoutTenantInput = {
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  department?: Prisma.StringFieldUpdateOperationsInput | string
-  position?: Prisma.StringFieldUpdateOperationsInput | string
   joinDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  birthPlace?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maritalStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  motherName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  spouseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  childrenCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ktpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  npwpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jamsostekNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  department?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.StringFieldUpdateOperationsInput | string
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exitDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccount?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -653,10 +1325,32 @@ export type EmployeeUncheckedUpdateManyWithoutTenantInput = {
   fullName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  department?: Prisma.StringFieldUpdateOperationsInput | string
-  position?: Prisma.StringFieldUpdateOperationsInput | string
   joinDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  birthPlace?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maritalStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  motherName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  spouseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  childrenCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ktpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  npwpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jamsostekNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  department?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.StringFieldUpdateOperationsInput | string
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exitDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccount?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -670,10 +1364,32 @@ export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   fullName?: boolean
   email?: boolean
   phoneNumber?: boolean
-  department?: boolean
-  position?: boolean
   joinDate?: boolean
   status?: boolean
+  birthDate?: boolean
+  birthPlace?: boolean
+  gender?: boolean
+  religion?: boolean
+  maritalStatus?: boolean
+  motherName?: boolean
+  spouseName?: boolean
+  childrenCount?: boolean
+  ktpNumber?: boolean
+  npwpNumber?: boolean
+  jamsostekNumber?: boolean
+  address?: boolean
+  department?: boolean
+  position?: boolean
+  education?: boolean
+  customer?: boolean
+  branchCode?: boolean
+  outlet?: boolean
+  contractStart?: boolean
+  contractEnd?: boolean
+  contractNumber?: boolean
+  exitDate?: boolean
+  bankName?: boolean
+  bankAccount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
@@ -686,10 +1402,32 @@ export type EmployeeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   fullName?: boolean
   email?: boolean
   phoneNumber?: boolean
-  department?: boolean
-  position?: boolean
   joinDate?: boolean
   status?: boolean
+  birthDate?: boolean
+  birthPlace?: boolean
+  gender?: boolean
+  religion?: boolean
+  maritalStatus?: boolean
+  motherName?: boolean
+  spouseName?: boolean
+  childrenCount?: boolean
+  ktpNumber?: boolean
+  npwpNumber?: boolean
+  jamsostekNumber?: boolean
+  address?: boolean
+  department?: boolean
+  position?: boolean
+  education?: boolean
+  customer?: boolean
+  branchCode?: boolean
+  outlet?: boolean
+  contractStart?: boolean
+  contractEnd?: boolean
+  contractNumber?: boolean
+  exitDate?: boolean
+  bankName?: boolean
+  bankAccount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
@@ -702,10 +1440,32 @@ export type EmployeeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   fullName?: boolean
   email?: boolean
   phoneNumber?: boolean
-  department?: boolean
-  position?: boolean
   joinDate?: boolean
   status?: boolean
+  birthDate?: boolean
+  birthPlace?: boolean
+  gender?: boolean
+  religion?: boolean
+  maritalStatus?: boolean
+  motherName?: boolean
+  spouseName?: boolean
+  childrenCount?: boolean
+  ktpNumber?: boolean
+  npwpNumber?: boolean
+  jamsostekNumber?: boolean
+  address?: boolean
+  department?: boolean
+  position?: boolean
+  education?: boolean
+  customer?: boolean
+  branchCode?: boolean
+  outlet?: boolean
+  contractStart?: boolean
+  contractEnd?: boolean
+  contractNumber?: boolean
+  exitDate?: boolean
+  bankName?: boolean
+  bankAccount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
@@ -718,15 +1478,37 @@ export type EmployeeSelectScalar = {
   fullName?: boolean
   email?: boolean
   phoneNumber?: boolean
-  department?: boolean
-  position?: boolean
   joinDate?: boolean
   status?: boolean
+  birthDate?: boolean
+  birthPlace?: boolean
+  gender?: boolean
+  religion?: boolean
+  maritalStatus?: boolean
+  motherName?: boolean
+  spouseName?: boolean
+  childrenCount?: boolean
+  ktpNumber?: boolean
+  npwpNumber?: boolean
+  jamsostekNumber?: boolean
+  address?: boolean
+  department?: boolean
+  position?: boolean
+  education?: boolean
+  customer?: boolean
+  branchCode?: boolean
+  outlet?: boolean
+  contractStart?: boolean
+  contractEnd?: boolean
+  contractNumber?: boolean
+  exitDate?: boolean
+  bankName?: boolean
+  bankAccount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type EmployeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "employeeNumber" | "fullName" | "email" | "phoneNumber" | "department" | "position" | "joinDate" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["employee"]>
+export type EmployeeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "employeeNumber" | "fullName" | "email" | "phoneNumber" | "joinDate" | "status" | "birthDate" | "birthPlace" | "gender" | "religion" | "maritalStatus" | "motherName" | "spouseName" | "childrenCount" | "ktpNumber" | "npwpNumber" | "jamsostekNumber" | "address" | "department" | "position" | "education" | "customer" | "branchCode" | "outlet" | "contractStart" | "contractEnd" | "contractNumber" | "exitDate" | "bankName" | "bankAccount" | "createdAt" | "updatedAt", ExtArgs["result"]["employee"]>
 export type EmployeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }
@@ -749,10 +1531,32 @@ export type $EmployeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     fullName: string
     email: string
     phoneNumber: string | null
-    department: string
-    position: string
     joinDate: Date
     status: $Enums.EmployeeStatus
+    birthDate: Date | null
+    birthPlace: string | null
+    gender: string | null
+    religion: string | null
+    maritalStatus: string | null
+    motherName: string | null
+    spouseName: string | null
+    childrenCount: number | null
+    ktpNumber: string | null
+    npwpNumber: string | null
+    jamsostekNumber: string | null
+    address: string | null
+    department: string
+    position: string
+    education: string | null
+    customer: string | null
+    branchCode: string | null
+    outlet: string | null
+    contractStart: Date | null
+    contractEnd: Date | null
+    contractNumber: string | null
+    exitDate: Date | null
+    bankName: string | null
+    bankAccount: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["employee"]>
@@ -1185,10 +1989,32 @@ export interface EmployeeFieldRefs {
   readonly fullName: Prisma.FieldRef<"Employee", 'String'>
   readonly email: Prisma.FieldRef<"Employee", 'String'>
   readonly phoneNumber: Prisma.FieldRef<"Employee", 'String'>
-  readonly department: Prisma.FieldRef<"Employee", 'String'>
-  readonly position: Prisma.FieldRef<"Employee", 'String'>
   readonly joinDate: Prisma.FieldRef<"Employee", 'DateTime'>
   readonly status: Prisma.FieldRef<"Employee", 'EmployeeStatus'>
+  readonly birthDate: Prisma.FieldRef<"Employee", 'DateTime'>
+  readonly birthPlace: Prisma.FieldRef<"Employee", 'String'>
+  readonly gender: Prisma.FieldRef<"Employee", 'String'>
+  readonly religion: Prisma.FieldRef<"Employee", 'String'>
+  readonly maritalStatus: Prisma.FieldRef<"Employee", 'String'>
+  readonly motherName: Prisma.FieldRef<"Employee", 'String'>
+  readonly spouseName: Prisma.FieldRef<"Employee", 'String'>
+  readonly childrenCount: Prisma.FieldRef<"Employee", 'Int'>
+  readonly ktpNumber: Prisma.FieldRef<"Employee", 'String'>
+  readonly npwpNumber: Prisma.FieldRef<"Employee", 'String'>
+  readonly jamsostekNumber: Prisma.FieldRef<"Employee", 'String'>
+  readonly address: Prisma.FieldRef<"Employee", 'String'>
+  readonly department: Prisma.FieldRef<"Employee", 'String'>
+  readonly position: Prisma.FieldRef<"Employee", 'String'>
+  readonly education: Prisma.FieldRef<"Employee", 'String'>
+  readonly customer: Prisma.FieldRef<"Employee", 'String'>
+  readonly branchCode: Prisma.FieldRef<"Employee", 'String'>
+  readonly outlet: Prisma.FieldRef<"Employee", 'String'>
+  readonly contractStart: Prisma.FieldRef<"Employee", 'DateTime'>
+  readonly contractEnd: Prisma.FieldRef<"Employee", 'DateTime'>
+  readonly contractNumber: Prisma.FieldRef<"Employee", 'String'>
+  readonly exitDate: Prisma.FieldRef<"Employee", 'DateTime'>
+  readonly bankName: Prisma.FieldRef<"Employee", 'String'>
+  readonly bankAccount: Prisma.FieldRef<"Employee", 'String'>
   readonly createdAt: Prisma.FieldRef<"Employee", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Employee", 'DateTime'>
 }
