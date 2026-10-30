@@ -8,13 +8,11 @@ export default async function NewEmployeePage() {
   async function addEmployee(formData: FormData) {
     'use server';
     
-    // Ambil data utama
     const fullName = formData.get('fullName') as string;
     const email = formData.get('email') as string;
     const department = formData.get('department') as string;
     const position = formData.get('position') as string;
     
-    // Ambil data opsional
     const phoneNumber = formData.get('phoneNumber') as string || null;
     const gender = formData.get('gender') as string || null;
     const religion = formData.get('religion') as string || null;
@@ -23,18 +21,36 @@ export default async function NewEmployeePage() {
     const education = formData.get('education') as string || null;
     const bankName = formData.get('bankName') as string || null;
     const bankAccount = formData.get('bankAccount') as string || null;
+    
+    const customer = formData.get('customer') as string || null;
+    const branchCode = formData.get('branchCode') as string || null;
+    const outlet = formData.get('outlet') as string || null;
+    const maritalStatus = formData.get('maritalStatus') as string || null;
+    const motherName = formData.get('motherName') as string || null;
+    const spouseName = formData.get('spouseName') as string || null;
+    const ktpNumber = formData.get('ktpNumber') as string || null;
+    const npwpNumber = formData.get('npwpNumber') as string || null;
+    const jamsostekNumber = formData.get('jamsostekNumber') as string || null;
+    const contractNumber = formData.get('contractNumber') as string || null;
+    
+    const childrenCountStr = formData.get('childrenCount') as string;
+    const childrenCount = childrenCountStr ? parseInt(childrenCountStr, 10) : 0;
 
-    // Tanggal
     const birthDateStr = formData.get('birthDate') as string;
     const birthDate = birthDateStr ? new Date(birthDateStr) : null;
     
     const joinDateStr = formData.get('joinDate') as string;
     const joinDate = joinDateStr ? new Date(joinDateStr) : new Date();
 
+    const contractStartStr = formData.get('contractStart') as string;
+    const contractStart = contractStartStr ? new Date(contractStartStr) : null;
+
+    const contractEndStr = formData.get('contractEnd') as string;
+    const contractEnd = contractEndStr ? new Date(contractEndStr) : null;
+
     const tenant = await prisma.tenant.findFirst();
     if (!tenant) throw new Error('Tenant tidak ditemukan');
 
-    // Auto Generate NIK
     const prefix = tenant.employeePrefix;
     const existingEmployees = await prisma.employee.findMany({
       where: { tenantId: tenant.id, employeeNumber: { startsWith: prefix } },
@@ -54,6 +70,9 @@ export default async function NewEmployeePage() {
         fullName, email, department, position,
         phoneNumber, gender, religion, birthPlace, birthDate,
         address, education, bankName, bankAccount, joinDate,
+        customer, branchCode, outlet, maritalStatus, motherName, spouseName,
+        ktpNumber, npwpNumber, jamsostekNumber, contractNumber, childrenCount,
+        contractStart, contractEnd,
         status: 'ACTIVE',
       }
     });
@@ -63,7 +82,7 @@ export default async function NewEmployeePage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-5xl mx-auto">
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-black text-slate-900 dark:text-white">Tambah Karyawan Baru</h1>
@@ -75,9 +94,9 @@ export default async function NewEmployeePage() {
       </div>
 
       <form action={addEmployee} className="space-y-6">
-        {/* BAGIAN 1: DATA UTAMA */}
+        {/* BAGIAN 1: DATA UTAMA & PENEMPATAN */}
         <div className="bg-white dark:bg-slate-800/40 backdrop-blur-xl rounded-[2rem] border border-slate-200/60 dark:border-slate-700/50 p-6 md:p-8 shadow-sm">
-          <h2 className="text-lg font-bold text-indigo-500 mb-6 border-b border-slate-100 dark:border-slate-700 pb-2">1. Data Utama</h2>
+          <h2 className="text-lg font-bold text-indigo-500 mb-6 border-b border-slate-100 dark:border-slate-700 pb-2">1. Data Utama & Penempatan</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Nama Lengkap</label>
@@ -96,6 +115,20 @@ export default async function NewEmployeePage() {
               <input name="position" type="text" required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" placeholder="Staff, Manager" />
             </div>
             <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Customer</label>
+              <input name="customer" type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" placeholder="PRODUCT & SERVICE" />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">K. Cabang</label>
+                <input name="branchCode" type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" placeholder="BR01" />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Outlet</label>
+                <input name="outlet" type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" placeholder="PUSAT" />
+              </div>
+            </div>
+            <div>
               <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Tanggal Masuk</label>
               <input name="joinDate" type="date" required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
             </div>
@@ -106,9 +139,9 @@ export default async function NewEmployeePage() {
           </div>
         </div>
 
-        {/* BAGIAN 2: DATA PRIBADI */}
+        {/* BAGIAN 2: DATA PRIBADI & KELUARGA */}
         <div className="bg-white dark:bg-slate-800/40 backdrop-blur-xl rounded-[2rem] border border-slate-200/60 dark:border-slate-700/50 p-6 md:p-8 shadow-sm">
-          <h2 className="text-lg font-bold text-indigo-500 mb-6 border-b border-slate-100 dark:border-slate-700 pb-2">2. Data Pribadi</h2>
+          <h2 className="text-lg font-bold text-indigo-500 mb-6 border-b border-slate-100 dark:border-slate-700 pb-2">2. Data Pribadi & Keluarga</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">No. HP</label>
@@ -134,6 +167,22 @@ export default async function NewEmployeePage() {
               <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Agama</label>
               <input name="religion" type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" placeholder="Islam, Kristen, dll" />
             </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Rumusan Pajak</label>
+              <input name="maritalStatus" type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" placeholder="TK/0, K/1, dll" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Nama Ibu Kandung</label>
+              <input name="motherName" type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" placeholder="Nama Ibu" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Nama Istri/Suami</label>
+              <input name="spouseName" type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" placeholder="Nama Pasangan" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Jumlah Anak</label>
+              <input name="childrenCount" type="number" defaultValue="0" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
+            </div>
             <div className="md:col-span-2">
               <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Alamat Lengkap</label>
               <textarea name="address" rows={2} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" placeholder="Jl. Contoh No. 123..."></textarea>
@@ -141,9 +190,40 @@ export default async function NewEmployeePage() {
           </div>
         </div>
 
-        {/* BAGIAN 3: DATA FINANSIAL */}
+        {/* BAGIAN 3: IDENTITAS & KONTRAK */}
         <div className="bg-white dark:bg-slate-800/40 backdrop-blur-xl rounded-[2rem] border border-slate-200/60 dark:border-slate-700/50 p-6 md:p-8 shadow-sm">
-          <h2 className="text-lg font-bold text-indigo-500 mb-6 border-b border-slate-100 dark:border-slate-700 pb-2">3. Data Finansial</h2>
+          <h2 className="text-lg font-bold text-indigo-500 mb-6 border-b border-slate-100 dark:border-slate-700 pb-2">3. Identitas & Kontrak</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">No. KTP</label>
+              <input name="ktpNumber" type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" placeholder="317501..." />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">No. NPWP</label>
+              <input name="npwpNumber" type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" placeholder="04648..." />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">No. Jamsostek / BPJS</label>
+              <input name="jamsostekNumber" type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" placeholder="25062..." />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">No. Kontrak</label>
+              <input name="contractNumber" type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" placeholder="A.40063.01/..." />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Mulai Kontrak</label>
+              <input name="contractStart" type="date" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Selesai Kontrak</label>
+              <input name="contractEnd" type="date" className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
+            </div>
+          </div>
+        </div>
+
+        {/* BAGIAN 4: FINANSIAL */}
+        <div className="bg-white dark:bg-slate-800/40 backdrop-blur-xl rounded-[2rem] border border-slate-200/60 dark:border-slate-700/50 p-6 md:p-8 shadow-sm">
+          <h2 className="text-lg font-bold text-indigo-500 mb-6 border-b border-slate-100 dark:border-slate-700 pb-2">4. Data Finansial</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Nama Bank</label>

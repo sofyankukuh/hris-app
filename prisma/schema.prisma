@@ -22,7 +22,7 @@ model Employee {
   tenantId       String
   
   // 1. IDENTITAS UTAMA
-  employeeNumber String         // NIK (Otomatis BKP-)
+  employeeNumber String
   fullName       String
   email          String
   phoneNumber    String?
@@ -32,34 +32,34 @@ model Employee {
   // 2. DATA PRIBADI
   birthDate      DateTime?
   birthPlace     String?
-  gender         String?        // L / P
-  religion       String?        // Islam, Kristen, dll
-  maritalStatus  String?        // TK/0, K/1, dll (Rumusan Pajak)
-  motherName     String?        // Nama Ibu
-  spouseName     String?        // Nama Suami/Istri
+  gender         String?
+  religion       String?
+  maritalStatus  String?        // Rumusan Pajak (TK/0, K/1)
+  motherName     String?
+  spouseName     String?
   childrenCount  Int?           @default(0)
   
   // 3. IDENTITAS & ALAMAT
-  ktpNumber      String?        // No KTP
-  npwpNumber     String?        // No NPWP
-  jamsostekNumber String?       // No BPJS
-  address        String?        // Alamat Lengkap
+  ktpNumber      String?
+  npwpNumber     String?
+  jamsostekNumber String?
+  address        String?
   
-  // 4. DATA KEPEGAWAIAN
+  // 4. KEPEGAWAIAN & PENEMPATAN
   department     String
   position       String
-  education      String?        // Pendidikan (S1, SMA, dll)
-  customer       String?        // Customer (Produk/Service)
-  branchCode     String?        // K. Cabang
-  outlet         String?        // Outlet
+  education      String?
+  customer       String?
+  branchCode     String?
+  outlet         String?
   
-  // 5. DATA KONTRAK
+  // 5. KONTRAK & KELUAR
   contractStart  DateTime?
   contractEnd    DateTime?
   contractNumber String?
-  exitDate       DateTime?      // Tgl Keluar
+  exitDate       DateTime?
 
-  // 6. DATA FINANSIAL
+  // 6. FINANSIAL
   bankName       String?
   bankAccount    String?
   

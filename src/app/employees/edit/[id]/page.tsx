@@ -37,19 +37,45 @@ export default async function EditEmployeePage({ params }: { params: Promise<{ i
     const education = formData.get('education') as string || null;
     const bankName = formData.get('bankName') as string || null;
     const bankAccount = formData.get('bankAccount') as string || null;
+    const status = formData.get('status') as 'ACTIVE' | 'INACTIVE' | 'ON_LEAVE';
+    
+    // Data Baru
+    const customer = formData.get('customer') as string || null;
+    const branchCode = formData.get('branchCode') as string || null;
+    const outlet = formData.get('outlet') as string || null;
+    const maritalStatus = formData.get('maritalStatus') as string || null;
+    const motherName = formData.get('motherName') as string || null;
+    const spouseName = formData.get('spouseName') as string || null;
+    const ktpNumber = formData.get('ktpNumber') as string || null;
+    const npwpNumber = formData.get('npwpNumber') as string || null;
+    const jamsostekNumber = formData.get('jamsostekNumber') as string || null;
+    const contractNumber = formData.get('contractNumber') as string || null;
+    
+    const childrenCountStr = formData.get('childrenCount') as string;
+    const childrenCount = childrenCountStr ? parseInt(childrenCountStr, 10) : 0;
 
+    // Tanggal-tanggal
     const birthDateStr = formData.get('birthDate') as string;
     const birthDate = birthDateStr ? new Date(birthDateStr) : null;
     
     const joinDateStr = formData.get('joinDate') as string;
     const joinDate = joinDateStr ? new Date(joinDateStr) : employee!.joinDate;
 
+    const contractStartStr = formData.get('contractStart') as string;
+    const contractStart = contractStartStr ? new Date(contractStartStr) : null;
+
+    const contractEndStr = formData.get('contractEnd') as string;
+    const contractEnd = contractEndStr ? new Date(contractEndStr) : null;
+
     await prisma.employee.update({
       where: { id: employeeId },
       data: {
         fullName, email, department, position,
         phoneNumber, gender, religion, birthPlace, birthDate,
-        address, education, bankName, bankAccount, joinDate,
+        address, education, bankName, bankAccount, joinDate, status,
+        customer, branchCode, outlet, maritalStatus, motherName, spouseName,
+        ktpNumber, npwpNumber, jamsostekNumber, contractNumber, childrenCount,
+        contractStart, contractEnd,
       },
     });
 
@@ -58,7 +84,7 @@ export default async function EditEmployeePage({ params }: { params: Promise<{ i
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-5xl mx-auto">
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-black text-slate-900 dark:text-white">Edit Karyawan</h1>
@@ -70,9 +96,9 @@ export default async function EditEmployeePage({ params }: { params: Promise<{ i
       </div>
 
       <form action={updateEmployee} className="space-y-6">
-        {/* BAGIAN 1: DATA UTAMA */}
+        {/* BAGIAN 1: DATA UTAMA & PENEMPATAN */}
         <div className="bg-white dark:bg-slate-800/40 backdrop-blur-xl rounded-[2rem] border border-slate-200/60 dark:border-slate-700/50 p-6 md:p-8 shadow-sm">
-          <h2 className="text-lg font-bold text-indigo-500 mb-6 border-b border-slate-100 dark:border-slate-700 pb-2">1. Data Utama</h2>
+          <h2 className="text-lg font-bold text-indigo-500 mb-6 border-b border-slate-100 dark:border-slate-700 pb-2">1. Data Utama & Penempatan</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">NIK (Tidak bisa diubah)</label>
@@ -95,6 +121,20 @@ export default async function EditEmployeePage({ params }: { params: Promise<{ i
               <input name="position" type="text" defaultValue={employee.position} required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
             </div>
             <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Customer</label>
+              <input name="customer" type="text" defaultValue={employee.customer || ''} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">K. Cabang</label>
+                <input name="branchCode" type="text" defaultValue={employee.branchCode || ''} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Outlet</label>
+                <input name="outlet" type="text" defaultValue={employee.outlet || ''} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
+              </div>
+            </div>
+            <div>
               <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Tanggal Masuk</label>
               <input name="joinDate" type="date" defaultValue={employee.joinDate.toISOString().split('T')[0]} required className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
             </div>
@@ -102,12 +142,20 @@ export default async function EditEmployeePage({ params }: { params: Promise<{ i
               <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Pendidikan</label>
               <input name="education" type="text" defaultValue={employee.education || ''} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
             </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Status Karyawan</label>
+              <select name="status" defaultValue={employee.status} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm appearance-none">
+                <option value="ACTIVE">Aktif (Bekerja)</option>
+                <option value="INACTIVE">Tidak Aktif (Resign / PHK)</option>
+                <option value="ON_LEAVE">Cuti (Sementara)</option>
+              </select>
+            </div>
           </div>
         </div>
 
-        {/* BAGIAN 2: DATA PRIBADI */}
+        {/* BAGIAN 2: DATA PRIBADI & KELUARGA */}
         <div className="bg-white dark:bg-slate-800/40 backdrop-blur-xl rounded-[2rem] border border-slate-200/60 dark:border-slate-700/50 p-6 md:p-8 shadow-sm">
-          <h2 className="text-lg font-bold text-indigo-500 mb-6 border-b border-slate-100 dark:border-slate-700 pb-2">2. Data Pribadi</h2>
+          <h2 className="text-lg font-bold text-indigo-500 mb-6 border-b border-slate-100 dark:border-slate-700 pb-2">2. Data Pribadi & Keluarga</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">No. HP</label>
@@ -133,6 +181,22 @@ export default async function EditEmployeePage({ params }: { params: Promise<{ i
               <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Agama</label>
               <input name="religion" type="text" defaultValue={employee.religion || ''} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
             </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Rumusan Pajak</label>
+              <input name="maritalStatus" type="text" defaultValue={employee.maritalStatus || ''} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Nama Ibu Kandung</label>
+              <input name="motherName" type="text" defaultValue={employee.motherName || ''} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Nama Istri/Suami</label>
+              <input name="spouseName" type="text" defaultValue={employee.spouseName || ''} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Jumlah Anak</label>
+              <input name="childrenCount" type="number" defaultValue={employee.childrenCount || 0} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
+            </div>
             <div className="md:col-span-2">
               <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Alamat Lengkap</label>
               <textarea name="address" rows={2} defaultValue={employee.address || ''} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm"></textarea>
@@ -140,9 +204,40 @@ export default async function EditEmployeePage({ params }: { params: Promise<{ i
           </div>
         </div>
 
-        {/* BAGIAN 3: DATA FINANSIAL */}
+        {/* BAGIAN 3: IDENTITAS & KONTRAK */}
         <div className="bg-white dark:bg-slate-800/40 backdrop-blur-xl rounded-[2rem] border border-slate-200/60 dark:border-slate-700/50 p-6 md:p-8 shadow-sm">
-          <h2 className="text-lg font-bold text-indigo-500 mb-6 border-b border-slate-100 dark:border-slate-700 pb-2">3. Data Finansial</h2>
+          <h2 className="text-lg font-bold text-indigo-500 mb-6 border-b border-slate-100 dark:border-slate-700 pb-2">3. Identitas & Kontrak</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">No. KTP</label>
+              <input name="ktpNumber" type="text" defaultValue={employee.ktpNumber || ''} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">No. NPWP</label>
+              <input name="npwpNumber" type="text" defaultValue={employee.npwpNumber || ''} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">No. Jamsostek / BPJS</label>
+              <input name="jamsostekNumber" type="text" defaultValue={employee.jamsostekNumber || ''} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">No. Kontrak</label>
+              <input name="contractNumber" type="text" defaultValue={employee.contractNumber || ''} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Mulai Kontrak</label>
+              <input name="contractStart" type="date" defaultValue={employee.contractStart ? employee.contractStart.toISOString().split('T')[0] : ''} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Selesai Kontrak</label>
+              <input name="contractEnd" type="date" defaultValue={employee.contractEnd ? employee.contractEnd.toISOString().split('T')[0] : ''} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500/20 text-sm" />
+            </div>
+          </div>
+        </div>
+
+        {/* BAGIAN 4: FINANSIAL */}
+        <div className="bg-white dark:bg-slate-800/40 backdrop-blur-xl rounded-[2rem] border border-slate-200/60 dark:border-slate-700/50 p-6 md:p-8 shadow-sm">
+          <h2 className="text-lg font-bold text-indigo-500 mb-6 border-b border-slate-100 dark:border-slate-700 pb-2">4. Data Finansial</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Nama Bank</label>
