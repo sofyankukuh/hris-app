@@ -15,8 +15,8 @@ model Tenant {
   employeePrefix String     @default("BKP-")
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
-  
   employees      Employee[]
+  attendances Attendance[]
 }
 
 model Employee {
@@ -70,7 +70,8 @@ model Employee {
   password       String?
   roleId         String?
   role           Role?          @relation(fields: [roleId], references: [id])
-  permissions    Permission[]   // <-- Pindahkan ke sini agar rapi
+  permissions    Permission[]
+  attendances Attendance[]
   
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
@@ -100,6 +101,31 @@ model Permission {
   name        String     @unique
   description String?
   employees   Employee[] // Relasi balik dari Employee
+}
+
+// --- MODEL ABSENSI ---
+
+model Attendance {
+  id          String   @id @default(cuid())
+  tenantId    String
+  employeeId  String
+  date        DateTime @db.Date // Menyimpan tanggal (YYYY-MM-DD) untuk cek duplikat harian
+  checkIn     DateTime? // Jam masuk
+  checkOut    DateTime? // Jam keluar
+  status      String   @default("PRESENT") // "PRESENT", "LATE", "ABSENT", "LEAVE"
+  notes       String?  // Catatan
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relasi
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  employee    Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  // Constraint: Satu karyawan hanya boleh punya 1 absensi per hari
+  @@unique([employeeId, date])
+  @@index([tenantId, date])
+  @@index([employeeId])
 }
 
 // --- ENUM ---

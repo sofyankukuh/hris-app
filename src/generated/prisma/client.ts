@@ -61,3 +61,8 @@ export type Role = Prisma.RoleModel
  * 
  */
 export type Permission = Prisma.PermissionModel
+/**
+ * Model Attendance
+ * 
+ */
+export type Attendance = Prisma.AttendanceModel
