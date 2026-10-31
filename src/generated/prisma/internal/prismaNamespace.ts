@@ -408,7 +408,8 @@ export const ModelName = {
   LeaveBalance: 'LeaveBalance',
   SystemSetting: 'SystemSetting',
   Reliever: 'Reliever',
-  RelieverAssignment: 'RelieverAssignment'
+  RelieverAssignment: 'RelieverAssignment',
+  AdditionalIncome: 'AdditionalIncome'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -424,7 +425,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "employee" | "amArea" | "role" | "permission" | "attendance" | "leaveRequest" | "approvalStep" | "leaveBalance" | "systemSetting" | "reliever" | "relieverAssignment"
+    modelProps: "tenant" | "employee" | "amArea" | "role" | "permission" | "attendance" | "leaveRequest" | "approvalStep" | "leaveBalance" | "systemSetting" | "reliever" | "relieverAssignment" | "additionalIncome"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1316,6 +1317,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AdditionalIncome: {
+      payload: Prisma.$AdditionalIncomePayload<ExtArgs>
+      fields: Prisma.AdditionalIncomeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AdditionalIncomeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdditionalIncomePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AdditionalIncomeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdditionalIncomePayload>
+        }
+        findFirst: {
+          args: Prisma.AdditionalIncomeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdditionalIncomePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AdditionalIncomeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdditionalIncomePayload>
+        }
+        findMany: {
+          args: Prisma.AdditionalIncomeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdditionalIncomePayload>[]
+        }
+        create: {
+          args: Prisma.AdditionalIncomeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdditionalIncomePayload>
+        }
+        createMany: {
+          args: Prisma.AdditionalIncomeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AdditionalIncomeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdditionalIncomePayload>[]
+        }
+        delete: {
+          args: Prisma.AdditionalIncomeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdditionalIncomePayload>
+        }
+        update: {
+          args: Prisma.AdditionalIncomeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdditionalIncomePayload>
+        }
+        deleteMany: {
+          args: Prisma.AdditionalIncomeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AdditionalIncomeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AdditionalIncomeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdditionalIncomePayload>[]
+        }
+        upsert: {
+          args: Prisma.AdditionalIncomeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdditionalIncomePayload>
+        }
+        aggregate: {
+          args: Prisma.AdditionalIncomeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAdditionalIncome>
+        }
+        groupBy: {
+          args: Prisma.AdditionalIncomeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdditionalIncomeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AdditionalIncomeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdditionalIncomeCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1538,6 +1613,21 @@ export const RelieverAssignmentScalarFieldEnum = {
 } as const
 
 export type RelieverAssignmentScalarFieldEnum = (typeof RelieverAssignmentScalarFieldEnum)[keyof typeof RelieverAssignmentScalarFieldEnum]
+
+
+export const AdditionalIncomeScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  employeeId: 'employeeId',
+  type: 'type',
+  date: 'date',
+  amount: 'amount',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AdditionalIncomeScalarFieldEnum = (typeof AdditionalIncomeScalarFieldEnum)[keyof typeof AdditionalIncomeScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1809,6 +1899,7 @@ export type GlobalOmitConfig = {
   systemSetting?: Prisma.SystemSettingOmit
   reliever?: Prisma.RelieverOmit
   relieverAssignment?: Prisma.RelieverAssignmentOmit
+  additionalIncome?: Prisma.AdditionalIncomeOmit
 }
 
 /* Types for Logging */

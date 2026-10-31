@@ -19,6 +19,7 @@ model Tenant {
   employees      Employee[]
   attendances    Attendance[]
   leaveRequests  LeaveRequest[]
+  additionalIncomes AdditionalIncome[]
 }
 
 model Employee {
@@ -79,6 +80,7 @@ model Employee {
   leaveRequests  LeaveRequest[] @relation("EmployeeLeaves")
   approvals      ApprovalStep[] @relation("ApproverSteps")
   leaveBalances  LeaveBalance[]
+  additionalIncomes AdditionalIncome[]
   
   // Relasi AmArea (Wilayah kerja AM)
   amAreas        AmArea[]       @relation("AmAssignments")
@@ -247,6 +249,25 @@ model RelieverAssignment {
   leaveRequest   LeaveRequest @relation(fields: [leaveRequestId], references: [id], onDelete: Cascade)
   
   @@index([tenantId])
+}
+
+model AdditionalIncome {
+  id          String   @id @default(cuid())
+  tenantId    String
+  employeeId  String
+  type        String
+  date        DateTime
+  amount      Float
+  description String?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  employee    Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@index([employeeId])
 }
 
 // --- ENUM ---

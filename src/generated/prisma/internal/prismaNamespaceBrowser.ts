@@ -62,7 +62,8 @@ export const ModelName = {
   LeaveBalance: 'LeaveBalance',
   SystemSetting: 'SystemSetting',
   Reliever: 'Reliever',
-  RelieverAssignment: 'RelieverAssignment'
+  RelieverAssignment: 'RelieverAssignment',
+  AdditionalIncome: 'AdditionalIncome'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -264,6 +265,21 @@ export const RelieverAssignmentScalarFieldEnum = {
 } as const
 
 export type RelieverAssignmentScalarFieldEnum = (typeof RelieverAssignmentScalarFieldEnum)[keyof typeof RelieverAssignmentScalarFieldEnum]
+
+
+export const AdditionalIncomeScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  employeeId: 'employeeId',
+  type: 'type',
+  date: 'date',
+  amount: 'amount',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AdditionalIncomeScalarFieldEnum = (typeof AdditionalIncomeScalarFieldEnum)[keyof typeof AdditionalIncomeScalarFieldEnum]
 
 
 export const SortOrder = {

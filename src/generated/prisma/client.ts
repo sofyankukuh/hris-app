@@ -101,3 +101,8 @@ export type Reliever = Prisma.RelieverModel
  * 
  */
 export type RelieverAssignment = Prisma.RelieverAssignmentModel
+/**
+ * Model AdditionalIncome
+ * 
+ */
+export type AdditionalIncome = Prisma.AdditionalIncomeModel

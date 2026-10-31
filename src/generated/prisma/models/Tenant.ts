@@ -185,6 +185,7 @@ export type TenantWhereInput = {
   employees?: Prisma.EmployeeListRelationFilter
   attendances?: Prisma.AttendanceListRelationFilter
   leaveRequests?: Prisma.LeaveRequestListRelationFilter
+  additionalIncomes?: Prisma.AdditionalIncomeListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -196,6 +197,7 @@ export type TenantOrderByWithRelationInput = {
   employees?: Prisma.EmployeeOrderByRelationAggregateInput
   attendances?: Prisma.AttendanceOrderByRelationAggregateInput
   leaveRequests?: Prisma.LeaveRequestOrderByRelationAggregateInput
+  additionalIncomes?: Prisma.AdditionalIncomeOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -210,6 +212,7 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   employees?: Prisma.EmployeeListRelationFilter
   attendances?: Prisma.AttendanceListRelationFilter
   leaveRequests?: Prisma.LeaveRequestListRelationFilter
+  additionalIncomes?: Prisma.AdditionalIncomeListRelationFilter
 }, "id">
 
 export type TenantOrderByWithAggregationInput = {
@@ -243,6 +246,7 @@ export type TenantCreateInput = {
   employees?: Prisma.EmployeeCreateNestedManyWithoutTenantInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutTenantInput
   leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutTenantInput
+  additionalIncomes?: Prisma.AdditionalIncomeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -254,6 +258,7 @@ export type TenantUncheckedCreateInput = {
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutTenantInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutTenantInput
   leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutTenantInput
+  additionalIncomes?: Prisma.AdditionalIncomeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -265,6 +270,7 @@ export type TenantUpdateInput = {
   employees?: Prisma.EmployeeUpdateManyWithoutTenantNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutTenantNestedInput
   leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutTenantNestedInput
+  additionalIncomes?: Prisma.AdditionalIncomeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -276,6 +282,7 @@ export type TenantUncheckedUpdateInput = {
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutTenantNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutTenantNestedInput
   leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutTenantNestedInput
+  additionalIncomes?: Prisma.AdditionalIncomeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -381,6 +388,20 @@ export type TenantUpdateOneRequiredWithoutLeaveRequestsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutLeaveRequestsInput, Prisma.TenantUpdateWithoutLeaveRequestsInput>, Prisma.TenantUncheckedUpdateWithoutLeaveRequestsInput>
 }
 
+export type TenantCreateNestedOneWithoutAdditionalIncomesInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutAdditionalIncomesInput, Prisma.TenantUncheckedCreateWithoutAdditionalIncomesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutAdditionalIncomesInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutAdditionalIncomesNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutAdditionalIncomesInput, Prisma.TenantUncheckedCreateWithoutAdditionalIncomesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutAdditionalIncomesInput
+  upsert?: Prisma.TenantUpsertWithoutAdditionalIncomesInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutAdditionalIncomesInput, Prisma.TenantUpdateWithoutAdditionalIncomesInput>, Prisma.TenantUncheckedUpdateWithoutAdditionalIncomesInput>
+}
+
 export type TenantCreateWithoutEmployeesInput = {
   id?: string
   name: string
@@ -389,6 +410,7 @@ export type TenantCreateWithoutEmployeesInput = {
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceCreateNestedManyWithoutTenantInput
   leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutTenantInput
+  additionalIncomes?: Prisma.AdditionalIncomeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutEmployeesInput = {
@@ -399,6 +421,7 @@ export type TenantUncheckedCreateWithoutEmployeesInput = {
   updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutTenantInput
   leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutTenantInput
+  additionalIncomes?: Prisma.AdditionalIncomeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutEmployeesInput = {
@@ -425,6 +448,7 @@ export type TenantUpdateWithoutEmployeesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUpdateManyWithoutTenantNestedInput
   leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutTenantNestedInput
+  additionalIncomes?: Prisma.AdditionalIncomeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutEmployeesInput = {
@@ -435,6 +459,7 @@ export type TenantUncheckedUpdateWithoutEmployeesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutTenantNestedInput
   leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutTenantNestedInput
+  additionalIncomes?: Prisma.AdditionalIncomeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAttendancesInput = {
@@ -445,6 +470,7 @@ export type TenantCreateWithoutAttendancesInput = {
   updatedAt?: Date | string
   employees?: Prisma.EmployeeCreateNestedManyWithoutTenantInput
   leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutTenantInput
+  additionalIncomes?: Prisma.AdditionalIncomeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAttendancesInput = {
@@ -455,6 +481,7 @@ export type TenantUncheckedCreateWithoutAttendancesInput = {
   updatedAt?: Date | string
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutTenantInput
   leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutTenantInput
+  additionalIncomes?: Prisma.AdditionalIncomeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAttendancesInput = {
@@ -481,6 +508,7 @@ export type TenantUpdateWithoutAttendancesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employees?: Prisma.EmployeeUpdateManyWithoutTenantNestedInput
   leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutTenantNestedInput
+  additionalIncomes?: Prisma.AdditionalIncomeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAttendancesInput = {
@@ -491,6 +519,7 @@ export type TenantUncheckedUpdateWithoutAttendancesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutTenantNestedInput
   leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutTenantNestedInput
+  additionalIncomes?: Prisma.AdditionalIncomeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutLeaveRequestsInput = {
@@ -501,6 +530,7 @@ export type TenantCreateWithoutLeaveRequestsInput = {
   updatedAt?: Date | string
   employees?: Prisma.EmployeeCreateNestedManyWithoutTenantInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutTenantInput
+  additionalIncomes?: Prisma.AdditionalIncomeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutLeaveRequestsInput = {
@@ -511,6 +541,7 @@ export type TenantUncheckedCreateWithoutLeaveRequestsInput = {
   updatedAt?: Date | string
   employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutTenantInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutTenantInput
+  additionalIncomes?: Prisma.AdditionalIncomeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutLeaveRequestsInput = {
@@ -537,6 +568,7 @@ export type TenantUpdateWithoutLeaveRequestsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employees?: Prisma.EmployeeUpdateManyWithoutTenantNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutTenantNestedInput
+  additionalIncomes?: Prisma.AdditionalIncomeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutLeaveRequestsInput = {
@@ -547,6 +579,67 @@ export type TenantUncheckedUpdateWithoutLeaveRequestsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employees?: Prisma.EmployeeUncheckedUpdateManyWithoutTenantNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutTenantNestedInput
+  additionalIncomes?: Prisma.AdditionalIncomeUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutAdditionalIncomesInput = {
+  id?: string
+  name: string
+  employeePrefix?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeCreateNestedManyWithoutTenantInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutTenantInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutAdditionalIncomesInput = {
+  id?: string
+  name: string
+  employeePrefix?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  employees?: Prisma.EmployeeUncheckedCreateNestedManyWithoutTenantInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutTenantInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutAdditionalIncomesInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutAdditionalIncomesInput, Prisma.TenantUncheckedCreateWithoutAdditionalIncomesInput>
+}
+
+export type TenantUpsertWithoutAdditionalIncomesInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutAdditionalIncomesInput, Prisma.TenantUncheckedUpdateWithoutAdditionalIncomesInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutAdditionalIncomesInput, Prisma.TenantUncheckedCreateWithoutAdditionalIncomesInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutAdditionalIncomesInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutAdditionalIncomesInput, Prisma.TenantUncheckedUpdateWithoutAdditionalIncomesInput>
+}
+
+export type TenantUpdateWithoutAdditionalIncomesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  employeePrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUpdateManyWithoutTenantNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutTenantNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutAdditionalIncomesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  employeePrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employees?: Prisma.EmployeeUncheckedUpdateManyWithoutTenantNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutTenantNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 
@@ -558,12 +651,14 @@ export type TenantCountOutputType = {
   employees: number
   attendances: number
   leaveRequests: number
+  additionalIncomes: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   employees?: boolean | TenantCountOutputTypeCountEmployeesArgs
   attendances?: boolean | TenantCountOutputTypeCountAttendancesArgs
   leaveRequests?: boolean | TenantCountOutputTypeCountLeaveRequestsArgs
+  additionalIncomes?: boolean | TenantCountOutputTypeCountAdditionalIncomesArgs
 }
 
 /**
@@ -597,6 +692,13 @@ export type TenantCountOutputTypeCountLeaveRequestsArgs<ExtArgs extends runtime.
   where?: Prisma.LeaveRequestWhereInput
 }
 
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountAdditionalIncomesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AdditionalIncomeWhereInput
+}
+
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -607,6 +709,7 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   employees?: boolean | Prisma.Tenant$employeesArgs<ExtArgs>
   attendances?: boolean | Prisma.Tenant$attendancesArgs<ExtArgs>
   leaveRequests?: boolean | Prisma.Tenant$leaveRequestsArgs<ExtArgs>
+  additionalIncomes?: boolean | Prisma.Tenant$additionalIncomesArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -639,6 +742,7 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   employees?: boolean | Prisma.Tenant$employeesArgs<ExtArgs>
   attendances?: boolean | Prisma.Tenant$attendancesArgs<ExtArgs>
   leaveRequests?: boolean | Prisma.Tenant$leaveRequestsArgs<ExtArgs>
+  additionalIncomes?: boolean | Prisma.Tenant$additionalIncomesArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -650,6 +754,7 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     employees: Prisma.$EmployeePayload<ExtArgs>[]
     attendances: Prisma.$AttendancePayload<ExtArgs>[]
     leaveRequests: Prisma.$LeaveRequestPayload<ExtArgs>[]
+    additionalIncomes: Prisma.$AdditionalIncomePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1054,6 +1159,7 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   employees<T extends Prisma.Tenant$employeesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$employeesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   attendances<T extends Prisma.Tenant$attendancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   leaveRequests<T extends Prisma.Tenant$leaveRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$leaveRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeaveRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  additionalIncomes<T extends Prisma.Tenant$additionalIncomesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$additionalIncomesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdditionalIncomePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1550,6 +1656,30 @@ export type Tenant$leaveRequestsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.LeaveRequestScalarFieldEnum | Prisma.LeaveRequestScalarFieldEnum[]
+}
+
+/**
+ * Tenant.additionalIncomes
+ */
+export type Tenant$additionalIncomesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AdditionalIncome
+   */
+  select?: Prisma.AdditionalIncomeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AdditionalIncome
+   */
+  omit?: Prisma.AdditionalIncomeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AdditionalIncomeInclude<ExtArgs> | null
+  where?: Prisma.AdditionalIncomeWhereInput
+  orderBy?: Prisma.AdditionalIncomeOrderByWithRelationInput | Prisma.AdditionalIncomeOrderByWithRelationInput[]
+  cursor?: Prisma.AdditionalIncomeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AdditionalIncomeScalarFieldEnum | Prisma.AdditionalIncomeScalarFieldEnum[]
 }
 
 /**

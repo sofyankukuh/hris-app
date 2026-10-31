@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
+import { useState } from "react";
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -11,13 +12,39 @@ export default function Sidebar() {
   const { data: session } = useSession();
   
   const userRole = (session?.user as any)?.role || 'TAD';
+  
+  // State untuk mengontrol buka/tutup sub-menu
+  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({
+    kehadiran: true, // Default terbuka
+  });
+
+  const toggleMenu = (menu: string) => {
+    setOpenMenus((prev) => ({ ...prev, [menu]: !prev[menu] }));
+  };
+
   const isActive = (path: string) => pathname === path;
+  const isGroupActive = (paths: string[]) => paths.some(p => pathname.startsWith(p));
 
   const handleLogout = async () => {
     await signOut({ redirect: false });
     router.push('/login');
     router.refresh();
   };
+
+  // Helper untuk class menu aktif
+  const menuClass = (isActive: boolean) => 
+    `flex items-center justify-between w-full px-4 py-3 rounded-2xl font-medium text-sm transition-all ${
+      isActive 
+        ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-semibold border border-transparent dark:border-indigo-500/20" 
+        : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white"
+    }`;
+
+  const subMenuClass = (isActive: boolean) =>
+    `flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm transition-all ml-4 ${
+      isActive 
+        ? "text-indigo-600 dark:text-indigo-400 font-semibold bg-indigo-50/50 dark:bg-indigo-500/5" 
+        : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+    }`;
 
   return (
     <aside className="w-64 bg-white dark:bg-[#0f172a]/80 backdrop-blur-xl border-r border-slate-200 dark:border-slate-800/60 flex-col hidden md:flex z-20">
@@ -29,112 +56,70 @@ export default function Sidebar() {
       </div>
 
       <nav className="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
-        <Link 
-          href="/" 
-          className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-medium text-sm transition-all ${
-            isActive("/") 
-              ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-semibold border border-transparent dark:border-indigo-500/20" 
-              : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white"
-          }`}
-        >
-          <span className="text-lg">📊</span> Dashboard
+        <Link href="/" className={menuClass(isActive("/"))}>
+          <div className="flex items-center gap-3"><span className="text-lg">📊</span> Dashboard</div>
         </Link>
 
-        {/* MENU KARYAWAN (Muncul untuk semua) */}
-        <Link 
-          href="/employees" 
-          className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-medium text-sm transition-all ${
-            isActive("/employees") 
-              ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-semibold border border-transparent dark:border-indigo-500/20" 
-              : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white"
-          }`}
-        >
-          <span className="text-lg">👥</span> Karyawan
-        </Link>
-
-        {/* MENU HAK AKSES (Muncul untuk semua) */}
-        <Link 
-          href="/settings/roles" 
-          className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-medium text-sm transition-all ${
-            isActive("/settings/roles") 
-              ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-semibold border border-transparent dark:border-indigo-500/20" 
-              : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white"
-          }`}
-        >
-          <span className="text-lg">🛡️</span> Hak Akses
-        </Link>
-
-        {/* MENU WILAYAH AM (Muncul untuk semua) */}
-        <Link 
-          href="/settings/am-area" 
-          className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-medium text-sm transition-all ${
-            isActive("/settings/am-area") 
-              ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-semibold border border-transparent dark:border-indigo-500/20" 
-              : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white"
-          }`}
-        >
-          <span className="text-lg">📍</span> Wilayah AM
-        </Link>
-        
-        <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800/60">
-            <span className="px-4 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">Menu Utama</span>
-            <div className="mt-3 space-y-1">
-              
-              {/* MENU ABSENSI */}
-              <Link 
-                href="/attendance" 
-                className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-medium text-sm transition-all ${
-                  isActive("/attendance") 
-                    ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-semibold border border-transparent dark:border-indigo-500/20" 
-                    : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white"
-                }`}
-              >
-                <span className="text-lg">📅</span> Absensi
-              </Link>
-
-              {/* Menu Cuti */}
-              <Link 
-                href="/leave" 
-                className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-medium text-sm transition-all ${
-                  isActive("/leave") 
-                    ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-semibold border border-transparent dark:border-indigo-500/20" 
-                    : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white"
-                }`}
-              >
-                <span className="text-lg">🌴</span> Cuti
-              </Link>
-
-              {/* MENU PERSETUJUAN */}
-              <Link 
-                href="/approvals" 
-                className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-medium text-sm transition-all ${
-                  isActive("/approvals") 
-                    ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-semibold border border-transparent dark:border-indigo-500/20" 
-                    : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white"
-                }`}
-              >
-                <span className="text-lg">✅</span> Persetujuan
-              </Link>
-
-              {/* MENU TENAGA PENGGANTI */}
-              <Link 
-                href="/relievers" 
-                className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-medium text-sm transition-all ${
-                  isActive("/relievers") 
-                    ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-semibold border border-transparent dark:border-indigo-500/20" 
-                    : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white"
-                }`}
-              >
-                <span className="text-lg">👷</span> Tenaga Pengganti
-              </Link>
-
-              <div className="flex items-center gap-3 px-4 py-3 text-slate-300 dark:text-slate-600 cursor-not-allowed rounded-2xl font-medium text-sm">
-                <span className="text-lg opacity-50">💰</span> Penggajian
-              </div>
+        {/* SUB-MENU: KEHADIRAN */}
+        <div>
+          <button onClick={() => toggleMenu('kehadiran')} className={menuClass(isGroupActive(['/attendance', '/leave', '/approvals']))}>
+            <div className="flex items-center gap-3"><span className="text-lg">📅</span> Kehadiran</div>
+            <span className="text-xs text-slate-400">{openMenus['kehadiran'] ? '▲' : '▼'}</span>
+          </button>
+          {openMenus['kehadiran'] && (
+            <div className="mt-1 space-y-1">
+              <Link href="/attendance" className={subMenuClass(isActive("/attendance"))}>Absensi</Link>
+              <Link href="/leave" className={subMenuClass(isActive("/leave"))}>Cuti & Izin</Link>
+              <Link href="/approvals" className={subMenuClass(isActive("/approvals"))}>Persetujuan</Link>
             </div>
+          )}
+        </div>
+
+        {/* SUB-MENU: TENAGA PENGGANTI */}
+        <div>
+          <button onClick={() => toggleMenu('reliever')} className={menuClass(isGroupActive(['/relievers']))}>
+            <div className="flex items-center gap-3"><span className="text-lg">👷</span> Tenaga Pengganti</div>
+            <span className="text-xs text-slate-400">{openMenus['reliever'] ? '▲' : '▼'}</span>
+          </button>
+          {openMenus['reliever'] && (
+            <div className="mt-1 space-y-1">
+              <Link href="/relievers" className={subMenuClass(isActive("/relievers"))}>Manajemen Reliever</Link>
+              <Link href="/relievers/monitor" className={subMenuClass(isActive("/relievers/monitor"))}>Monitor Pengganti</Link>
+            </div>
+          )}
+        </div>
+
+        {/* SUB-MENU: KEUANGAN */}
+        <div>
+          <button onClick={() => toggleMenu('keuangan')} className={menuClass(isGroupActive(['/incomes', '/payslips']))}>
+            <div className="flex items-center gap-3"><span className="text-lg">💰</span> Keuangan</div>
+            <span className="text-xs text-slate-400">{openMenus['keuangan'] ? '▲' : '▼'}</span>
+          </button>
+          {openMenus['keuangan'] && (
+            <div className="mt-1 space-y-1">
+              <Link href="/incomes" className={subMenuClass(isActive("/incomes"))}>Pendapatan Tambahan</Link>
+              <Link href="/payslips" className={subMenuClass(isActive("/payslips"))}>Slip Gaji</Link>
+            </div>
+          )}
+        </div>
+
+        {/* SUB-MENU: SISTEM (Admin) */}
+        <div>
+          <button onClick={() => toggleMenu('sistem')} className={menuClass(isGroupActive(['/employees', '/settings']))}>
+            <div className="flex items-center gap-3"><span className="text-lg">⚙️</span> Pengaturan</div>
+            <span className="text-xs text-slate-400">{openMenus['sistem'] ? '▲' : '▼'}</span>
+          </button>
+          {openMenus['sistem'] && (
+            <div className="mt-1 space-y-1">
+              <Link href="/employees" className={subMenuClass(isActive("/employees"))}>Data Karyawan</Link>
+              <Link href="/settings/roles" className={subMenuClass(isActive("/settings/roles"))}>Hak Akses</Link>
+              <Link href="/settings/am-area" className={subMenuClass(isActive("/settings/am-area"))}>Wilayah AM</Link>
+            </div>
+          )}
         </div>
       </nav>
 
+      {/* Profil Bawah */}
       <div className="p-4 m-4 bg-slate-50 dark:bg-[#1e293b]/50 rounded-2xl border border-slate-100 dark:border-slate-700/50 backdrop-blur-sm">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
