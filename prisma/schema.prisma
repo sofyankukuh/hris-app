@@ -15,8 +15,10 @@ model Tenant {
   employeePrefix String     @default("BKP-")
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
+  
   employees      Employee[]
-  attendances Attendance[]
+  attendances    Attendance[]
+  leaveRequests  LeaveRequest[]
 }
 
 model Employee {
@@ -71,7 +73,15 @@ model Employee {
   roleId         String?
   role           Role?          @relation(fields: [roleId], references: [id])
   permissions    Permission[]
-  attendances Attendance[]
+  attendances    Attendance[]
+  
+  // Relasi Cuti & Persetujuan
+  leaveRequests  LeaveRequest[] @relation("EmployeeLeaves")
+  approvals      ApprovalStep[] @relation("ApproverSteps")
+  leaveBalances  LeaveBalance[]
+  
+  // Relasi AmArea (Wilayah kerja AM)
+  amAreas        AmArea[]       @relation("AmAssignments")
   
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
@@ -80,8 +90,21 @@ model Employee {
 
   @@unique([tenantId, employeeNumber])
   @@index([tenantId])
-  @@index([fullName])       // <-- Tambahan Index untuk performa pencarian
-  @@index([employeeNumber]) // <-- Tambahan Index untuk performa pencarian
+  @@index([fullName])
+  @@index([employeeNumber])
+}
+
+// --- MODEL WILAYAH KERJA AM ---
+
+model AmArea {
+  id          String   @id @default(cuid())
+  tenantId    String
+  amId        String
+  branchCode  String
+  
+  am          Employee @relation("AmAssignments", fields: [amId], references: [id], onDelete: Cascade)
+  
+  @@unique([amId, branchCode])
 }
 
 // --- MODEL KATEGORI (Label Saja) ---
@@ -100,7 +123,7 @@ model Permission {
   id          String     @id @default(cuid())
   name        String     @unique
   description String?
-  employees   Employee[] // Relasi balik dari Employee
+  employees   Employee[]
 }
 
 // --- MODEL ABSENSI ---
@@ -109,23 +132,77 @@ model Attendance {
   id          String   @id @default(cuid())
   tenantId    String
   employeeId  String
-  date        DateTime @db.Date // Menyimpan tanggal (YYYY-MM-DD) untuk cek duplikat harian
-  checkIn     DateTime? // Jam masuk
-  checkOut    DateTime? // Jam keluar
-  status      String   @default("PRESENT") // "PRESENT", "LATE", "ABSENT", "LEAVE"
-  notes       String?  // Catatan
+  date        DateTime @db.Date 
+  checkIn     DateTime? 
+  checkOut    DateTime? 
+  status      String   @default("PRESENT") 
+  notes       String?  
   
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  // Relasi
   tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   employee    Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
 
-  // Constraint: Satu karyawan hanya boleh punya 1 absensi per hari
   @@unique([employeeId, date])
   @@index([tenantId, date])
   @@index([employeeId])
+}
+
+// --- MODEL CUTI & IZIN ---
+
+model LeaveRequest {
+  id             String   @id @default(cuid())
+  tenantId       String
+  employeeId     String
+  type           String   // "CUTI", "IZIN", "SAKIT"
+  startDate      DateTime
+  endDate        DateTime
+  totalDays      Int
+  reason         String?
+  attachmentUrl  String?
+  status         String   @default("PENDING")
+  
+  relieverId     String?  
+  
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  tenant         Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  employee       Employee @relation("EmployeeLeaves", fields: [employeeId], references: [id], onDelete: Cascade)
+  approvals      ApprovalStep[]
+}
+
+model ApprovalStep {
+  id             String   @id @default(cuid())
+  leaveRequestId String
+  approverId     String
+  role           String   // "AM", "HC", "MANAGER"
+  status         String   @default("WAITING")
+  notes          String?
+  approvedAt     DateTime?
+  
+  leaveRequest   LeaveRequest @relation(fields: [leaveRequestId], references: [id], onDelete: Cascade)
+  approver       Employee     @relation("ApproverSteps", fields: [approverId], references: [id], onDelete: Cascade)
+}
+
+model LeaveBalance {
+  id          String   @id @default(cuid())
+  employeeId  String
+  year        Int
+  quota       Int      @default(0)
+  used        Int      @default(0)
+  isMinus     Boolean  @default(false)
+  
+  employee    Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  
+  @@unique([employeeId, year])
+}
+
+model SystemSetting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
 }
 
 // --- ENUM ---

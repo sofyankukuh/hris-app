@@ -52,6 +52,11 @@ export type Tenant = Prisma.TenantModel
  */
 export type Employee = Prisma.EmployeeModel
 /**
+ * Model AmArea
+ * 
+ */
+export type AmArea = Prisma.AmAreaModel
+/**
  * Model Role
  * 
  */
@@ -66,3 +71,23 @@ export type Permission = Prisma.PermissionModel
  * 
  */
 export type Attendance = Prisma.AttendanceModel
+/**
+ * Model LeaveRequest
+ * 
+ */
+export type LeaveRequest = Prisma.LeaveRequestModel
+/**
+ * Model ApprovalStep
+ * 
+ */
+export type ApprovalStep = Prisma.ApprovalStepModel
+/**
+ * Model LeaveBalance
+ * 
+ */
+export type LeaveBalance = Prisma.LeaveBalanceModel
+/**
+ * Model SystemSetting
+ * 
+ */
+export type SystemSetting = Prisma.SystemSettingModel

@@ -82,16 +82,35 @@ export default function Sidebar() {
                 </div>
               )}
 
-              {/* Menu Cuti & Penggajian (Masih statis untuk sekarang) */}
-              <div className="flex items-center gap-3 px-4 py-3 text-slate-300 dark:text-slate-600 cursor-not-allowed rounded-2xl font-medium text-sm">
-                <span className="text-lg opacity-50">🌴</span> Cuti
-              </div>
+                            {/* Menu Cuti (Sudah Aktif) */}
+              <Link 
+                href="/leave" 
+                className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-medium text-sm transition-all ${
+                  isActive("/leave") 
+                    ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-semibold border border-transparent dark:border-indigo-500/20" 
+                    : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white"
+                }`}
+              >
+                <span className="text-lg">🌴</span> Cuti
+              </Link>
+
               <div className="flex items-center gap-3 px-4 py-3 text-slate-300 dark:text-slate-600 cursor-not-allowed rounded-2xl font-medium text-sm">
                 <span className="text-lg opacity-50">💰</span> Penggajian
               </div>
             </div>
         </div>
       </nav>
+
+              <Link 
+          href="/settings/am-area" 
+          className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-medium text-sm transition-all ${
+            isActive("/settings/am-area") 
+              ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-semibold border border-transparent dark:border-indigo-500/20" 
+              : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white"
+          }`}
+        >
+          <span className="text-lg">📍</span> Wilayah AM
+        </Link>
 
       <div className="p-4 m-4 bg-slate-50 dark:bg-[#1e293b]/50 rounded-2xl border border-slate-100 dark:border-slate-700/50 backdrop-blur-sm">
         <div className="flex items-center justify-between">

@@ -10,7 +10,12 @@
  */
 export type * from './models/Tenant'
 export type * from './models/Employee'
+export type * from './models/AmArea'
 export type * from './models/Role'
 export type * from './models/Permission'
 export type * from './models/Attendance'
+export type * from './models/LeaveRequest'
+export type * from './models/ApprovalStep'
+export type * from './models/LeaveBalance'
+export type * from './models/SystemSetting'
 export type * from './commonInputTypes'
