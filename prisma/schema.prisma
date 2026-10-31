@@ -171,6 +171,7 @@ model LeaveRequest {
   tenant         Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   employee       Employee @relation("EmployeeLeaves", fields: [employeeId], references: [id], onDelete: Cascade)
   approvals      ApprovalStep[]
+  relieverAssignment RelieverAssignment?
 }
 
 model ApprovalStep {
@@ -203,6 +204,49 @@ model SystemSetting {
   id    String @id @default(cuid())
   key   String @unique
   value String
+}
+
+// --- MODEL RELIEVER (TENAGA PENGGANTI) ---
+
+model Reliever {
+  id          String   @id @default(cuid())
+  tenantId    String
+  fullName    String
+  ktpNumber   String?
+  phoneNumber String?
+  email       String?  // Untuk pengiriman link absensi
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  assignments RelieverAssignment[]
+  
+  @@index([tenantId])
+}
+
+model RelieverAssignment {
+  id             String   @id @default(cuid())
+  tenantId       String
+  leaveRequestId String   @unique // Satu pengajuan cuti hanya bisa 1 reliever
+  relieverId     String
+  date           DateTime // Tanggal penggantian
+  // Token unik untuk link absensi
+  uniqueToken    String   @unique @default(cuid())
+
+  // Data absensi reliever (diisi nanti)
+  checkIn        DateTime?
+  checkOut       DateTime?
+  selfieUrl      String?
+  lat            Float?
+  lng            Float?
+  
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  reliever       Reliever     @relation(fields: [relieverId], references: [id], onDelete: Cascade)
+  leaveRequest   LeaveRequest @relation(fields: [leaveRequestId], references: [id], onDelete: Cascade)
+  
+  @@index([tenantId])
 }
 
 // --- ENUM ---

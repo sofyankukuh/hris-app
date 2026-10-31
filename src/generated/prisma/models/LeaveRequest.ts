@@ -283,6 +283,7 @@ export type LeaveRequestWhereInput = {
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
   approvals?: Prisma.ApprovalStepListRelationFilter
+  relieverAssignment?: Prisma.XOR<Prisma.RelieverAssignmentNullableScalarRelationFilter, Prisma.RelieverAssignmentWhereInput> | null
 }
 
 export type LeaveRequestOrderByWithRelationInput = {
@@ -302,6 +303,7 @@ export type LeaveRequestOrderByWithRelationInput = {
   tenant?: Prisma.TenantOrderByWithRelationInput
   employee?: Prisma.EmployeeOrderByWithRelationInput
   approvals?: Prisma.ApprovalStepOrderByRelationAggregateInput
+  relieverAssignment?: Prisma.RelieverAssignmentOrderByWithRelationInput
 }
 
 export type LeaveRequestWhereUniqueInput = Prisma.AtLeast<{
@@ -324,6 +326,7 @@ export type LeaveRequestWhereUniqueInput = Prisma.AtLeast<{
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
   approvals?: Prisma.ApprovalStepListRelationFilter
+  relieverAssignment?: Prisma.XOR<Prisma.RelieverAssignmentNullableScalarRelationFilter, Prisma.RelieverAssignmentWhereInput> | null
 }, "id">
 
 export type LeaveRequestOrderByWithAggregationInput = {
@@ -381,6 +384,7 @@ export type LeaveRequestCreateInput = {
   tenant: Prisma.TenantCreateNestedOneWithoutLeaveRequestsInput
   employee: Prisma.EmployeeCreateNestedOneWithoutLeaveRequestsInput
   approvals?: Prisma.ApprovalStepCreateNestedManyWithoutLeaveRequestInput
+  relieverAssignment?: Prisma.RelieverAssignmentCreateNestedOneWithoutLeaveRequestInput
 }
 
 export type LeaveRequestUncheckedCreateInput = {
@@ -398,6 +402,7 @@ export type LeaveRequestUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   approvals?: Prisma.ApprovalStepUncheckedCreateNestedManyWithoutLeaveRequestInput
+  relieverAssignment?: Prisma.RelieverAssignmentUncheckedCreateNestedOneWithoutLeaveRequestInput
 }
 
 export type LeaveRequestUpdateInput = {
@@ -415,6 +420,7 @@ export type LeaveRequestUpdateInput = {
   tenant?: Prisma.TenantUpdateOneRequiredWithoutLeaveRequestsNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutLeaveRequestsNestedInput
   approvals?: Prisma.ApprovalStepUpdateManyWithoutLeaveRequestNestedInput
+  relieverAssignment?: Prisma.RelieverAssignmentUpdateOneWithoutLeaveRequestNestedInput
 }
 
 export type LeaveRequestUncheckedUpdateInput = {
@@ -432,6 +438,7 @@ export type LeaveRequestUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   approvals?: Prisma.ApprovalStepUncheckedUpdateManyWithoutLeaveRequestNestedInput
+  relieverAssignment?: Prisma.RelieverAssignmentUncheckedUpdateOneWithoutLeaveRequestNestedInput
 }
 
 export type LeaveRequestCreateManyInput = {
@@ -657,6 +664,20 @@ export type LeaveRequestUpdateOneRequiredWithoutApprovalsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.LeaveRequestUpdateToOneWithWhereWithoutApprovalsInput, Prisma.LeaveRequestUpdateWithoutApprovalsInput>, Prisma.LeaveRequestUncheckedUpdateWithoutApprovalsInput>
 }
 
+export type LeaveRequestCreateNestedOneWithoutRelieverAssignmentInput = {
+  create?: Prisma.XOR<Prisma.LeaveRequestCreateWithoutRelieverAssignmentInput, Prisma.LeaveRequestUncheckedCreateWithoutRelieverAssignmentInput>
+  connectOrCreate?: Prisma.LeaveRequestCreateOrConnectWithoutRelieverAssignmentInput
+  connect?: Prisma.LeaveRequestWhereUniqueInput
+}
+
+export type LeaveRequestUpdateOneRequiredWithoutRelieverAssignmentNestedInput = {
+  create?: Prisma.XOR<Prisma.LeaveRequestCreateWithoutRelieverAssignmentInput, Prisma.LeaveRequestUncheckedCreateWithoutRelieverAssignmentInput>
+  connectOrCreate?: Prisma.LeaveRequestCreateOrConnectWithoutRelieverAssignmentInput
+  upsert?: Prisma.LeaveRequestUpsertWithoutRelieverAssignmentInput
+  connect?: Prisma.LeaveRequestWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LeaveRequestUpdateToOneWithWhereWithoutRelieverAssignmentInput, Prisma.LeaveRequestUpdateWithoutRelieverAssignmentInput>, Prisma.LeaveRequestUncheckedUpdateWithoutRelieverAssignmentInput>
+}
+
 export type LeaveRequestCreateWithoutTenantInput = {
   id?: string
   type: string
@@ -671,6 +692,7 @@ export type LeaveRequestCreateWithoutTenantInput = {
   updatedAt?: Date | string
   employee: Prisma.EmployeeCreateNestedOneWithoutLeaveRequestsInput
   approvals?: Prisma.ApprovalStepCreateNestedManyWithoutLeaveRequestInput
+  relieverAssignment?: Prisma.RelieverAssignmentCreateNestedOneWithoutLeaveRequestInput
 }
 
 export type LeaveRequestUncheckedCreateWithoutTenantInput = {
@@ -687,6 +709,7 @@ export type LeaveRequestUncheckedCreateWithoutTenantInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   approvals?: Prisma.ApprovalStepUncheckedCreateNestedManyWithoutLeaveRequestInput
+  relieverAssignment?: Prisma.RelieverAssignmentUncheckedCreateNestedOneWithoutLeaveRequestInput
 }
 
 export type LeaveRequestCreateOrConnectWithoutTenantInput = {
@@ -748,6 +771,7 @@ export type LeaveRequestCreateWithoutEmployeeInput = {
   updatedAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutLeaveRequestsInput
   approvals?: Prisma.ApprovalStepCreateNestedManyWithoutLeaveRequestInput
+  relieverAssignment?: Prisma.RelieverAssignmentCreateNestedOneWithoutLeaveRequestInput
 }
 
 export type LeaveRequestUncheckedCreateWithoutEmployeeInput = {
@@ -764,6 +788,7 @@ export type LeaveRequestUncheckedCreateWithoutEmployeeInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   approvals?: Prisma.ApprovalStepUncheckedCreateNestedManyWithoutLeaveRequestInput
+  relieverAssignment?: Prisma.RelieverAssignmentUncheckedCreateNestedOneWithoutLeaveRequestInput
 }
 
 export type LeaveRequestCreateOrConnectWithoutEmployeeInput = {
@@ -806,6 +831,7 @@ export type LeaveRequestCreateWithoutApprovalsInput = {
   updatedAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutLeaveRequestsInput
   employee: Prisma.EmployeeCreateNestedOneWithoutLeaveRequestsInput
+  relieverAssignment?: Prisma.RelieverAssignmentCreateNestedOneWithoutLeaveRequestInput
 }
 
 export type LeaveRequestUncheckedCreateWithoutApprovalsInput = {
@@ -822,6 +848,7 @@ export type LeaveRequestUncheckedCreateWithoutApprovalsInput = {
   relieverId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  relieverAssignment?: Prisma.RelieverAssignmentUncheckedCreateNestedOneWithoutLeaveRequestInput
 }
 
 export type LeaveRequestCreateOrConnectWithoutApprovalsInput = {
@@ -854,6 +881,7 @@ export type LeaveRequestUpdateWithoutApprovalsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutLeaveRequestsNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutLeaveRequestsNestedInput
+  relieverAssignment?: Prisma.RelieverAssignmentUpdateOneWithoutLeaveRequestNestedInput
 }
 
 export type LeaveRequestUncheckedUpdateWithoutApprovalsInput = {
@@ -870,6 +898,91 @@ export type LeaveRequestUncheckedUpdateWithoutApprovalsInput = {
   relieverId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  relieverAssignment?: Prisma.RelieverAssignmentUncheckedUpdateOneWithoutLeaveRequestNestedInput
+}
+
+export type LeaveRequestCreateWithoutRelieverAssignmentInput = {
+  id?: string
+  type: string
+  startDate: Date | string
+  endDate: Date | string
+  totalDays: number
+  reason?: string | null
+  attachmentUrl?: string | null
+  status?: string
+  relieverId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutLeaveRequestsInput
+  employee: Prisma.EmployeeCreateNestedOneWithoutLeaveRequestsInput
+  approvals?: Prisma.ApprovalStepCreateNestedManyWithoutLeaveRequestInput
+}
+
+export type LeaveRequestUncheckedCreateWithoutRelieverAssignmentInput = {
+  id?: string
+  tenantId: string
+  employeeId: string
+  type: string
+  startDate: Date | string
+  endDate: Date | string
+  totalDays: number
+  reason?: string | null
+  attachmentUrl?: string | null
+  status?: string
+  relieverId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  approvals?: Prisma.ApprovalStepUncheckedCreateNestedManyWithoutLeaveRequestInput
+}
+
+export type LeaveRequestCreateOrConnectWithoutRelieverAssignmentInput = {
+  where: Prisma.LeaveRequestWhereUniqueInput
+  create: Prisma.XOR<Prisma.LeaveRequestCreateWithoutRelieverAssignmentInput, Prisma.LeaveRequestUncheckedCreateWithoutRelieverAssignmentInput>
+}
+
+export type LeaveRequestUpsertWithoutRelieverAssignmentInput = {
+  update: Prisma.XOR<Prisma.LeaveRequestUpdateWithoutRelieverAssignmentInput, Prisma.LeaveRequestUncheckedUpdateWithoutRelieverAssignmentInput>
+  create: Prisma.XOR<Prisma.LeaveRequestCreateWithoutRelieverAssignmentInput, Prisma.LeaveRequestUncheckedCreateWithoutRelieverAssignmentInput>
+  where?: Prisma.LeaveRequestWhereInput
+}
+
+export type LeaveRequestUpdateToOneWithWhereWithoutRelieverAssignmentInput = {
+  where?: Prisma.LeaveRequestWhereInput
+  data: Prisma.XOR<Prisma.LeaveRequestUpdateWithoutRelieverAssignmentInput, Prisma.LeaveRequestUncheckedUpdateWithoutRelieverAssignmentInput>
+}
+
+export type LeaveRequestUpdateWithoutRelieverAssignmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  totalDays?: Prisma.IntFieldUpdateOperationsInput | number
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attachmentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  relieverId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutLeaveRequestsNestedInput
+  employee?: Prisma.EmployeeUpdateOneRequiredWithoutLeaveRequestsNestedInput
+  approvals?: Prisma.ApprovalStepUpdateManyWithoutLeaveRequestNestedInput
+}
+
+export type LeaveRequestUncheckedUpdateWithoutRelieverAssignmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  totalDays?: Prisma.IntFieldUpdateOperationsInput | number
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  attachmentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  relieverId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  approvals?: Prisma.ApprovalStepUncheckedUpdateManyWithoutLeaveRequestNestedInput
 }
 
 export type LeaveRequestCreateManyTenantInput = {
@@ -901,6 +1014,7 @@ export type LeaveRequestUpdateWithoutTenantInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutLeaveRequestsNestedInput
   approvals?: Prisma.ApprovalStepUpdateManyWithoutLeaveRequestNestedInput
+  relieverAssignment?: Prisma.RelieverAssignmentUpdateOneWithoutLeaveRequestNestedInput
 }
 
 export type LeaveRequestUncheckedUpdateWithoutTenantInput = {
@@ -917,6 +1031,7 @@ export type LeaveRequestUncheckedUpdateWithoutTenantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   approvals?: Prisma.ApprovalStepUncheckedUpdateManyWithoutLeaveRequestNestedInput
+  relieverAssignment?: Prisma.RelieverAssignmentUncheckedUpdateOneWithoutLeaveRequestNestedInput
 }
 
 export type LeaveRequestUncheckedUpdateManyWithoutTenantInput = {
@@ -963,6 +1078,7 @@ export type LeaveRequestUpdateWithoutEmployeeInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutLeaveRequestsNestedInput
   approvals?: Prisma.ApprovalStepUpdateManyWithoutLeaveRequestNestedInput
+  relieverAssignment?: Prisma.RelieverAssignmentUpdateOneWithoutLeaveRequestNestedInput
 }
 
 export type LeaveRequestUncheckedUpdateWithoutEmployeeInput = {
@@ -979,6 +1095,7 @@ export type LeaveRequestUncheckedUpdateWithoutEmployeeInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   approvals?: Prisma.ApprovalStepUncheckedUpdateManyWithoutLeaveRequestNestedInput
+  relieverAssignment?: Prisma.RelieverAssignmentUncheckedUpdateOneWithoutLeaveRequestNestedInput
 }
 
 export type LeaveRequestUncheckedUpdateManyWithoutEmployeeInput = {
@@ -1044,6 +1161,7 @@ export type LeaveRequestSelect<ExtArgs extends runtime.Types.Extensions.Internal
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   approvals?: boolean | Prisma.LeaveRequest$approvalsArgs<ExtArgs>
+  relieverAssignment?: boolean | Prisma.LeaveRequest$relieverAssignmentArgs<ExtArgs>
   _count?: boolean | Prisma.LeaveRequestCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["leaveRequest"]>
 
@@ -1104,6 +1222,7 @@ export type LeaveRequestInclude<ExtArgs extends runtime.Types.Extensions.Interna
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
   approvals?: boolean | Prisma.LeaveRequest$approvalsArgs<ExtArgs>
+  relieverAssignment?: boolean | Prisma.LeaveRequest$relieverAssignmentArgs<ExtArgs>
   _count?: boolean | Prisma.LeaveRequestCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type LeaveRequestIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1121,6 +1240,7 @@ export type $LeaveRequestPayload<ExtArgs extends runtime.Types.Extensions.Intern
     tenant: Prisma.$TenantPayload<ExtArgs>
     employee: Prisma.$EmployeePayload<ExtArgs>
     approvals: Prisma.$ApprovalStepPayload<ExtArgs>[]
+    relieverAssignment: Prisma.$RelieverAssignmentPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1533,6 +1653,7 @@ export interface Prisma__LeaveRequestClient<T, Null = never, ExtArgs extends run
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   employee<T extends Prisma.EmployeeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   approvals<T extends Prisma.LeaveRequest$approvalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LeaveRequest$approvalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApprovalStepPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  relieverAssignment<T extends Prisma.LeaveRequest$relieverAssignmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LeaveRequest$relieverAssignmentArgs<ExtArgs>>): Prisma.Prisma__RelieverAssignmentClient<runtime.Types.Result.GetResult<Prisma.$RelieverAssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1997,6 +2118,25 @@ export type LeaveRequest$approvalsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.ApprovalStepScalarFieldEnum | Prisma.ApprovalStepScalarFieldEnum[]
+}
+
+/**
+ * LeaveRequest.relieverAssignment
+ */
+export type LeaveRequest$relieverAssignmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RelieverAssignment
+   */
+  select?: Prisma.RelieverAssignmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RelieverAssignment
+   */
+  omit?: Prisma.RelieverAssignmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RelieverAssignmentInclude<ExtArgs> | null
+  where?: Prisma.RelieverAssignmentWhereInput
 }
 
 /**

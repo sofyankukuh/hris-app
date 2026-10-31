@@ -60,7 +60,9 @@ export const ModelName = {
   LeaveRequest: 'LeaveRequest',
   ApprovalStep: 'ApprovalStep',
   LeaveBalance: 'LeaveBalance',
-  SystemSetting: 'SystemSetting'
+  SystemSetting: 'SystemSetting',
+  Reliever: 'Reliever',
+  RelieverAssignment: 'RelieverAssignment'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -229,6 +231,39 @@ export const SystemSettingScalarFieldEnum = {
 } as const
 
 export type SystemSettingScalarFieldEnum = (typeof SystemSettingScalarFieldEnum)[keyof typeof SystemSettingScalarFieldEnum]
+
+
+export const RelieverScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  fullName: 'fullName',
+  ktpNumber: 'ktpNumber',
+  phoneNumber: 'phoneNumber',
+  email: 'email',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RelieverScalarFieldEnum = (typeof RelieverScalarFieldEnum)[keyof typeof RelieverScalarFieldEnum]
+
+
+export const RelieverAssignmentScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  leaveRequestId: 'leaveRequestId',
+  relieverId: 'relieverId',
+  date: 'date',
+  uniqueToken: 'uniqueToken',
+  checkIn: 'checkIn',
+  checkOut: 'checkOut',
+  selfieUrl: 'selfieUrl',
+  lat: 'lat',
+  lng: 'lng',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RelieverAssignmentScalarFieldEnum = (typeof RelieverAssignmentScalarFieldEnum)[keyof typeof RelieverAssignmentScalarFieldEnum]
 
 
 export const SortOrder = {

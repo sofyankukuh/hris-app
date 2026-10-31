@@ -406,7 +406,9 @@ export const ModelName = {
   LeaveRequest: 'LeaveRequest',
   ApprovalStep: 'ApprovalStep',
   LeaveBalance: 'LeaveBalance',
-  SystemSetting: 'SystemSetting'
+  SystemSetting: 'SystemSetting',
+  Reliever: 'Reliever',
+  RelieverAssignment: 'RelieverAssignment'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -422,7 +424,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "tenant" | "employee" | "amArea" | "role" | "permission" | "attendance" | "leaveRequest" | "approvalStep" | "leaveBalance" | "systemSetting"
+    modelProps: "tenant" | "employee" | "amArea" | "role" | "permission" | "attendance" | "leaveRequest" | "approvalStep" | "leaveBalance" | "systemSetting" | "reliever" | "relieverAssignment"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1166,6 +1168,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Reliever: {
+      payload: Prisma.$RelieverPayload<ExtArgs>
+      fields: Prisma.RelieverFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RelieverFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RelieverFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverPayload>
+        }
+        findFirst: {
+          args: Prisma.RelieverFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RelieverFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverPayload>
+        }
+        findMany: {
+          args: Prisma.RelieverFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverPayload>[]
+        }
+        create: {
+          args: Prisma.RelieverCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverPayload>
+        }
+        createMany: {
+          args: Prisma.RelieverCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RelieverCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverPayload>[]
+        }
+        delete: {
+          args: Prisma.RelieverDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverPayload>
+        }
+        update: {
+          args: Prisma.RelieverUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverPayload>
+        }
+        deleteMany: {
+          args: Prisma.RelieverDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RelieverUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RelieverUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverPayload>[]
+        }
+        upsert: {
+          args: Prisma.RelieverUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverPayload>
+        }
+        aggregate: {
+          args: Prisma.RelieverAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateReliever>
+        }
+        groupBy: {
+          args: Prisma.RelieverGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RelieverGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RelieverCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RelieverCountAggregateOutputType> | number
+        }
+      }
+    }
+    RelieverAssignment: {
+      payload: Prisma.$RelieverAssignmentPayload<ExtArgs>
+      fields: Prisma.RelieverAssignmentFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RelieverAssignmentFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverAssignmentPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RelieverAssignmentFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverAssignmentPayload>
+        }
+        findFirst: {
+          args: Prisma.RelieverAssignmentFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverAssignmentPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RelieverAssignmentFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverAssignmentPayload>
+        }
+        findMany: {
+          args: Prisma.RelieverAssignmentFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverAssignmentPayload>[]
+        }
+        create: {
+          args: Prisma.RelieverAssignmentCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverAssignmentPayload>
+        }
+        createMany: {
+          args: Prisma.RelieverAssignmentCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RelieverAssignmentCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverAssignmentPayload>[]
+        }
+        delete: {
+          args: Prisma.RelieverAssignmentDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverAssignmentPayload>
+        }
+        update: {
+          args: Prisma.RelieverAssignmentUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverAssignmentPayload>
+        }
+        deleteMany: {
+          args: Prisma.RelieverAssignmentDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RelieverAssignmentUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RelieverAssignmentUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverAssignmentPayload>[]
+        }
+        upsert: {
+          args: Prisma.RelieverAssignmentUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RelieverAssignmentPayload>
+        }
+        aggregate: {
+          args: Prisma.RelieverAssignmentAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRelieverAssignment>
+        }
+        groupBy: {
+          args: Prisma.RelieverAssignmentGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RelieverAssignmentGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RelieverAssignmentCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RelieverAssignmentCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1355,6 +1505,39 @@ export const SystemSettingScalarFieldEnum = {
 } as const
 
 export type SystemSettingScalarFieldEnum = (typeof SystemSettingScalarFieldEnum)[keyof typeof SystemSettingScalarFieldEnum]
+
+
+export const RelieverScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  fullName: 'fullName',
+  ktpNumber: 'ktpNumber',
+  phoneNumber: 'phoneNumber',
+  email: 'email',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RelieverScalarFieldEnum = (typeof RelieverScalarFieldEnum)[keyof typeof RelieverScalarFieldEnum]
+
+
+export const RelieverAssignmentScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  leaveRequestId: 'leaveRequestId',
+  relieverId: 'relieverId',
+  date: 'date',
+  uniqueToken: 'uniqueToken',
+  checkIn: 'checkIn',
+  checkOut: 'checkOut',
+  selfieUrl: 'selfieUrl',
+  lat: 'lat',
+  lng: 'lng',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RelieverAssignmentScalarFieldEnum = (typeof RelieverAssignmentScalarFieldEnum)[keyof typeof RelieverAssignmentScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1624,6 +1807,8 @@ export type GlobalOmitConfig = {
   approvalStep?: Prisma.ApprovalStepOmit
   leaveBalance?: Prisma.LeaveBalanceOmit
   systemSetting?: Prisma.SystemSettingOmit
+  reliever?: Prisma.RelieverOmit
+  relieverAssignment?: Prisma.RelieverAssignmentOmit
 }
 
 /* Types for Logging */

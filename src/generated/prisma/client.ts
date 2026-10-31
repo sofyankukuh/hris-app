@@ -91,3 +91,13 @@ export type LeaveBalance = Prisma.LeaveBalanceModel
  * 
  */
 export type SystemSetting = Prisma.SystemSettingModel
+/**
+ * Model Reliever
+ * 
+ */
+export type Reliever = Prisma.RelieverModel
+/**
+ * Model RelieverAssignment
+ * 
+ */
+export type RelieverAssignment = Prisma.RelieverAssignmentModel

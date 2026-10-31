@@ -28,7 +28,7 @@ export default async function LeavePage() {
           <h2 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4">Form Pengajuan</h2>
           
           {/* Tambahkan encType di sini */}
-          <form action={submitLeaveRequest} encType="multipart/form-data" className="space-y-4">
+          <form action={submitLeaveRequest} className="space-y-4">
             <div>
               <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5 uppercase">Jenis</label>
               <select name="type" required className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm">

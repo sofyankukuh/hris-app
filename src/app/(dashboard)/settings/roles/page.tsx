@@ -62,6 +62,29 @@ export default async function SettingsPage() {
           </div>
         </Link>
 
+        {/* KARTU KELOLA KATEGORI (BARU) */}
+        <Link 
+          href="/settings/roles/manage"
+          className="bg-white dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-100 dark:border-slate-700/50 hover:shadow-lg transition-all group flex items-center justify-between"
+        >
+          <div className="flex items-center gap-6">
+            <div className="w-16 h-16 rounded-2xl bg-amber-50 dark:bg-amber-500/20 flex items-center justify-center text-amber-600 dark:text-amber-400 text-3xl">
+              🏷️
+            </div>
+            <div>
+              <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100 group-hover:text-amber-500 transition-colors">
+                Kelola Kategori (Role)
+              </h2>
+              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                Tambah atau ubah nama jabatan (HC, AM, Legal, dll).
+              </p>
+            </div>
+          </div>
+          <div className="text-sm font-bold text-amber-500 bg-amber-50 dark:bg-amber-900/30 px-4 py-2 rounded-xl">
+            Atur
+          </div>
+        </Link>
+
         {/* INFO TAD & CLIENT */}
         <div className="bg-slate-50 dark:bg-slate-800/40 p-6 rounded-3xl border border-slate-200 dark:border-slate-700/50 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
           <div className="text-2xl">ℹ️</div>

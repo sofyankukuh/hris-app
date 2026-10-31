@@ -1,7 +1,8 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css"; // <-- Pastikan ini ada di sini
+import "./globals.css";
+import Providers from "@/components/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className={`${inter.className} antialiased`}>
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );
