@@ -29,6 +29,9 @@ export async function saveImportedData(data: any[], action: 'skip' | 'overwrite'
       const safeOldNik = row.oldNik ? String(row.oldNik).trim() : null;
       const safeKtpNumber = row.ktpNumber ? String(row.ktpNumber).trim() : null;
       const safeEmail = row.email ? String(row.email).trim() : null;
+      const safeCustomer = row.customer ? String(row.customer).trim() : null;
+      const safeBranchCode = row.branchCode ? String(row.branchCode).trim() : null;
+      const safeOutlet = row.outlet ? String(row.outlet).trim() : null;
 
       // Validasi dasar: Email wajib ada
       if (!safeEmail) {
@@ -60,6 +63,9 @@ export async function saveImportedData(data: any[], action: 'skip' | 'overwrite'
               fullName: row.fullName, 
               department: row.department, 
               position: row.position,
+              customer: safeCustomer,
+              branchCode: safeBranchCode,
+              outlet: safeOutlet,
               phoneNumber: row.phoneNumber ? String(row.phoneNumber) : null, 
               education: row.education, 
               birthPlace: row.birthPlace,
@@ -85,8 +91,31 @@ export async function saveImportedData(data: any[], action: 'skip' | 'overwrite'
         }
       }
 
-      maxNumber += 1;
-      const newEmployeeNumber = `${prefix}${maxNumber.toString().padStart(3, '0')}`;
+            // --- LOGIKA PENENTUAN NIK (LOMPAT & HORMATI NIK EXCEL) ---
+      let newEmployeeNumber = safeOldNik; // 1. Prioritaskan NIK dari Excel
+
+      if (!newEmployeeNumber) {
+        // 2. Jika di Excel NIK kosong, buat NIK otomatis (Lompat +1)
+        maxNumber += 1;
+        newEmployeeNumber = `${prefix}${maxNumber.toString().padStart(3, '0')}`;
+      } else {
+        // 3. Jika di Excel ADA NIK, pastikan NIK itu belum dipakai di database
+        const isNikExist = await prisma.employee.findFirst({
+          where: { tenantId: tenant.id, employeeNumber: newEmployeeNumber }
+        });
+        
+        if (isNikExist) {
+           // Jika NIK sudah ada, lewati baris ini (jangan ditimpa)
+           skipCount++;
+           continue;
+        }
+        
+        // 4. Update maxNumber agar baris berikutnya (jika ada yang kosong) tidak bentrok
+        const parsedNik = parseInt(newEmployeeNumber.replace(prefix, ""), 10);
+        if (!isNaN(parsedNik) && parsedNik > maxNumber) {
+          maxNumber = parsedNik;
+        }
+      }
       
       await prisma.employee.create({
         data: {
@@ -97,7 +126,10 @@ export async function saveImportedData(data: any[], action: 'skip' | 'overwrite'
           fullName: row.fullName, 
           email: safeEmail, 
           department: row.department, 
-          position: row.position, 
+          position: row.position,
+          customer: safeCustomer,
+          branchCode: safeBranchCode,
+          outlet: safeOutlet, 
           phoneNumber: row.phoneNumber ? String(row.phoneNumber) : null, 
           education: row.education, 
           birthPlace: row.birthPlace, 

@@ -4,10 +4,11 @@
 import * as XLSX from 'xlsx';
 
 export default function DownloadTemplateButton() {
-      const handleDownload = () => {
+        const handleDownload = () => {
     const headers = [
       "Nama", "Email", "NIK (BKP-001)", "No_KTP", "no_hp", "Jabatan", 
-      "Departemen", "Pendidikan", "Tgl_Lahir (DD-MM-YYYY)", "Tempat_Lahir", 
+      "Departemen", "Customer", "K.Cabang", "Outlet", // <-- TAMBAHKAN DI SINI
+      "Pendidikan", "Tgl_Lahir (DD-MM-YYYY)", "Tempat_Lahir", 
       "Agama", "Rumusan", "Alamat", "NamaIbuKandung", 
       "NamaIstri", "J.Anak", "no_jamsostek", "npwp_karyawan", 
       "nama_rek_karyawan", "rekening", "tgl_masuk (DD-MM-YYYY)", 
@@ -18,11 +19,14 @@ export default function DownloadTemplateButton() {
       {
         "Nama": "Budi Santoso",
         "Email": "budi@perusahaan.com",
-        "NIK (BKP-001)": "BKP-001", // <-- SUDAH DISTANDARKAN
+        "NIK (BKP-001)": "BKP-001",
         "No_KTP": "3175014305031001",
         "no_hp": "081234567890",
         "Jabatan": "STAFF IT",
         "Departemen": "IT",
+        "Customer": "PRODUCT & SERVICE", // <-- DATA DUMMY
+        "K.Cabang": "BR01",              // <-- DATA DUMMY
+        "Outlet": "KANTOR PUSAT",        // <-- DATA DUMMY
         "Pendidikan": "S1",
         "Tgl_Lahir (DD-MM-YYYY)": "31-12-1995",
         "Tempat_Lahir": "Jakarta",
