@@ -10,4 +10,6 @@
  */
 export type * from './models/Tenant'
 export type * from './models/Employee'
+export type * from './models/Role'
+export type * from './models/Permission'
 export type * from './commonInputTypes'

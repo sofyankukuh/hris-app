@@ -27,3 +27,13 @@ export type Tenant = Prisma.TenantModel
  * 
  */
 export type Employee = Prisma.EmployeeModel
+/**
+ * Model Role
+ * 
+ */
+export type Role = Prisma.RoleModel
+/**
+ * Model Permission
+ * 
+ */
+export type Permission = Prisma.PermissionModel
