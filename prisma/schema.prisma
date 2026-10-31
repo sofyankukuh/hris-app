@@ -23,6 +23,7 @@ model Employee {
   
   // 1. IDENTITAS UTAMA
   employeeNumber String
+  oldEmployeeNumber String?
   fullName       String
   email          String
   phoneNumber    String?
@@ -69,7 +70,7 @@ model Employee {
   tenant         Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
 
   @@unique([tenantId, employeeNumber])
-  @@unique([tenantId, email])
+  // @@unique([tenantId, email])
   @@index([tenantId])
 }
 

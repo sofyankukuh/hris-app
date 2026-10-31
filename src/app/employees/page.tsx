@@ -37,16 +37,23 @@ export default async function EmployeesPage() {
   return (
     <div className="max-w-6xl mx-auto">
       {/* Header Halaman */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+      
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <div>
           <h1 className="text-2xl font-black text-slate-900 dark:text-white">Data Karyawan</h1>
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Total {employees.length} orang terdaftar</p>
         </div>
-        {/* TOMBOL INI AKAN MUNCUL */}
-        <Link href="/employees/create" className="px-6 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-all shadow-md shadow-indigo-500/20 active:scale-[0.98] flex items-center gap-2">
-          <span className="text-lg">+</span> Tambah Karyawan
-        </Link>
-      </div>
+        
+        {/* GRUP TOMBOL RAPI & KECIL */}
+        <div className="flex gap-2">
+          <Link href="/employees/import" className="px-4 py-2.5 bg-white text-slate-700 border border-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700 text-sm font-semibold rounded-xl hover:bg-slate-50 transition-all shadow-sm flex items-center gap-2">
+            <span className="text-base">📥</span> Import
+          </Link>
+          <Link href="/employees/create" className="px-4 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-xl hover:bg-indigo-700 transition-all shadow-md shadow-indigo-500/20 active:scale-[0.98] flex items-center gap-2">
+            <span className="text-base">+</span> Tambah
+          </Link>
+        </div>
+      </div> 
 
       {/* Daftar Karyawan */}
       <div className="flex flex-col gap-3">

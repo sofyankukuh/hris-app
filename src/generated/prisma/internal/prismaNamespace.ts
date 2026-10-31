@@ -620,6 +620,7 @@ export const EmployeeScalarFieldEnum = {
   id: 'id',
   tenantId: 'tenantId',
   employeeNumber: 'employeeNumber',
+  oldEmployeeNumber: 'oldEmployeeNumber',
   fullName: 'fullName',
   email: 'email',
   phoneNumber: 'phoneNumber',
