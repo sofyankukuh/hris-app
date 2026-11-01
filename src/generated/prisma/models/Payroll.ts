@@ -56,6 +56,7 @@ export type PayrollMinAggregateOutputType = {
   netSalary: number | null
   status: string | null
   notes: string | null
+  batchId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -72,6 +73,7 @@ export type PayrollMaxAggregateOutputType = {
   netSalary: number | null
   status: string | null
   notes: string | null
+  batchId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -88,6 +90,7 @@ export type PayrollCountAggregateOutputType = {
   netSalary: number
   status: number
   notes: number
+  batchId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -124,6 +127,7 @@ export type PayrollMinAggregateInputType = {
   netSalary?: true
   status?: true
   notes?: true
+  batchId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -140,6 +144,7 @@ export type PayrollMaxAggregateInputType = {
   netSalary?: true
   status?: true
   notes?: true
+  batchId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -156,6 +161,7 @@ export type PayrollCountAggregateInputType = {
   netSalary?: true
   status?: true
   notes?: true
+  batchId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -259,6 +265,7 @@ export type PayrollGroupByOutputType = {
   netSalary: number
   status: string
   notes: string | null
+  batchId: string | null
   createdAt: Date
   updatedAt: Date
   _count: PayrollCountAggregateOutputType | null
@@ -298,8 +305,10 @@ export type PayrollWhereInput = {
   netSalary?: Prisma.FloatFilter<"Payroll"> | number
   status?: Prisma.StringFilter<"Payroll"> | string
   notes?: Prisma.StringNullableFilter<"Payroll"> | string | null
+  batchId?: Prisma.StringNullableFilter<"Payroll"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Payroll"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Payroll"> | Date | string
+  batch?: Prisma.XOR<Prisma.PayrollBatchNullableScalarRelationFilter, Prisma.PayrollBatchWhereInput> | null
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
 }
@@ -316,8 +325,10 @@ export type PayrollOrderByWithRelationInput = {
   netSalary?: Prisma.SortOrder
   status?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  batchId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  batch?: Prisma.PayrollBatchOrderByWithRelationInput
   tenant?: Prisma.TenantOrderByWithRelationInput
   employee?: Prisma.EmployeeOrderByWithRelationInput
 }
@@ -338,8 +349,10 @@ export type PayrollWhereUniqueInput = Prisma.AtLeast<{
   netSalary?: Prisma.FloatFilter<"Payroll"> | number
   status?: Prisma.StringFilter<"Payroll"> | string
   notes?: Prisma.StringNullableFilter<"Payroll"> | string | null
+  batchId?: Prisma.StringNullableFilter<"Payroll"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Payroll"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Payroll"> | Date | string
+  batch?: Prisma.XOR<Prisma.PayrollBatchNullableScalarRelationFilter, Prisma.PayrollBatchWhereInput> | null
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   employee?: Prisma.XOR<Prisma.EmployeeScalarRelationFilter, Prisma.EmployeeWhereInput>
 }, "id" | "employeeId_month_year">
@@ -356,6 +369,7 @@ export type PayrollOrderByWithAggregationInput = {
   netSalary?: Prisma.SortOrder
   status?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  batchId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.PayrollCountOrderByAggregateInput
@@ -380,6 +394,7 @@ export type PayrollScalarWhereWithAggregatesInput = {
   netSalary?: Prisma.FloatWithAggregatesFilter<"Payroll"> | number
   status?: Prisma.StringWithAggregatesFilter<"Payroll"> | string
   notes?: Prisma.StringNullableWithAggregatesFilter<"Payroll"> | string | null
+  batchId?: Prisma.StringNullableWithAggregatesFilter<"Payroll"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Payroll"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Payroll"> | Date | string
 }
@@ -396,6 +411,7 @@ export type PayrollCreateInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  batch?: Prisma.PayrollBatchCreateNestedOneWithoutPayrollsInput
   tenant: Prisma.TenantCreateNestedOneWithoutPayrollsInput
   employee: Prisma.EmployeeCreateNestedOneWithoutPayrollsInput
 }
@@ -412,6 +428,7 @@ export type PayrollUncheckedCreateInput = {
   netSalary?: number
   status?: string
   notes?: string | null
+  batchId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -428,6 +445,7 @@ export type PayrollUpdateInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch?: Prisma.PayrollBatchUpdateOneWithoutPayrollsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutPayrollsNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutPayrollsNestedInput
 }
@@ -444,6 +462,7 @@ export type PayrollUncheckedUpdateInput = {
   netSalary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -460,6 +479,7 @@ export type PayrollCreateManyInput = {
   netSalary?: number
   status?: string
   notes?: string | null
+  batchId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -490,6 +510,7 @@ export type PayrollUncheckedUpdateManyInput = {
   netSalary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -522,6 +543,7 @@ export type PayrollCountOrderByAggregateInput = {
   netSalary?: Prisma.SortOrder
   status?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  batchId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -547,6 +569,7 @@ export type PayrollMaxOrderByAggregateInput = {
   netSalary?: Prisma.SortOrder
   status?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  batchId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -563,6 +586,7 @@ export type PayrollMinOrderByAggregateInput = {
   netSalary?: Prisma.SortOrder
   status?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  batchId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -660,6 +684,48 @@ export type PayrollUncheckedUpdateManyWithoutEmployeeNestedInput = {
   deleteMany?: Prisma.PayrollScalarWhereInput | Prisma.PayrollScalarWhereInput[]
 }
 
+export type PayrollCreateNestedManyWithoutBatchInput = {
+  create?: Prisma.XOR<Prisma.PayrollCreateWithoutBatchInput, Prisma.PayrollUncheckedCreateWithoutBatchInput> | Prisma.PayrollCreateWithoutBatchInput[] | Prisma.PayrollUncheckedCreateWithoutBatchInput[]
+  connectOrCreate?: Prisma.PayrollCreateOrConnectWithoutBatchInput | Prisma.PayrollCreateOrConnectWithoutBatchInput[]
+  createMany?: Prisma.PayrollCreateManyBatchInputEnvelope
+  connect?: Prisma.PayrollWhereUniqueInput | Prisma.PayrollWhereUniqueInput[]
+}
+
+export type PayrollUncheckedCreateNestedManyWithoutBatchInput = {
+  create?: Prisma.XOR<Prisma.PayrollCreateWithoutBatchInput, Prisma.PayrollUncheckedCreateWithoutBatchInput> | Prisma.PayrollCreateWithoutBatchInput[] | Prisma.PayrollUncheckedCreateWithoutBatchInput[]
+  connectOrCreate?: Prisma.PayrollCreateOrConnectWithoutBatchInput | Prisma.PayrollCreateOrConnectWithoutBatchInput[]
+  createMany?: Prisma.PayrollCreateManyBatchInputEnvelope
+  connect?: Prisma.PayrollWhereUniqueInput | Prisma.PayrollWhereUniqueInput[]
+}
+
+export type PayrollUpdateManyWithoutBatchNestedInput = {
+  create?: Prisma.XOR<Prisma.PayrollCreateWithoutBatchInput, Prisma.PayrollUncheckedCreateWithoutBatchInput> | Prisma.PayrollCreateWithoutBatchInput[] | Prisma.PayrollUncheckedCreateWithoutBatchInput[]
+  connectOrCreate?: Prisma.PayrollCreateOrConnectWithoutBatchInput | Prisma.PayrollCreateOrConnectWithoutBatchInput[]
+  upsert?: Prisma.PayrollUpsertWithWhereUniqueWithoutBatchInput | Prisma.PayrollUpsertWithWhereUniqueWithoutBatchInput[]
+  createMany?: Prisma.PayrollCreateManyBatchInputEnvelope
+  set?: Prisma.PayrollWhereUniqueInput | Prisma.PayrollWhereUniqueInput[]
+  disconnect?: Prisma.PayrollWhereUniqueInput | Prisma.PayrollWhereUniqueInput[]
+  delete?: Prisma.PayrollWhereUniqueInput | Prisma.PayrollWhereUniqueInput[]
+  connect?: Prisma.PayrollWhereUniqueInput | Prisma.PayrollWhereUniqueInput[]
+  update?: Prisma.PayrollUpdateWithWhereUniqueWithoutBatchInput | Prisma.PayrollUpdateWithWhereUniqueWithoutBatchInput[]
+  updateMany?: Prisma.PayrollUpdateManyWithWhereWithoutBatchInput | Prisma.PayrollUpdateManyWithWhereWithoutBatchInput[]
+  deleteMany?: Prisma.PayrollScalarWhereInput | Prisma.PayrollScalarWhereInput[]
+}
+
+export type PayrollUncheckedUpdateManyWithoutBatchNestedInput = {
+  create?: Prisma.XOR<Prisma.PayrollCreateWithoutBatchInput, Prisma.PayrollUncheckedCreateWithoutBatchInput> | Prisma.PayrollCreateWithoutBatchInput[] | Prisma.PayrollUncheckedCreateWithoutBatchInput[]
+  connectOrCreate?: Prisma.PayrollCreateOrConnectWithoutBatchInput | Prisma.PayrollCreateOrConnectWithoutBatchInput[]
+  upsert?: Prisma.PayrollUpsertWithWhereUniqueWithoutBatchInput | Prisma.PayrollUpsertWithWhereUniqueWithoutBatchInput[]
+  createMany?: Prisma.PayrollCreateManyBatchInputEnvelope
+  set?: Prisma.PayrollWhereUniqueInput | Prisma.PayrollWhereUniqueInput[]
+  disconnect?: Prisma.PayrollWhereUniqueInput | Prisma.PayrollWhereUniqueInput[]
+  delete?: Prisma.PayrollWhereUniqueInput | Prisma.PayrollWhereUniqueInput[]
+  connect?: Prisma.PayrollWhereUniqueInput | Prisma.PayrollWhereUniqueInput[]
+  update?: Prisma.PayrollUpdateWithWhereUniqueWithoutBatchInput | Prisma.PayrollUpdateWithWhereUniqueWithoutBatchInput[]
+  updateMany?: Prisma.PayrollUpdateManyWithWhereWithoutBatchInput | Prisma.PayrollUpdateManyWithWhereWithoutBatchInput[]
+  deleteMany?: Prisma.PayrollScalarWhereInput | Prisma.PayrollScalarWhereInput[]
+}
+
 export type PayrollCreateWithoutTenantInput = {
   id?: string
   month: number
@@ -672,6 +738,7 @@ export type PayrollCreateWithoutTenantInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  batch?: Prisma.PayrollBatchCreateNestedOneWithoutPayrollsInput
   employee: Prisma.EmployeeCreateNestedOneWithoutPayrollsInput
 }
 
@@ -686,6 +753,7 @@ export type PayrollUncheckedCreateWithoutTenantInput = {
   netSalary?: number
   status?: string
   notes?: string | null
+  batchId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -731,6 +799,7 @@ export type PayrollScalarWhereInput = {
   netSalary?: Prisma.FloatFilter<"Payroll"> | number
   status?: Prisma.StringFilter<"Payroll"> | string
   notes?: Prisma.StringNullableFilter<"Payroll"> | string | null
+  batchId?: Prisma.StringNullableFilter<"Payroll"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Payroll"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Payroll"> | Date | string
 }
@@ -747,6 +816,7 @@ export type PayrollCreateWithoutEmployeeInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  batch?: Prisma.PayrollBatchCreateNestedOneWithoutPayrollsInput
   tenant: Prisma.TenantCreateNestedOneWithoutPayrollsInput
 }
 
@@ -761,6 +831,7 @@ export type PayrollUncheckedCreateWithoutEmployeeInput = {
   netSalary?: number
   status?: string
   notes?: string | null
+  batchId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -791,6 +862,64 @@ export type PayrollUpdateManyWithWhereWithoutEmployeeInput = {
   data: Prisma.XOR<Prisma.PayrollUpdateManyMutationInput, Prisma.PayrollUncheckedUpdateManyWithoutEmployeeInput>
 }
 
+export type PayrollCreateWithoutBatchInput = {
+  id?: string
+  month: number
+  year: number
+  basicSalary?: number
+  totalEarnings?: number
+  totalDeductions?: number
+  netSalary?: number
+  status?: string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutPayrollsInput
+  employee: Prisma.EmployeeCreateNestedOneWithoutPayrollsInput
+}
+
+export type PayrollUncheckedCreateWithoutBatchInput = {
+  id?: string
+  tenantId: string
+  employeeId: string
+  month: number
+  year: number
+  basicSalary?: number
+  totalEarnings?: number
+  totalDeductions?: number
+  netSalary?: number
+  status?: string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type PayrollCreateOrConnectWithoutBatchInput = {
+  where: Prisma.PayrollWhereUniqueInput
+  create: Prisma.XOR<Prisma.PayrollCreateWithoutBatchInput, Prisma.PayrollUncheckedCreateWithoutBatchInput>
+}
+
+export type PayrollCreateManyBatchInputEnvelope = {
+  data: Prisma.PayrollCreateManyBatchInput | Prisma.PayrollCreateManyBatchInput[]
+  skipDuplicates?: boolean
+}
+
+export type PayrollUpsertWithWhereUniqueWithoutBatchInput = {
+  where: Prisma.PayrollWhereUniqueInput
+  update: Prisma.XOR<Prisma.PayrollUpdateWithoutBatchInput, Prisma.PayrollUncheckedUpdateWithoutBatchInput>
+  create: Prisma.XOR<Prisma.PayrollCreateWithoutBatchInput, Prisma.PayrollUncheckedCreateWithoutBatchInput>
+}
+
+export type PayrollUpdateWithWhereUniqueWithoutBatchInput = {
+  where: Prisma.PayrollWhereUniqueInput
+  data: Prisma.XOR<Prisma.PayrollUpdateWithoutBatchInput, Prisma.PayrollUncheckedUpdateWithoutBatchInput>
+}
+
+export type PayrollUpdateManyWithWhereWithoutBatchInput = {
+  where: Prisma.PayrollScalarWhereInput
+  data: Prisma.XOR<Prisma.PayrollUpdateManyMutationInput, Prisma.PayrollUncheckedUpdateManyWithoutBatchInput>
+}
+
 export type PayrollCreateManyTenantInput = {
   id?: string
   employeeId: string
@@ -802,6 +931,7 @@ export type PayrollCreateManyTenantInput = {
   netSalary?: number
   status?: string
   notes?: string | null
+  batchId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -818,6 +948,7 @@ export type PayrollUpdateWithoutTenantInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch?: Prisma.PayrollBatchUpdateOneWithoutPayrollsNestedInput
   employee?: Prisma.EmployeeUpdateOneRequiredWithoutPayrollsNestedInput
 }
 
@@ -832,6 +963,7 @@ export type PayrollUncheckedUpdateWithoutTenantInput = {
   netSalary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -847,6 +979,7 @@ export type PayrollUncheckedUpdateManyWithoutTenantInput = {
   netSalary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -862,6 +995,7 @@ export type PayrollCreateManyEmployeeInput = {
   netSalary?: number
   status?: string
   notes?: string | null
+  batchId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -878,6 +1012,7 @@ export type PayrollUpdateWithoutEmployeeInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch?: Prisma.PayrollBatchUpdateOneWithoutPayrollsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutPayrollsNestedInput
 }
 
@@ -892,6 +1027,7 @@ export type PayrollUncheckedUpdateWithoutEmployeeInput = {
   netSalary?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -899,6 +1035,71 @@ export type PayrollUncheckedUpdateWithoutEmployeeInput = {
 export type PayrollUncheckedUpdateManyWithoutEmployeeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  month?: Prisma.IntFieldUpdateOperationsInput | number
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  basicSalary?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalEarnings?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalDeductions?: Prisma.FloatFieldUpdateOperationsInput | number
+  netSalary?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PayrollCreateManyBatchInput = {
+  id?: string
+  tenantId: string
+  employeeId: string
+  month: number
+  year: number
+  basicSalary?: number
+  totalEarnings?: number
+  totalDeductions?: number
+  netSalary?: number
+  status?: string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type PayrollUpdateWithoutBatchInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  month?: Prisma.IntFieldUpdateOperationsInput | number
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  basicSalary?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalEarnings?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalDeductions?: Prisma.FloatFieldUpdateOperationsInput | number
+  netSalary?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutPayrollsNestedInput
+  employee?: Prisma.EmployeeUpdateOneRequiredWithoutPayrollsNestedInput
+}
+
+export type PayrollUncheckedUpdateWithoutBatchInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
+  month?: Prisma.IntFieldUpdateOperationsInput | number
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  basicSalary?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalEarnings?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalDeductions?: Prisma.FloatFieldUpdateOperationsInput | number
+  netSalary?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PayrollUncheckedUpdateManyWithoutBatchInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeId?: Prisma.StringFieldUpdateOperationsInput | string
   month?: Prisma.IntFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
   basicSalary?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -925,8 +1126,10 @@ export type PayrollSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   netSalary?: boolean
   status?: boolean
   notes?: boolean
+  batchId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  batch?: boolean | Prisma.Payroll$batchArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["payroll"]>
@@ -943,8 +1146,10 @@ export type PayrollSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   netSalary?: boolean
   status?: boolean
   notes?: boolean
+  batchId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  batch?: boolean | Prisma.Payroll$batchArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["payroll"]>
@@ -961,8 +1166,10 @@ export type PayrollSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   netSalary?: boolean
   status?: boolean
   notes?: boolean
+  batchId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  batch?: boolean | Prisma.Payroll$batchArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["payroll"]>
@@ -979,20 +1186,24 @@ export type PayrollSelectScalar = {
   netSalary?: boolean
   status?: boolean
   notes?: boolean
+  batchId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PayrollOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "employeeId" | "month" | "year" | "basicSalary" | "totalEarnings" | "totalDeductions" | "netSalary" | "status" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["payroll"]>
+export type PayrollOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "employeeId" | "month" | "year" | "basicSalary" | "totalEarnings" | "totalDeductions" | "netSalary" | "status" | "notes" | "batchId" | "createdAt" | "updatedAt", ExtArgs["result"]["payroll"]>
 export type PayrollInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  batch?: boolean | Prisma.Payroll$batchArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }
 export type PayrollIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  batch?: boolean | Prisma.Payroll$batchArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }
 export type PayrollIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  batch?: boolean | Prisma.Payroll$batchArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   employee?: boolean | Prisma.EmployeeDefaultArgs<ExtArgs>
 }
@@ -1000,6 +1211,7 @@ export type PayrollIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $PayrollPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Payroll"
   objects: {
+    batch: Prisma.$PayrollBatchPayload<ExtArgs> | null
     tenant: Prisma.$TenantPayload<ExtArgs>
     employee: Prisma.$EmployeePayload<ExtArgs>
   }
@@ -1015,6 +1227,7 @@ export type $PayrollPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     netSalary: number
     status: string
     notes: string | null
+    batchId: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["payroll"]>
@@ -1411,6 +1624,7 @@ readonly fields: PayrollFieldRefs;
  */
 export interface Prisma__PayrollClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  batch<T extends Prisma.Payroll$batchArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Payroll$batchArgs<ExtArgs>>): Prisma.Prisma__PayrollBatchClient<runtime.Types.Result.GetResult<Prisma.$PayrollBatchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   employee<T extends Prisma.EmployeeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EmployeeDefaultArgs<ExtArgs>>): Prisma.Prisma__EmployeeClient<runtime.Types.Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1453,6 +1667,7 @@ export interface PayrollFieldRefs {
   readonly netSalary: Prisma.FieldRef<"Payroll", 'Float'>
   readonly status: Prisma.FieldRef<"Payroll", 'String'>
   readonly notes: Prisma.FieldRef<"Payroll", 'String'>
+  readonly batchId: Prisma.FieldRef<"Payroll", 'String'>
   readonly createdAt: Prisma.FieldRef<"Payroll", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Payroll", 'DateTime'>
 }
@@ -1853,6 +2068,25 @@ export type PayrollDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Payrolls to delete.
    */
   limit?: number
+}
+
+/**
+ * Payroll.batch
+ */
+export type Payroll$batchArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PayrollBatch
+   */
+  select?: Prisma.PayrollBatchSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PayrollBatch
+   */
+  omit?: Prisma.PayrollBatchOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PayrollBatchInclude<ExtArgs> | null
+  where?: Prisma.PayrollBatchWhereInput
 }
 
 /**

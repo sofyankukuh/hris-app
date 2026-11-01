@@ -94,7 +94,7 @@ export default function Sidebar() {
           )}
         </div>
 
-                {/* SUB-MENU: KEUANGAN */}
+                        {/* SUB-MENU: KEUANGAN */}
         <div>
           <button onClick={() => toggleMenu('keuangan')} className={menuClass(isGroupActive(['/incomes', '/payslips', '/payroll']))}>
             <div className="flex items-center gap-3"><span className="text-lg">💰</span> Keuangan</div>
@@ -105,8 +105,12 @@ export default function Sidebar() {
             <div className="mt-1 space-y-1">
               <Link href="/incomes" className={subMenuClass(isActive("/incomes"))}>Pendapatan Tambahan</Link>
               <Link href="/payslips" className={subMenuClass(isActive("/payslips"))}>Slip Gaji</Link>
+              
+              {/* MENU BARU UNTUK RUMUS & PAYROLL */}
               <Link href="/payroll" className={subMenuClass(isActive("/payroll"))}>Payroll</Link>
-              <Link href="/payroll/settings" className={subMenuClass(isActive("/payroll/settings"))}>Pengaturan Gaji</Link>
+              <Link href="/payroll/rumus" className={subMenuClass(isActive("/payroll/rumus"))}>Rumus Gaji</Link>
+              <Link href="/payroll/terapkan" className={subMenuClass(isActive("/payroll/terapkan"))}>Terapkan Rumus</Link>
+              <Link href="/payroll/report" className={subMenuClass(isActive("/payroll/report"))}>Laporan Payroll</Link>            
             </div>
           )}
         </div>

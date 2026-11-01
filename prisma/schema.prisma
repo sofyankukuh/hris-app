@@ -16,14 +16,15 @@ model Tenant {
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
   
-  employees      Employee[]
-  attendances    Attendance[]
-  leaveRequests  LeaveRequest[]
+  employees        Employee[]
+  attendances      Attendance[]
+  leaveRequests    LeaveRequest[]
   additionalIncomes AdditionalIncome[]
-  resignations   Resignation[]
-  businessTrips   BusinessTrip[]
-  salaryStructures SalaryStructure[]
+  resignations     Resignation[]
+  businessTrips    BusinessTrip[]
   payrolls         Payroll[]
+  salaryTemplates  SalaryTemplate[]
+  payrollBatches   PayrollBatch[] // <-- TAMBAHAN
 }
 
 model Employee {
@@ -89,10 +90,14 @@ model Employee {
   resignationApprovals ResignationApproval[] @relation("ResignationApprovals")
   businessTrips   BusinessTrip[]
   businessTripApprovals BusinessTripApproval[] @relation("BusinessTripApprovals")
-  salaryStructure  EmployeeSalary?
-  payrolls         Payroll[]
   
-  // Relasi AmArea (Wilayah kerja AM)
+  // Relasi Payroll
+  salaryConfigs  EmployeeSalaryConfig[]
+  salaryMasters  EmployeeSalaryMaster[]
+  payrolls       Payroll[]
+  salaryTemplate EmployeeSalaryTemplate?
+  
+  // Relasi AmArea
   amAreas        AmArea[]       @relation("AmAssignments")
   
   createdAt      DateTime       @default(now())
@@ -226,7 +231,7 @@ model Reliever {
   fullName    String
   ktpNumber   String?
   phoneNumber String?
-  email       String?  // Untuk pengiriman link absensi
+  email       String? 
   
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -239,13 +244,11 @@ model Reliever {
 model RelieverAssignment {
   id             String   @id @default(cuid())
   tenantId       String
-  leaveRequestId String   @unique // Satu pengajuan cuti hanya bisa 1 reliever
+  leaveRequestId String   @unique 
   relieverId     String
-  date           DateTime // Tanggal penggantian
-  // Token unik untuk link absensi
+  date           DateTime 
   uniqueToken    String   @unique @default(cuid())
 
-  // Data absensi reliever (diisi nanti)
   checkIn        DateTime?
   checkOut       DateTime?
   selfieUrl      String?
@@ -286,10 +289,10 @@ model Resignation {
   id             String   @id @default(cuid())
   tenantId       String
   employeeId     String
-  resignDate     DateTime // Tanggal terakhir bekerja
+  resignDate     DateTime 
   reason         String?
   attachmentUrl  String?
-  status         String   @default("PENDING") // "PENDING", "APPROVED", "REJECTED"
+  status         String   @default("PENDING") 
   
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
@@ -305,8 +308,8 @@ model ResignationApproval {
   id             String   @id @default(cuid())
   resignationId  String
   approverId     String
-  role           String   // "AM", "HC"
-  status         String   @default("WAITING") // "WAITING", "APPROVED", "REJECTED"
+  role           String   
+  status         String   @default("WAITING") 
   notes          String?
   approvedAt     DateTime?
   
@@ -320,11 +323,11 @@ model BusinessTrip {
   id             String   @id @default(cuid())
   tenantId       String
   employeeId     String
-  destination    String   // Kota Tujuan
+  destination    String   
   startDate      DateTime
   endDate        DateTime
-  purpose        String   // Keperluan Dinas
-  status         String   @default("PENDING") // "PENDING", "APPROVED", "REJECTED"
+  purpose        String   
+  status         String   @default("PENDING") 
   
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
@@ -340,8 +343,8 @@ model BusinessTripApproval {
   id             String   @id @default(cuid())
   businessTripId String
   approverId     String
-  role           String   // "AM" atau "HC"
-  status         String   @default("WAITING") // "WAITING", "APPROVED", "REJECTED"
+  role           String   
+  status         String   @default("WAITING") 
   notes          String?
   approvedAt     DateTime?
   
@@ -349,54 +352,43 @@ model BusinessTripApproval {
   approver       Employee     @relation("BusinessTripApprovals", fields: [approverId], references: [id], onDelete: Cascade)
 }
 
-// --- MODEL PAYROLL DINAMIS (SALARY STRUCTURE) ---
+// --- MODEL PAYROLL (PARAMETER & HASIL) ---
 
-// 1. Master Komponen (Bumbu Gaji)
 model SalaryComponent {
   id          String   @id @default(cuid())
-  name        String   @unique // "Gaji Pokok", "BPJS", "PPh 21"
-  type        String   // "EARNING" (Pendapatan) atau "DEDUCTION" (Potongan)
+  name        String   @unique 
+  type        String   // "EARNING" atau "DEDUCTION"
   createdAt   DateTime @default(now())
   
-  details     SalaryStructureDetail[]
+  employeeConfigs EmployeeSalaryConfig[]
+  employeeMasters EmployeeSalaryMaster[]
+  templateDetails SalaryTemplateDetail[] 
 }
 
-// 2. Template Rumus (Resep)
-model SalaryStructure {
-  id          String   @id @default(cuid())
-  tenantId    String
-  name        String   // "Struktur TAD Lapangan", "Struktur Customer A"
-  description String?
-  createdAt   DateTime @default(now())
+model EmployeeSalaryConfig {
+  id                String   @id @default(cuid())
+  employeeId        String
+  salaryComponentId String
+  isActive          Boolean  @default(true)
   
-  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
-  details     SalaryStructureDetail[]
-  employees   EmployeeSalary[]
-}
-
-// 3. Detail Rumus (Komponen apa saja di dalam resep)
-model SalaryStructureDetail {
-  id                  String   @id @default(cuid())
-  salaryStructureId   String
-  salaryComponentId   String
-  calculationType     String   // "FIXED" (Nominal) atau "PERCENTAGE" (Persen dari Gaji Pokok)
-  defaultValue        Float    // Misal: 500000 (untuk Fixed) atau 2 (untuk 2%)
+  employee          Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  salaryComponent   SalaryComponent @relation(fields: [salaryComponentId], references: [id], onDelete: Cascade)
   
-  salaryStructure     SalaryStructure @relation(fields: [salaryStructureId], references: [id], onDelete: Cascade)
-  salaryComponent     SalaryComponent @relation(fields: [salaryComponentId], references: [id], onDelete: Cascade)
+  @@unique([employeeId, salaryComponentId])
 }
 
-// 4. Penempelan ke Karyawan
-model EmployeeSalary {
-  id                  String   @id @default(cuid())
-  employeeId          String   @unique // 1 karyawan 1 struktur
-  salaryStructureId   String
+model EmployeeSalaryMaster {
+  id                String   @id @default(cuid())
+  employeeId        String
+  salaryComponentId String
+  amount            Float    
   
-  employee            Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-  salaryStructure     SalaryStructure @relation(fields: [salaryStructureId], references: [id], onDelete: Cascade)
+  employee          Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  salaryComponent   SalaryComponent @relation(fields: [salaryComponentId], references: [id], onDelete: Cascade)
+  
+  @@unique([employeeId, salaryComponentId])
 }
 
-// --- MODEL PAYROLL HASIL (Menyimpan hasil hitungan bulanan) ---
 model Payroll {
   id             String   @id @default(cuid())
   tenantId       String
@@ -405,12 +397,15 @@ model Payroll {
   year           Int      
   
   basicSalary    Float    @default(0)
-  totalEarnings  Float    @default(0) // Total Pendapatan
-  totalDeductions Float   @default(0) // Total Potongan
-  netSalary      Float    @default(0) // Gaji Bersih
+  totalEarnings  Float    @default(0) 
+  totalDeductions Float   @default(0) 
+  netSalary      Float    @default(0) 
   
-  status         String   @default("DRAFT") // "DRAFT", "PAID"
+  status         String   @default("DRAFT")
   notes          String?
+  
+  batchId        String?
+  batch          PayrollBatch? @relation(fields: [batchId], references: [id], onDelete: SetNull)
   
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
@@ -420,6 +415,59 @@ model Payroll {
 
   @@unique([employeeId, month, year])
   @@index([tenantId, year, month])
+}
+
+// --- MODEL TEMPLATE PARAMETER GAJI ---
+
+model SalaryTemplate {
+  id          String   @id @default(cuid())
+  tenantId    String
+  name        String   
+  description String?
+  createdAt   DateTime @default(now())
+  
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  details     SalaryTemplateDetail[]
+  employees   EmployeeSalaryTemplate[]
+}
+
+model SalaryTemplateDetail {
+  id                String   @id @default(cuid())
+  salaryTemplateId  String
+  salaryComponentId String
+  isActive          Boolean  @default(true)
+  
+  salaryTemplate    SalaryTemplate @relation(fields: [salaryTemplateId], references: [id], onDelete: Cascade)
+  salaryComponent   SalaryComponent @relation(fields: [salaryComponentId], references: [id], onDelete: Cascade)
+  
+  @@unique([salaryTemplateId, salaryComponentId])
+}
+
+model EmployeeSalaryTemplate {
+  id                String   @id @default(cuid())
+  employeeId        String   @unique
+  salaryTemplateId  String
+  
+  employee          Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  salaryTemplate    SalaryTemplate @relation(fields: [salaryTemplateId], references: [id], onDelete: Cascade)
+}
+
+// --- MODEL BATCH PAYROLL ---
+
+model PayrollBatch {
+  id          String   @id @default(cuid())
+  tenantId    String
+  periodMonth Int
+  periodYear  Int
+  cutOffStart DateTime
+  cutOffEnd   DateTime
+  createdAt   DateTime @default(now())
+  
+  payrolls    Payroll[]
+
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  
+  @@index([tenantId])
 }
 
 // --- ENUM ---

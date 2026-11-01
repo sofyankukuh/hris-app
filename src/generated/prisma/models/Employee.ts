@@ -483,8 +483,10 @@ export type EmployeeWhereInput = {
   resignationApprovals?: Prisma.ResignationApprovalListRelationFilter
   businessTrips?: Prisma.BusinessTripListRelationFilter
   businessTripApprovals?: Prisma.BusinessTripApprovalListRelationFilter
-  salaryStructure?: Prisma.XOR<Prisma.EmployeeSalaryNullableScalarRelationFilter, Prisma.EmployeeSalaryWhereInput> | null
+  salaryConfigs?: Prisma.EmployeeSalaryConfigListRelationFilter
+  salaryMasters?: Prisma.EmployeeSalaryMasterListRelationFilter
   payrolls?: Prisma.PayrollListRelationFilter
+  salaryTemplate?: Prisma.XOR<Prisma.EmployeeSalaryTemplateNullableScalarRelationFilter, Prisma.EmployeeSalaryTemplateWhereInput> | null
   amAreas?: Prisma.AmAreaListRelationFilter
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
 }
@@ -538,8 +540,10 @@ export type EmployeeOrderByWithRelationInput = {
   resignationApprovals?: Prisma.ResignationApprovalOrderByRelationAggregateInput
   businessTrips?: Prisma.BusinessTripOrderByRelationAggregateInput
   businessTripApprovals?: Prisma.BusinessTripApprovalOrderByRelationAggregateInput
-  salaryStructure?: Prisma.EmployeeSalaryOrderByWithRelationInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigOrderByRelationAggregateInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterOrderByRelationAggregateInput
   payrolls?: Prisma.PayrollOrderByRelationAggregateInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateOrderByWithRelationInput
   amAreas?: Prisma.AmAreaOrderByRelationAggregateInput
   tenant?: Prisma.TenantOrderByWithRelationInput
 }
@@ -597,8 +601,10 @@ export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
   resignationApprovals?: Prisma.ResignationApprovalListRelationFilter
   businessTrips?: Prisma.BusinessTripListRelationFilter
   businessTripApprovals?: Prisma.BusinessTripApprovalListRelationFilter
-  salaryStructure?: Prisma.XOR<Prisma.EmployeeSalaryNullableScalarRelationFilter, Prisma.EmployeeSalaryWhereInput> | null
+  salaryConfigs?: Prisma.EmployeeSalaryConfigListRelationFilter
+  salaryMasters?: Prisma.EmployeeSalaryMasterListRelationFilter
   payrolls?: Prisma.PayrollListRelationFilter
+  salaryTemplate?: Prisma.XOR<Prisma.EmployeeSalaryTemplateNullableScalarRelationFilter, Prisma.EmployeeSalaryTemplateWhereInput> | null
   amAreas?: Prisma.AmAreaListRelationFilter
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
 }, "id" | "tenantId_employeeNumber">
@@ -738,8 +744,10 @@ export type EmployeeCreateInput = {
   resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
   tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
 }
@@ -792,8 +800,10 @@ export type EmployeeUncheckedCreateInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
 }
 
@@ -844,8 +854,10 @@ export type EmployeeUpdateInput = {
   resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
 }
@@ -898,8 +910,10 @@ export type EmployeeUncheckedUpdateInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
 }
 
@@ -1451,18 +1465,32 @@ export type EmployeeUpdateOneRequiredWithoutBusinessTripApprovalsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutBusinessTripApprovalsInput, Prisma.EmployeeUpdateWithoutBusinessTripApprovalsInput>, Prisma.EmployeeUncheckedUpdateWithoutBusinessTripApprovalsInput>
 }
 
-export type EmployeeCreateNestedOneWithoutSalaryStructureInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutSalaryStructureInput, Prisma.EmployeeUncheckedCreateWithoutSalaryStructureInput>
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutSalaryStructureInput
+export type EmployeeCreateNestedOneWithoutSalaryConfigsInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutSalaryConfigsInput, Prisma.EmployeeUncheckedCreateWithoutSalaryConfigsInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutSalaryConfigsInput
   connect?: Prisma.EmployeeWhereUniqueInput
 }
 
-export type EmployeeUpdateOneRequiredWithoutSalaryStructureNestedInput = {
-  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutSalaryStructureInput, Prisma.EmployeeUncheckedCreateWithoutSalaryStructureInput>
-  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutSalaryStructureInput
-  upsert?: Prisma.EmployeeUpsertWithoutSalaryStructureInput
+export type EmployeeUpdateOneRequiredWithoutSalaryConfigsNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutSalaryConfigsInput, Prisma.EmployeeUncheckedCreateWithoutSalaryConfigsInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutSalaryConfigsInput
+  upsert?: Prisma.EmployeeUpsertWithoutSalaryConfigsInput
   connect?: Prisma.EmployeeWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutSalaryStructureInput, Prisma.EmployeeUpdateWithoutSalaryStructureInput>, Prisma.EmployeeUncheckedUpdateWithoutSalaryStructureInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutSalaryConfigsInput, Prisma.EmployeeUpdateWithoutSalaryConfigsInput>, Prisma.EmployeeUncheckedUpdateWithoutSalaryConfigsInput>
+}
+
+export type EmployeeCreateNestedOneWithoutSalaryMastersInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutSalaryMastersInput, Prisma.EmployeeUncheckedCreateWithoutSalaryMastersInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutSalaryMastersInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+}
+
+export type EmployeeUpdateOneRequiredWithoutSalaryMastersNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutSalaryMastersInput, Prisma.EmployeeUncheckedCreateWithoutSalaryMastersInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutSalaryMastersInput
+  upsert?: Prisma.EmployeeUpsertWithoutSalaryMastersInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutSalaryMastersInput, Prisma.EmployeeUpdateWithoutSalaryMastersInput>, Prisma.EmployeeUncheckedUpdateWithoutSalaryMastersInput>
 }
 
 export type EmployeeCreateNestedOneWithoutPayrollsInput = {
@@ -1477,6 +1505,20 @@ export type EmployeeUpdateOneRequiredWithoutPayrollsNestedInput = {
   upsert?: Prisma.EmployeeUpsertWithoutPayrollsInput
   connect?: Prisma.EmployeeWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutPayrollsInput, Prisma.EmployeeUpdateWithoutPayrollsInput>, Prisma.EmployeeUncheckedUpdateWithoutPayrollsInput>
+}
+
+export type EmployeeCreateNestedOneWithoutSalaryTemplateInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutSalaryTemplateInput, Prisma.EmployeeUncheckedCreateWithoutSalaryTemplateInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutSalaryTemplateInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+}
+
+export type EmployeeUpdateOneRequiredWithoutSalaryTemplateNestedInput = {
+  create?: Prisma.XOR<Prisma.EmployeeCreateWithoutSalaryTemplateInput, Prisma.EmployeeUncheckedCreateWithoutSalaryTemplateInput>
+  connectOrCreate?: Prisma.EmployeeCreateOrConnectWithoutSalaryTemplateInput
+  upsert?: Prisma.EmployeeUpsertWithoutSalaryTemplateInput
+  connect?: Prisma.EmployeeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EmployeeUpdateToOneWithWhereWithoutSalaryTemplateInput, Prisma.EmployeeUpdateWithoutSalaryTemplateInput>, Prisma.EmployeeUncheckedUpdateWithoutSalaryTemplateInput>
 }
 
 export type EmployeeCreateWithoutTenantInput = {
@@ -1526,8 +1568,10 @@ export type EmployeeCreateWithoutTenantInput = {
   resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
 }
 
@@ -1578,8 +1622,10 @@ export type EmployeeUncheckedCreateWithoutTenantInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
 }
 
@@ -1699,8 +1745,10 @@ export type EmployeeCreateWithoutAmAreasInput = {
   resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
   tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
 }
 
@@ -1752,8 +1800,10 @@ export type EmployeeUncheckedCreateWithoutAmAreasInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
 }
 
 export type EmployeeCreateOrConnectWithoutAmAreasInput = {
@@ -1819,8 +1869,10 @@ export type EmployeeUpdateWithoutAmAreasInput = {
   resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
 }
 
@@ -1872,8 +1924,10 @@ export type EmployeeUncheckedUpdateWithoutAmAreasInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
 }
 
 export type EmployeeCreateWithoutRoleInput = {
@@ -1922,8 +1976,10 @@ export type EmployeeCreateWithoutRoleInput = {
   resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
   tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
 }
@@ -1975,8 +2031,10 @@ export type EmployeeUncheckedCreateWithoutRoleInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
 }
 
@@ -2052,8 +2110,10 @@ export type EmployeeCreateWithoutPermissionsInput = {
   resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
   tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
 }
@@ -2105,8 +2165,10 @@ export type EmployeeUncheckedCreateWithoutPermissionsInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
 }
 
@@ -2177,8 +2239,10 @@ export type EmployeeCreateWithoutAttendancesInput = {
   resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
   tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
 }
@@ -2230,8 +2294,10 @@ export type EmployeeUncheckedCreateWithoutAttendancesInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
 }
 
@@ -2297,8 +2363,10 @@ export type EmployeeUpdateWithoutAttendancesInput = {
   resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
 }
@@ -2350,8 +2418,10 @@ export type EmployeeUncheckedUpdateWithoutAttendancesInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
 }
 
@@ -2401,8 +2471,10 @@ export type EmployeeCreateWithoutLeaveRequestsInput = {
   resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
   tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
 }
@@ -2454,8 +2526,10 @@ export type EmployeeUncheckedCreateWithoutLeaveRequestsInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
 }
 
@@ -2521,8 +2595,10 @@ export type EmployeeUpdateWithoutLeaveRequestsInput = {
   resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
 }
@@ -2574,8 +2650,10 @@ export type EmployeeUncheckedUpdateWithoutLeaveRequestsInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
 }
 
@@ -2625,8 +2703,10 @@ export type EmployeeCreateWithoutApprovalsInput = {
   resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
   tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
 }
@@ -2678,8 +2758,10 @@ export type EmployeeUncheckedCreateWithoutApprovalsInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
 }
 
@@ -2745,8 +2827,10 @@ export type EmployeeUpdateWithoutApprovalsInput = {
   resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
 }
@@ -2798,8 +2882,10 @@ export type EmployeeUncheckedUpdateWithoutApprovalsInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
 }
 
@@ -2849,8 +2935,10 @@ export type EmployeeCreateWithoutLeaveBalancesInput = {
   resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
   tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
 }
@@ -2902,8 +2990,10 @@ export type EmployeeUncheckedCreateWithoutLeaveBalancesInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
 }
 
@@ -2969,8 +3059,10 @@ export type EmployeeUpdateWithoutLeaveBalancesInput = {
   resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
 }
@@ -3022,8 +3114,10 @@ export type EmployeeUncheckedUpdateWithoutLeaveBalancesInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
 }
 
@@ -3073,8 +3167,10 @@ export type EmployeeCreateWithoutAdditionalIncomesInput = {
   resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
   tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
 }
@@ -3126,8 +3222,10 @@ export type EmployeeUncheckedCreateWithoutAdditionalIncomesInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
 }
 
@@ -3193,8 +3291,10 @@ export type EmployeeUpdateWithoutAdditionalIncomesInput = {
   resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
 }
@@ -3246,8 +3346,10 @@ export type EmployeeUncheckedUpdateWithoutAdditionalIncomesInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
 }
 
@@ -3297,8 +3399,10 @@ export type EmployeeCreateWithoutResignationsInput = {
   resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
   tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
 }
@@ -3350,8 +3454,10 @@ export type EmployeeUncheckedCreateWithoutResignationsInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
 }
 
@@ -3417,8 +3523,10 @@ export type EmployeeUpdateWithoutResignationsInput = {
   resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
 }
@@ -3470,8 +3578,10 @@ export type EmployeeUncheckedUpdateWithoutResignationsInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
 }
 
@@ -3521,8 +3631,10 @@ export type EmployeeCreateWithoutResignationApprovalsInput = {
   resignations?: Prisma.ResignationCreateNestedManyWithoutEmployeeInput
   businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
   tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
 }
@@ -3574,8 +3686,10 @@ export type EmployeeUncheckedCreateWithoutResignationApprovalsInput = {
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutEmployeeInput
   businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
 }
 
@@ -3641,8 +3755,10 @@ export type EmployeeUpdateWithoutResignationApprovalsInput = {
   resignations?: Prisma.ResignationUpdateManyWithoutEmployeeNestedInput
   businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
 }
@@ -3694,8 +3810,10 @@ export type EmployeeUncheckedUpdateWithoutResignationApprovalsInput = {
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutEmployeeNestedInput
   businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
 }
 
@@ -3745,8 +3863,10 @@ export type EmployeeCreateWithoutBusinessTripsInput = {
   resignations?: Prisma.ResignationCreateNestedManyWithoutEmployeeInput
   resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
   businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
   tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
 }
@@ -3798,8 +3918,10 @@ export type EmployeeUncheckedCreateWithoutBusinessTripsInput = {
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutEmployeeInput
   resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
 }
 
@@ -3865,8 +3987,10 @@ export type EmployeeUpdateWithoutBusinessTripsInput = {
   resignations?: Prisma.ResignationUpdateManyWithoutEmployeeNestedInput
   resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
 }
@@ -3918,8 +4042,10 @@ export type EmployeeUncheckedUpdateWithoutBusinessTripsInput = {
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutEmployeeNestedInput
   resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
 }
 
@@ -3969,8 +4095,10 @@ export type EmployeeCreateWithoutBusinessTripApprovalsInput = {
   resignations?: Prisma.ResignationCreateNestedManyWithoutEmployeeInput
   resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
-  salaryStructure?: Prisma.EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
   tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
 }
@@ -4022,8 +4150,10 @@ export type EmployeeUncheckedCreateWithoutBusinessTripApprovalsInput = {
   resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutEmployeeInput
   resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
 }
 
@@ -4089,8 +4219,10 @@ export type EmployeeUpdateWithoutBusinessTripApprovalsInput = {
   resignations?: Prisma.ResignationUpdateManyWithoutEmployeeNestedInput
   resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
 }
@@ -4142,12 +4274,14 @@ export type EmployeeUncheckedUpdateWithoutBusinessTripApprovalsInput = {
   resignations?: Prisma.ResignationUncheckedUpdateManyWithoutEmployeeNestedInput
   resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
 }
 
-export type EmployeeCreateWithoutSalaryStructureInput = {
+export type EmployeeCreateWithoutSalaryConfigsInput = {
   id?: string
   employeeNumber: string
   oldEmployeeNumber?: string | null
@@ -4194,12 +4328,14 @@ export type EmployeeCreateWithoutSalaryStructureInput = {
   resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
   tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
 }
 
-export type EmployeeUncheckedCreateWithoutSalaryStructureInput = {
+export type EmployeeUncheckedCreateWithoutSalaryConfigsInput = {
   id?: string
   tenantId: string
   employeeNumber: string
@@ -4247,27 +4383,29 @@ export type EmployeeUncheckedCreateWithoutSalaryStructureInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
   payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
 }
 
-export type EmployeeCreateOrConnectWithoutSalaryStructureInput = {
+export type EmployeeCreateOrConnectWithoutSalaryConfigsInput = {
   where: Prisma.EmployeeWhereUniqueInput
-  create: Prisma.XOR<Prisma.EmployeeCreateWithoutSalaryStructureInput, Prisma.EmployeeUncheckedCreateWithoutSalaryStructureInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutSalaryConfigsInput, Prisma.EmployeeUncheckedCreateWithoutSalaryConfigsInput>
 }
 
-export type EmployeeUpsertWithoutSalaryStructureInput = {
-  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutSalaryStructureInput, Prisma.EmployeeUncheckedUpdateWithoutSalaryStructureInput>
-  create: Prisma.XOR<Prisma.EmployeeCreateWithoutSalaryStructureInput, Prisma.EmployeeUncheckedCreateWithoutSalaryStructureInput>
+export type EmployeeUpsertWithoutSalaryConfigsInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutSalaryConfigsInput, Prisma.EmployeeUncheckedUpdateWithoutSalaryConfigsInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutSalaryConfigsInput, Prisma.EmployeeUncheckedCreateWithoutSalaryConfigsInput>
   where?: Prisma.EmployeeWhereInput
 }
 
-export type EmployeeUpdateToOneWithWhereWithoutSalaryStructureInput = {
+export type EmployeeUpdateToOneWithWhereWithoutSalaryConfigsInput = {
   where?: Prisma.EmployeeWhereInput
-  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutSalaryStructureInput, Prisma.EmployeeUncheckedUpdateWithoutSalaryStructureInput>
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutSalaryConfigsInput, Prisma.EmployeeUncheckedUpdateWithoutSalaryConfigsInput>
 }
 
-export type EmployeeUpdateWithoutSalaryStructureInput = {
+export type EmployeeUpdateWithoutSalaryConfigsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   employeeNumber?: Prisma.StringFieldUpdateOperationsInput | string
   oldEmployeeNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -4314,12 +4452,14 @@ export type EmployeeUpdateWithoutSalaryStructureInput = {
   resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
 }
 
-export type EmployeeUncheckedUpdateWithoutSalaryStructureInput = {
+export type EmployeeUncheckedUpdateWithoutSalaryConfigsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   employeeNumber?: Prisma.StringFieldUpdateOperationsInput | string
@@ -4367,7 +4507,241 @@ export type EmployeeUncheckedUpdateWithoutSalaryStructureInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
+  amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
+}
+
+export type EmployeeCreateWithoutSalaryMastersInput = {
+  id?: string
+  employeeNumber: string
+  oldEmployeeNumber?: string | null
+  fullName: string
+  email: string
+  phoneNumber?: string | null
+  joinDate: Date | string
+  status?: $Enums.EmployeeStatus
+  birthDate?: Date | string | null
+  birthPlace?: string | null
+  gender?: string | null
+  religion?: string | null
+  maritalStatus?: string | null
+  motherName?: string | null
+  spouseName?: string | null
+  childrenCount?: number | null
+  ktpNumber?: string | null
+  npwpNumber?: string | null
+  jamsostekNumber?: string | null
+  address?: string | null
+  department: string
+  position: string
+  education?: string | null
+  customer?: string | null
+  branchCode?: string | null
+  outlet?: string | null
+  contractStart?: Date | string | null
+  contractEnd?: Date | string | null
+  contractNumber?: string | null
+  exitDate?: Date | string | null
+  bankName?: string | null
+  bankAccount?: string | null
+  password?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  role?: Prisma.RoleCreateNestedOneWithoutEmployeesInput
+  permissions?: Prisma.PermissionCreateNestedManyWithoutEmployeesInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutEmployeeInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
+  approvals?: Prisma.ApprovalStepCreateNestedManyWithoutApproverInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutEmployeeInput
+  additionalIncomes?: Prisma.AdditionalIncomeCreateNestedManyWithoutEmployeeInput
+  resignations?: Prisma.ResignationCreateNestedManyWithoutEmployeeInput
+  resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
+  businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
+  businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
+  amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
+  tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
+}
+
+export type EmployeeUncheckedCreateWithoutSalaryMastersInput = {
+  id?: string
+  tenantId: string
+  employeeNumber: string
+  oldEmployeeNumber?: string | null
+  fullName: string
+  email: string
+  phoneNumber?: string | null
+  joinDate: Date | string
+  status?: $Enums.EmployeeStatus
+  birthDate?: Date | string | null
+  birthPlace?: string | null
+  gender?: string | null
+  religion?: string | null
+  maritalStatus?: string | null
+  motherName?: string | null
+  spouseName?: string | null
+  childrenCount?: number | null
+  ktpNumber?: string | null
+  npwpNumber?: string | null
+  jamsostekNumber?: string | null
+  address?: string | null
+  department: string
+  position: string
+  education?: string | null
+  customer?: string | null
+  branchCode?: string | null
+  outlet?: string | null
+  contractStart?: Date | string | null
+  contractEnd?: Date | string | null
+  contractNumber?: string | null
+  exitDate?: Date | string | null
+  bankName?: string | null
+  bankAccount?: string | null
+  password?: string | null
+  roleId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  permissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutEmployeesInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
+  approvals?: Prisma.ApprovalStepUncheckedCreateNestedManyWithoutApproverInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+  additionalIncomes?: Prisma.AdditionalIncomeUncheckedCreateNestedManyWithoutEmployeeInput
+  resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutEmployeeInput
+  resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
+  businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
+  businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
+  amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
+}
+
+export type EmployeeCreateOrConnectWithoutSalaryMastersInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutSalaryMastersInput, Prisma.EmployeeUncheckedCreateWithoutSalaryMastersInput>
+}
+
+export type EmployeeUpsertWithoutSalaryMastersInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutSalaryMastersInput, Prisma.EmployeeUncheckedUpdateWithoutSalaryMastersInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutSalaryMastersInput, Prisma.EmployeeUncheckedCreateWithoutSalaryMastersInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutSalaryMastersInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutSalaryMastersInput, Prisma.EmployeeUncheckedUpdateWithoutSalaryMastersInput>
+}
+
+export type EmployeeUpdateWithoutSalaryMastersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  oldEmployeeNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joinDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  birthPlace?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maritalStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  motherName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  spouseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  childrenCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ktpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  npwpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jamsostekNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  department?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.StringFieldUpdateOperationsInput | string
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exitDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccount?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.RoleUpdateOneWithoutEmployeesNestedInput
+  permissions?: Prisma.PermissionUpdateManyWithoutEmployeesNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutEmployeeNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
+  approvals?: Prisma.ApprovalStepUpdateManyWithoutApproverNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutEmployeeNestedInput
+  additionalIncomes?: Prisma.AdditionalIncomeUpdateManyWithoutEmployeeNestedInput
+  resignations?: Prisma.ResignationUpdateManyWithoutEmployeeNestedInput
+  resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
+  businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
+  businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
+  amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutSalaryMastersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  oldEmployeeNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joinDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  birthPlace?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maritalStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  motherName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  spouseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  childrenCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ktpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  npwpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jamsostekNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  department?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.StringFieldUpdateOperationsInput | string
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exitDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccount?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  roleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  permissions?: Prisma.PermissionUncheckedUpdateManyWithoutEmployeesNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+  approvals?: Prisma.ApprovalStepUncheckedUpdateManyWithoutApproverNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+  additionalIncomes?: Prisma.AdditionalIncomeUncheckedUpdateManyWithoutEmployeeNestedInput
+  resignations?: Prisma.ResignationUncheckedUpdateManyWithoutEmployeeNestedInput
+  resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
+  businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
+  businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
 }
 
@@ -4418,7 +4792,9 @@ export type EmployeeCreateWithoutPayrollsInput = {
   resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
   tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
 }
@@ -4471,7 +4847,9 @@ export type EmployeeUncheckedCreateWithoutPayrollsInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
   businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedCreateNestedOneWithoutEmployeeInput
   amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
 }
 
@@ -4538,7 +4916,9 @@ export type EmployeeUpdateWithoutPayrollsInput = {
   resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
 }
@@ -4591,7 +4971,241 @@ export type EmployeeUncheckedUpdateWithoutPayrollsInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
+  amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
+}
+
+export type EmployeeCreateWithoutSalaryTemplateInput = {
+  id?: string
+  employeeNumber: string
+  oldEmployeeNumber?: string | null
+  fullName: string
+  email: string
+  phoneNumber?: string | null
+  joinDate: Date | string
+  status?: $Enums.EmployeeStatus
+  birthDate?: Date | string | null
+  birthPlace?: string | null
+  gender?: string | null
+  religion?: string | null
+  maritalStatus?: string | null
+  motherName?: string | null
+  spouseName?: string | null
+  childrenCount?: number | null
+  ktpNumber?: string | null
+  npwpNumber?: string | null
+  jamsostekNumber?: string | null
+  address?: string | null
+  department: string
+  position: string
+  education?: string | null
+  customer?: string | null
+  branchCode?: string | null
+  outlet?: string | null
+  contractStart?: Date | string | null
+  contractEnd?: Date | string | null
+  contractNumber?: string | null
+  exitDate?: Date | string | null
+  bankName?: string | null
+  bankAccount?: string | null
+  password?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  role?: Prisma.RoleCreateNestedOneWithoutEmployeesInput
+  permissions?: Prisma.PermissionCreateNestedManyWithoutEmployeesInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutEmployeeInput
+  leaveRequests?: Prisma.LeaveRequestCreateNestedManyWithoutEmployeeInput
+  approvals?: Prisma.ApprovalStepCreateNestedManyWithoutApproverInput
+  leaveBalances?: Prisma.LeaveBalanceCreateNestedManyWithoutEmployeeInput
+  additionalIncomes?: Prisma.AdditionalIncomeCreateNestedManyWithoutEmployeeInput
+  resignations?: Prisma.ResignationCreateNestedManyWithoutEmployeeInput
+  resignationApprovals?: Prisma.ResignationApprovalCreateNestedManyWithoutApproverInput
+  businessTrips?: Prisma.BusinessTripCreateNestedManyWithoutEmployeeInput
+  businessTripApprovals?: Prisma.BusinessTripApprovalCreateNestedManyWithoutApproverInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutEmployeeInput
+  payrolls?: Prisma.PayrollCreateNestedManyWithoutEmployeeInput
+  amAreas?: Prisma.AmAreaCreateNestedManyWithoutAmInput
+  tenant: Prisma.TenantCreateNestedOneWithoutEmployeesInput
+}
+
+export type EmployeeUncheckedCreateWithoutSalaryTemplateInput = {
+  id?: string
+  tenantId: string
+  employeeNumber: string
+  oldEmployeeNumber?: string | null
+  fullName: string
+  email: string
+  phoneNumber?: string | null
+  joinDate: Date | string
+  status?: $Enums.EmployeeStatus
+  birthDate?: Date | string | null
+  birthPlace?: string | null
+  gender?: string | null
+  religion?: string | null
+  maritalStatus?: string | null
+  motherName?: string | null
+  spouseName?: string | null
+  childrenCount?: number | null
+  ktpNumber?: string | null
+  npwpNumber?: string | null
+  jamsostekNumber?: string | null
+  address?: string | null
+  department: string
+  position: string
+  education?: string | null
+  customer?: string | null
+  branchCode?: string | null
+  outlet?: string | null
+  contractStart?: Date | string | null
+  contractEnd?: Date | string | null
+  contractNumber?: string | null
+  exitDate?: Date | string | null
+  bankName?: string | null
+  bankAccount?: string | null
+  password?: string | null
+  roleId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  permissions?: Prisma.PermissionUncheckedCreateNestedManyWithoutEmployeesInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutEmployeeInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedCreateNestedManyWithoutEmployeeInput
+  approvals?: Prisma.ApprovalStepUncheckedCreateNestedManyWithoutApproverInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+  additionalIncomes?: Prisma.AdditionalIncomeUncheckedCreateNestedManyWithoutEmployeeInput
+  resignations?: Prisma.ResignationUncheckedCreateNestedManyWithoutEmployeeInput
+  resignationApprovals?: Prisma.ResignationApprovalUncheckedCreateNestedManyWithoutApproverInput
+  businessTrips?: Prisma.BusinessTripUncheckedCreateNestedManyWithoutEmployeeInput
+  businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedCreateNestedManyWithoutApproverInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutEmployeeInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutEmployeeInput
+  payrolls?: Prisma.PayrollUncheckedCreateNestedManyWithoutEmployeeInput
+  amAreas?: Prisma.AmAreaUncheckedCreateNestedManyWithoutAmInput
+}
+
+export type EmployeeCreateOrConnectWithoutSalaryTemplateInput = {
+  where: Prisma.EmployeeWhereUniqueInput
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutSalaryTemplateInput, Prisma.EmployeeUncheckedCreateWithoutSalaryTemplateInput>
+}
+
+export type EmployeeUpsertWithoutSalaryTemplateInput = {
+  update: Prisma.XOR<Prisma.EmployeeUpdateWithoutSalaryTemplateInput, Prisma.EmployeeUncheckedUpdateWithoutSalaryTemplateInput>
+  create: Prisma.XOR<Prisma.EmployeeCreateWithoutSalaryTemplateInput, Prisma.EmployeeUncheckedCreateWithoutSalaryTemplateInput>
+  where?: Prisma.EmployeeWhereInput
+}
+
+export type EmployeeUpdateToOneWithWhereWithoutSalaryTemplateInput = {
+  where?: Prisma.EmployeeWhereInput
+  data: Prisma.XOR<Prisma.EmployeeUpdateWithoutSalaryTemplateInput, Prisma.EmployeeUncheckedUpdateWithoutSalaryTemplateInput>
+}
+
+export type EmployeeUpdateWithoutSalaryTemplateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  oldEmployeeNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joinDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  birthPlace?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maritalStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  motherName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  spouseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  childrenCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ktpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  npwpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jamsostekNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  department?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.StringFieldUpdateOperationsInput | string
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exitDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccount?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.RoleUpdateOneWithoutEmployeesNestedInput
+  permissions?: Prisma.PermissionUpdateManyWithoutEmployeesNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutEmployeeNestedInput
+  leaveRequests?: Prisma.LeaveRequestUpdateManyWithoutEmployeeNestedInput
+  approvals?: Prisma.ApprovalStepUpdateManyWithoutApproverNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUpdateManyWithoutEmployeeNestedInput
+  additionalIncomes?: Prisma.AdditionalIncomeUpdateManyWithoutEmployeeNestedInput
+  resignations?: Prisma.ResignationUpdateManyWithoutEmployeeNestedInput
+  resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
+  businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
+  businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
+  payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
+}
+
+export type EmployeeUncheckedUpdateWithoutSalaryTemplateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  employeeNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  oldEmployeeNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joinDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+  birthDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  birthPlace?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  maritalStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  motherName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  spouseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  childrenCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  ktpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  npwpNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jamsostekNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  department?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.StringFieldUpdateOperationsInput | string
+  education?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  customer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branchCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  outlet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contractStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  contractNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  exitDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccount?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  roleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  permissions?: Prisma.PermissionUncheckedUpdateManyWithoutEmployeesNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutEmployeeNestedInput
+  leaveRequests?: Prisma.LeaveRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+  approvals?: Prisma.ApprovalStepUncheckedUpdateManyWithoutApproverNestedInput
+  leaveBalances?: Prisma.LeaveBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+  additionalIncomes?: Prisma.AdditionalIncomeUncheckedUpdateManyWithoutEmployeeNestedInput
+  resignations?: Prisma.ResignationUncheckedUpdateManyWithoutEmployeeNestedInput
+  resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
+  businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
+  businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
+  payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
 }
 
@@ -4681,8 +5295,10 @@ export type EmployeeUpdateWithoutTenantInput = {
   resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
 }
 
@@ -4733,8 +5349,10 @@ export type EmployeeUncheckedUpdateWithoutTenantInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
 }
 
@@ -4862,8 +5480,10 @@ export type EmployeeUpdateWithoutRoleInput = {
   resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
 }
@@ -4915,8 +5535,10 @@ export type EmployeeUncheckedUpdateWithoutRoleInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
 }
 
@@ -5005,8 +5627,10 @@ export type EmployeeUpdateWithoutPermissionsInput = {
   resignationApprovals?: Prisma.ResignationApprovalUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUpdateManyWithoutAmNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutEmployeesNestedInput
 }
@@ -5058,8 +5682,10 @@ export type EmployeeUncheckedUpdateWithoutPermissionsInput = {
   resignationApprovals?: Prisma.ResignationApprovalUncheckedUpdateManyWithoutApproverNestedInput
   businessTrips?: Prisma.BusinessTripUncheckedUpdateManyWithoutEmployeeNestedInput
   businessTripApprovals?: Prisma.BusinessTripApprovalUncheckedUpdateManyWithoutApproverNestedInput
-  salaryStructure?: Prisma.EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+  salaryConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutEmployeeNestedInput
   payrolls?: Prisma.PayrollUncheckedUpdateManyWithoutEmployeeNestedInput
+  salaryTemplate?: Prisma.EmployeeSalaryTemplateUncheckedUpdateOneWithoutEmployeeNestedInput
   amAreas?: Prisma.AmAreaUncheckedUpdateManyWithoutAmNestedInput
 }
 
@@ -5119,6 +5745,8 @@ export type EmployeeCountOutputType = {
   resignationApprovals: number
   businessTrips: number
   businessTripApprovals: number
+  salaryConfigs: number
+  salaryMasters: number
   payrolls: number
   amAreas: number
 }
@@ -5134,6 +5762,8 @@ export type EmployeeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   resignationApprovals?: boolean | EmployeeCountOutputTypeCountResignationApprovalsArgs
   businessTrips?: boolean | EmployeeCountOutputTypeCountBusinessTripsArgs
   businessTripApprovals?: boolean | EmployeeCountOutputTypeCountBusinessTripApprovalsArgs
+  salaryConfigs?: boolean | EmployeeCountOutputTypeCountSalaryConfigsArgs
+  salaryMasters?: boolean | EmployeeCountOutputTypeCountSalaryMastersArgs
   payrolls?: boolean | EmployeeCountOutputTypeCountPayrollsArgs
   amAreas?: boolean | EmployeeCountOutputTypeCountAmAreasArgs
 }
@@ -5221,6 +5851,20 @@ export type EmployeeCountOutputTypeCountBusinessTripApprovalsArgs<ExtArgs extend
 /**
  * EmployeeCountOutputType without action
  */
+export type EmployeeCountOutputTypeCountSalaryConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmployeeSalaryConfigWhereInput
+}
+
+/**
+ * EmployeeCountOutputType without action
+ */
+export type EmployeeCountOutputTypeCountSalaryMastersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmployeeSalaryMasterWhereInput
+}
+
+/**
+ * EmployeeCountOutputType without action
+ */
 export type EmployeeCountOutputTypeCountPayrollsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PayrollWhereInput
 }
@@ -5282,8 +5926,10 @@ export type EmployeeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   resignationApprovals?: boolean | Prisma.Employee$resignationApprovalsArgs<ExtArgs>
   businessTrips?: boolean | Prisma.Employee$businessTripsArgs<ExtArgs>
   businessTripApprovals?: boolean | Prisma.Employee$businessTripApprovalsArgs<ExtArgs>
-  salaryStructure?: boolean | Prisma.Employee$salaryStructureArgs<ExtArgs>
+  salaryConfigs?: boolean | Prisma.Employee$salaryConfigsArgs<ExtArgs>
+  salaryMasters?: boolean | Prisma.Employee$salaryMastersArgs<ExtArgs>
   payrolls?: boolean | Prisma.Employee$payrollsArgs<ExtArgs>
+  salaryTemplate?: boolean | Prisma.Employee$salaryTemplateArgs<ExtArgs>
   amAreas?: boolean | Prisma.Employee$amAreasArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.EmployeeCountOutputTypeDefaultArgs<ExtArgs>
@@ -5426,8 +6072,10 @@ export type EmployeeInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   resignationApprovals?: boolean | Prisma.Employee$resignationApprovalsArgs<ExtArgs>
   businessTrips?: boolean | Prisma.Employee$businessTripsArgs<ExtArgs>
   businessTripApprovals?: boolean | Prisma.Employee$businessTripApprovalsArgs<ExtArgs>
-  salaryStructure?: boolean | Prisma.Employee$salaryStructureArgs<ExtArgs>
+  salaryConfigs?: boolean | Prisma.Employee$salaryConfigsArgs<ExtArgs>
+  salaryMasters?: boolean | Prisma.Employee$salaryMastersArgs<ExtArgs>
   payrolls?: boolean | Prisma.Employee$payrollsArgs<ExtArgs>
+  salaryTemplate?: boolean | Prisma.Employee$salaryTemplateArgs<ExtArgs>
   amAreas?: boolean | Prisma.Employee$amAreasArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.EmployeeCountOutputTypeDefaultArgs<ExtArgs>
@@ -5455,8 +6103,10 @@ export type $EmployeePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     resignationApprovals: Prisma.$ResignationApprovalPayload<ExtArgs>[]
     businessTrips: Prisma.$BusinessTripPayload<ExtArgs>[]
     businessTripApprovals: Prisma.$BusinessTripApprovalPayload<ExtArgs>[]
-    salaryStructure: Prisma.$EmployeeSalaryPayload<ExtArgs> | null
+    salaryConfigs: Prisma.$EmployeeSalaryConfigPayload<ExtArgs>[]
+    salaryMasters: Prisma.$EmployeeSalaryMasterPayload<ExtArgs>[]
     payrolls: Prisma.$PayrollPayload<ExtArgs>[]
+    salaryTemplate: Prisma.$EmployeeSalaryTemplatePayload<ExtArgs> | null
     amAreas: Prisma.$AmAreaPayload<ExtArgs>[]
     tenant: Prisma.$TenantPayload<ExtArgs>
   }
@@ -5903,8 +6553,10 @@ export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends runtime
   resignationApprovals<T extends Prisma.Employee$resignationApprovalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$resignationApprovalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResignationApprovalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   businessTrips<T extends Prisma.Employee$businessTripsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$businessTripsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BusinessTripPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   businessTripApprovals<T extends Prisma.Employee$businessTripApprovalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$businessTripApprovalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BusinessTripApprovalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  salaryStructure<T extends Prisma.Employee$salaryStructureArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$salaryStructureArgs<ExtArgs>>): Prisma.Prisma__EmployeeSalaryClient<runtime.Types.Result.GetResult<Prisma.$EmployeeSalaryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  salaryConfigs<T extends Prisma.Employee$salaryConfigsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$salaryConfigsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeSalaryConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  salaryMasters<T extends Prisma.Employee$salaryMastersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$salaryMastersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeSalaryMasterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payrolls<T extends Prisma.Employee$payrollsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$payrollsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PayrollPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  salaryTemplate<T extends Prisma.Employee$salaryTemplateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$salaryTemplateArgs<ExtArgs>>): Prisma.Prisma__EmployeeSalaryTemplateClient<runtime.Types.Result.GetResult<Prisma.$EmployeeSalaryTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   amAreas<T extends Prisma.Employee$amAreasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Employee$amAreasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AmAreaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -6633,22 +7285,51 @@ export type Employee$businessTripApprovalsArgs<ExtArgs extends runtime.Types.Ext
 }
 
 /**
- * Employee.salaryStructure
+ * Employee.salaryConfigs
  */
-export type Employee$salaryStructureArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Employee$salaryConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the EmployeeSalary
+   * Select specific fields to fetch from the EmployeeSalaryConfig
    */
-  select?: Prisma.EmployeeSalarySelect<ExtArgs> | null
+  select?: Prisma.EmployeeSalaryConfigSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the EmployeeSalary
+   * Omit specific fields from the EmployeeSalaryConfig
    */
-  omit?: Prisma.EmployeeSalaryOmit<ExtArgs> | null
+  omit?: Prisma.EmployeeSalaryConfigOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.EmployeeSalaryInclude<ExtArgs> | null
-  where?: Prisma.EmployeeSalaryWhereInput
+  include?: Prisma.EmployeeSalaryConfigInclude<ExtArgs> | null
+  where?: Prisma.EmployeeSalaryConfigWhereInput
+  orderBy?: Prisma.EmployeeSalaryConfigOrderByWithRelationInput | Prisma.EmployeeSalaryConfigOrderByWithRelationInput[]
+  cursor?: Prisma.EmployeeSalaryConfigWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmployeeSalaryConfigScalarFieldEnum | Prisma.EmployeeSalaryConfigScalarFieldEnum[]
+}
+
+/**
+ * Employee.salaryMasters
+ */
+export type Employee$salaryMastersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EmployeeSalaryMaster
+   */
+  select?: Prisma.EmployeeSalaryMasterSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EmployeeSalaryMaster
+   */
+  omit?: Prisma.EmployeeSalaryMasterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmployeeSalaryMasterInclude<ExtArgs> | null
+  where?: Prisma.EmployeeSalaryMasterWhereInput
+  orderBy?: Prisma.EmployeeSalaryMasterOrderByWithRelationInput | Prisma.EmployeeSalaryMasterOrderByWithRelationInput[]
+  cursor?: Prisma.EmployeeSalaryMasterWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmployeeSalaryMasterScalarFieldEnum | Prisma.EmployeeSalaryMasterScalarFieldEnum[]
 }
 
 /**
@@ -6673,6 +7354,25 @@ export type Employee$payrollsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.PayrollScalarFieldEnum | Prisma.PayrollScalarFieldEnum[]
+}
+
+/**
+ * Employee.salaryTemplate
+ */
+export type Employee$salaryTemplateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EmployeeSalaryTemplate
+   */
+  select?: Prisma.EmployeeSalaryTemplateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EmployeeSalaryTemplate
+   */
+  omit?: Prisma.EmployeeSalaryTemplateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmployeeSalaryTemplateInclude<ExtArgs> | null
+  where?: Prisma.EmployeeSalaryTemplateWhereInput
 }
 
 /**

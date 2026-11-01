@@ -108,22 +108,37 @@ export type BusinessTripApproval = Prisma.BusinessTripApprovalModel
  */
 export type SalaryComponent = Prisma.SalaryComponentModel
 /**
- * Model SalaryStructure
+ * Model EmployeeSalaryConfig
  * 
  */
-export type SalaryStructure = Prisma.SalaryStructureModel
+export type EmployeeSalaryConfig = Prisma.EmployeeSalaryConfigModel
 /**
- * Model SalaryStructureDetail
+ * Model EmployeeSalaryMaster
  * 
  */
-export type SalaryStructureDetail = Prisma.SalaryStructureDetailModel
-/**
- * Model EmployeeSalary
- * 
- */
-export type EmployeeSalary = Prisma.EmployeeSalaryModel
+export type EmployeeSalaryMaster = Prisma.EmployeeSalaryMasterModel
 /**
  * Model Payroll
  * 
  */
 export type Payroll = Prisma.PayrollModel
+/**
+ * Model SalaryTemplate
+ * 
+ */
+export type SalaryTemplate = Prisma.SalaryTemplateModel
+/**
+ * Model SalaryTemplateDetail
+ * 
+ */
+export type SalaryTemplateDetail = Prisma.SalaryTemplateDetailModel
+/**
+ * Model EmployeeSalaryTemplate
+ * 
+ */
+export type EmployeeSalaryTemplate = Prisma.EmployeeSalaryTemplateModel
+/**
+ * Model PayrollBatch
+ * 
+ */
+export type PayrollBatch = Prisma.PayrollBatchModel

@@ -69,10 +69,13 @@ export const ModelName = {
   BusinessTrip: 'BusinessTrip',
   BusinessTripApproval: 'BusinessTripApproval',
   SalaryComponent: 'SalaryComponent',
-  SalaryStructure: 'SalaryStructure',
-  SalaryStructureDetail: 'SalaryStructureDetail',
-  EmployeeSalary: 'EmployeeSalary',
-  Payroll: 'Payroll'
+  EmployeeSalaryConfig: 'EmployeeSalaryConfig',
+  EmployeeSalaryMaster: 'EmployeeSalaryMaster',
+  Payroll: 'Payroll',
+  SalaryTemplate: 'SalaryTemplate',
+  SalaryTemplateDetail: 'SalaryTemplateDetail',
+  EmployeeSalaryTemplate: 'EmployeeSalaryTemplate',
+  PayrollBatch: 'PayrollBatch'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -358,35 +361,24 @@ export const SalaryComponentScalarFieldEnum = {
 export type SalaryComponentScalarFieldEnum = (typeof SalaryComponentScalarFieldEnum)[keyof typeof SalaryComponentScalarFieldEnum]
 
 
-export const SalaryStructureScalarFieldEnum = {
-  id: 'id',
-  tenantId: 'tenantId',
-  name: 'name',
-  description: 'description',
-  createdAt: 'createdAt'
-} as const
-
-export type SalaryStructureScalarFieldEnum = (typeof SalaryStructureScalarFieldEnum)[keyof typeof SalaryStructureScalarFieldEnum]
-
-
-export const SalaryStructureDetailScalarFieldEnum = {
-  id: 'id',
-  salaryStructureId: 'salaryStructureId',
-  salaryComponentId: 'salaryComponentId',
-  calculationType: 'calculationType',
-  defaultValue: 'defaultValue'
-} as const
-
-export type SalaryStructureDetailScalarFieldEnum = (typeof SalaryStructureDetailScalarFieldEnum)[keyof typeof SalaryStructureDetailScalarFieldEnum]
-
-
-export const EmployeeSalaryScalarFieldEnum = {
+export const EmployeeSalaryConfigScalarFieldEnum = {
   id: 'id',
   employeeId: 'employeeId',
-  salaryStructureId: 'salaryStructureId'
+  salaryComponentId: 'salaryComponentId',
+  isActive: 'isActive'
 } as const
 
-export type EmployeeSalaryScalarFieldEnum = (typeof EmployeeSalaryScalarFieldEnum)[keyof typeof EmployeeSalaryScalarFieldEnum]
+export type EmployeeSalaryConfigScalarFieldEnum = (typeof EmployeeSalaryConfigScalarFieldEnum)[keyof typeof EmployeeSalaryConfigScalarFieldEnum]
+
+
+export const EmployeeSalaryMasterScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  salaryComponentId: 'salaryComponentId',
+  amount: 'amount'
+} as const
+
+export type EmployeeSalaryMasterScalarFieldEnum = (typeof EmployeeSalaryMasterScalarFieldEnum)[keyof typeof EmployeeSalaryMasterScalarFieldEnum]
 
 
 export const PayrollScalarFieldEnum = {
@@ -401,11 +393,55 @@ export const PayrollScalarFieldEnum = {
   netSalary: 'netSalary',
   status: 'status',
   notes: 'notes',
+  batchId: 'batchId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type PayrollScalarFieldEnum = (typeof PayrollScalarFieldEnum)[keyof typeof PayrollScalarFieldEnum]
+
+
+export const SalaryTemplateScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt'
+} as const
+
+export type SalaryTemplateScalarFieldEnum = (typeof SalaryTemplateScalarFieldEnum)[keyof typeof SalaryTemplateScalarFieldEnum]
+
+
+export const SalaryTemplateDetailScalarFieldEnum = {
+  id: 'id',
+  salaryTemplateId: 'salaryTemplateId',
+  salaryComponentId: 'salaryComponentId',
+  isActive: 'isActive'
+} as const
+
+export type SalaryTemplateDetailScalarFieldEnum = (typeof SalaryTemplateDetailScalarFieldEnum)[keyof typeof SalaryTemplateDetailScalarFieldEnum]
+
+
+export const EmployeeSalaryTemplateScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  salaryTemplateId: 'salaryTemplateId'
+} as const
+
+export type EmployeeSalaryTemplateScalarFieldEnum = (typeof EmployeeSalaryTemplateScalarFieldEnum)[keyof typeof EmployeeSalaryTemplateScalarFieldEnum]
+
+
+export const PayrollBatchScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  periodMonth: 'periodMonth',
+  periodYear: 'periodYear',
+  cutOffStart: 'cutOffStart',
+  cutOffEnd: 'cutOffEnd',
+  createdAt: 'createdAt'
+} as const
+
+export type PayrollBatchScalarFieldEnum = (typeof PayrollBatchScalarFieldEnum)[keyof typeof PayrollBatchScalarFieldEnum]
 
 
 export const SortOrder = {

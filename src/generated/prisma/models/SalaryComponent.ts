@@ -174,7 +174,9 @@ export type SalaryComponentWhereInput = {
   name?: Prisma.StringFilter<"SalaryComponent"> | string
   type?: Prisma.StringFilter<"SalaryComponent"> | string
   createdAt?: Prisma.DateTimeFilter<"SalaryComponent"> | Date | string
-  details?: Prisma.SalaryStructureDetailListRelationFilter
+  employeeConfigs?: Prisma.EmployeeSalaryConfigListRelationFilter
+  employeeMasters?: Prisma.EmployeeSalaryMasterListRelationFilter
+  templateDetails?: Prisma.SalaryTemplateDetailListRelationFilter
 }
 
 export type SalaryComponentOrderByWithRelationInput = {
@@ -182,7 +184,9 @@ export type SalaryComponentOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  details?: Prisma.SalaryStructureDetailOrderByRelationAggregateInput
+  employeeConfigs?: Prisma.EmployeeSalaryConfigOrderByRelationAggregateInput
+  employeeMasters?: Prisma.EmployeeSalaryMasterOrderByRelationAggregateInput
+  templateDetails?: Prisma.SalaryTemplateDetailOrderByRelationAggregateInput
 }
 
 export type SalaryComponentWhereUniqueInput = Prisma.AtLeast<{
@@ -193,7 +197,9 @@ export type SalaryComponentWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.SalaryComponentWhereInput | Prisma.SalaryComponentWhereInput[]
   type?: Prisma.StringFilter<"SalaryComponent"> | string
   createdAt?: Prisma.DateTimeFilter<"SalaryComponent"> | Date | string
-  details?: Prisma.SalaryStructureDetailListRelationFilter
+  employeeConfigs?: Prisma.EmployeeSalaryConfigListRelationFilter
+  employeeMasters?: Prisma.EmployeeSalaryMasterListRelationFilter
+  templateDetails?: Prisma.SalaryTemplateDetailListRelationFilter
 }, "id" | "name">
 
 export type SalaryComponentOrderByWithAggregationInput = {
@@ -221,7 +227,9 @@ export type SalaryComponentCreateInput = {
   name: string
   type: string
   createdAt?: Date | string
-  details?: Prisma.SalaryStructureDetailCreateNestedManyWithoutSalaryComponentInput
+  employeeConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutSalaryComponentInput
+  employeeMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutSalaryComponentInput
+  templateDetails?: Prisma.SalaryTemplateDetailCreateNestedManyWithoutSalaryComponentInput
 }
 
 export type SalaryComponentUncheckedCreateInput = {
@@ -229,7 +237,9 @@ export type SalaryComponentUncheckedCreateInput = {
   name: string
   type: string
   createdAt?: Date | string
-  details?: Prisma.SalaryStructureDetailUncheckedCreateNestedManyWithoutSalaryComponentInput
+  employeeConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutSalaryComponentInput
+  employeeMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutSalaryComponentInput
+  templateDetails?: Prisma.SalaryTemplateDetailUncheckedCreateNestedManyWithoutSalaryComponentInput
 }
 
 export type SalaryComponentUpdateInput = {
@@ -237,7 +247,9 @@ export type SalaryComponentUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  details?: Prisma.SalaryStructureDetailUpdateManyWithoutSalaryComponentNestedInput
+  employeeConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutSalaryComponentNestedInput
+  employeeMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutSalaryComponentNestedInput
+  templateDetails?: Prisma.SalaryTemplateDetailUpdateManyWithoutSalaryComponentNestedInput
 }
 
 export type SalaryComponentUncheckedUpdateInput = {
@@ -245,7 +257,9 @@ export type SalaryComponentUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  details?: Prisma.SalaryStructureDetailUncheckedUpdateManyWithoutSalaryComponentNestedInput
+  employeeConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutSalaryComponentNestedInput
+  employeeMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutSalaryComponentNestedInput
+  templateDetails?: Prisma.SalaryTemplateDetailUncheckedUpdateManyWithoutSalaryComponentNestedInput
 }
 
 export type SalaryComponentCreateManyInput = {
@@ -295,62 +309,202 @@ export type SalaryComponentScalarRelationFilter = {
   isNot?: Prisma.SalaryComponentWhereInput
 }
 
-export type SalaryComponentCreateNestedOneWithoutDetailsInput = {
-  create?: Prisma.XOR<Prisma.SalaryComponentCreateWithoutDetailsInput, Prisma.SalaryComponentUncheckedCreateWithoutDetailsInput>
-  connectOrCreate?: Prisma.SalaryComponentCreateOrConnectWithoutDetailsInput
+export type SalaryComponentCreateNestedOneWithoutEmployeeConfigsInput = {
+  create?: Prisma.XOR<Prisma.SalaryComponentCreateWithoutEmployeeConfigsInput, Prisma.SalaryComponentUncheckedCreateWithoutEmployeeConfigsInput>
+  connectOrCreate?: Prisma.SalaryComponentCreateOrConnectWithoutEmployeeConfigsInput
   connect?: Prisma.SalaryComponentWhereUniqueInput
 }
 
-export type SalaryComponentUpdateOneRequiredWithoutDetailsNestedInput = {
-  create?: Prisma.XOR<Prisma.SalaryComponentCreateWithoutDetailsInput, Prisma.SalaryComponentUncheckedCreateWithoutDetailsInput>
-  connectOrCreate?: Prisma.SalaryComponentCreateOrConnectWithoutDetailsInput
-  upsert?: Prisma.SalaryComponentUpsertWithoutDetailsInput
+export type SalaryComponentUpdateOneRequiredWithoutEmployeeConfigsNestedInput = {
+  create?: Prisma.XOR<Prisma.SalaryComponentCreateWithoutEmployeeConfigsInput, Prisma.SalaryComponentUncheckedCreateWithoutEmployeeConfigsInput>
+  connectOrCreate?: Prisma.SalaryComponentCreateOrConnectWithoutEmployeeConfigsInput
+  upsert?: Prisma.SalaryComponentUpsertWithoutEmployeeConfigsInput
   connect?: Prisma.SalaryComponentWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SalaryComponentUpdateToOneWithWhereWithoutDetailsInput, Prisma.SalaryComponentUpdateWithoutDetailsInput>, Prisma.SalaryComponentUncheckedUpdateWithoutDetailsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SalaryComponentUpdateToOneWithWhereWithoutEmployeeConfigsInput, Prisma.SalaryComponentUpdateWithoutEmployeeConfigsInput>, Prisma.SalaryComponentUncheckedUpdateWithoutEmployeeConfigsInput>
 }
 
-export type SalaryComponentCreateWithoutDetailsInput = {
+export type SalaryComponentCreateNestedOneWithoutEmployeeMastersInput = {
+  create?: Prisma.XOR<Prisma.SalaryComponentCreateWithoutEmployeeMastersInput, Prisma.SalaryComponentUncheckedCreateWithoutEmployeeMastersInput>
+  connectOrCreate?: Prisma.SalaryComponentCreateOrConnectWithoutEmployeeMastersInput
+  connect?: Prisma.SalaryComponentWhereUniqueInput
+}
+
+export type SalaryComponentUpdateOneRequiredWithoutEmployeeMastersNestedInput = {
+  create?: Prisma.XOR<Prisma.SalaryComponentCreateWithoutEmployeeMastersInput, Prisma.SalaryComponentUncheckedCreateWithoutEmployeeMastersInput>
+  connectOrCreate?: Prisma.SalaryComponentCreateOrConnectWithoutEmployeeMastersInput
+  upsert?: Prisma.SalaryComponentUpsertWithoutEmployeeMastersInput
+  connect?: Prisma.SalaryComponentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SalaryComponentUpdateToOneWithWhereWithoutEmployeeMastersInput, Prisma.SalaryComponentUpdateWithoutEmployeeMastersInput>, Prisma.SalaryComponentUncheckedUpdateWithoutEmployeeMastersInput>
+}
+
+export type SalaryComponentCreateNestedOneWithoutTemplateDetailsInput = {
+  create?: Prisma.XOR<Prisma.SalaryComponentCreateWithoutTemplateDetailsInput, Prisma.SalaryComponentUncheckedCreateWithoutTemplateDetailsInput>
+  connectOrCreate?: Prisma.SalaryComponentCreateOrConnectWithoutTemplateDetailsInput
+  connect?: Prisma.SalaryComponentWhereUniqueInput
+}
+
+export type SalaryComponentUpdateOneRequiredWithoutTemplateDetailsNestedInput = {
+  create?: Prisma.XOR<Prisma.SalaryComponentCreateWithoutTemplateDetailsInput, Prisma.SalaryComponentUncheckedCreateWithoutTemplateDetailsInput>
+  connectOrCreate?: Prisma.SalaryComponentCreateOrConnectWithoutTemplateDetailsInput
+  upsert?: Prisma.SalaryComponentUpsertWithoutTemplateDetailsInput
+  connect?: Prisma.SalaryComponentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SalaryComponentUpdateToOneWithWhereWithoutTemplateDetailsInput, Prisma.SalaryComponentUpdateWithoutTemplateDetailsInput>, Prisma.SalaryComponentUncheckedUpdateWithoutTemplateDetailsInput>
+}
+
+export type SalaryComponentCreateWithoutEmployeeConfigsInput = {
   id?: string
   name: string
   type: string
   createdAt?: Date | string
+  employeeMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutSalaryComponentInput
+  templateDetails?: Prisma.SalaryTemplateDetailCreateNestedManyWithoutSalaryComponentInput
 }
 
-export type SalaryComponentUncheckedCreateWithoutDetailsInput = {
+export type SalaryComponentUncheckedCreateWithoutEmployeeConfigsInput = {
   id?: string
   name: string
   type: string
   createdAt?: Date | string
+  employeeMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutSalaryComponentInput
+  templateDetails?: Prisma.SalaryTemplateDetailUncheckedCreateNestedManyWithoutSalaryComponentInput
 }
 
-export type SalaryComponentCreateOrConnectWithoutDetailsInput = {
+export type SalaryComponentCreateOrConnectWithoutEmployeeConfigsInput = {
   where: Prisma.SalaryComponentWhereUniqueInput
-  create: Prisma.XOR<Prisma.SalaryComponentCreateWithoutDetailsInput, Prisma.SalaryComponentUncheckedCreateWithoutDetailsInput>
+  create: Prisma.XOR<Prisma.SalaryComponentCreateWithoutEmployeeConfigsInput, Prisma.SalaryComponentUncheckedCreateWithoutEmployeeConfigsInput>
 }
 
-export type SalaryComponentUpsertWithoutDetailsInput = {
-  update: Prisma.XOR<Prisma.SalaryComponentUpdateWithoutDetailsInput, Prisma.SalaryComponentUncheckedUpdateWithoutDetailsInput>
-  create: Prisma.XOR<Prisma.SalaryComponentCreateWithoutDetailsInput, Prisma.SalaryComponentUncheckedCreateWithoutDetailsInput>
+export type SalaryComponentUpsertWithoutEmployeeConfigsInput = {
+  update: Prisma.XOR<Prisma.SalaryComponentUpdateWithoutEmployeeConfigsInput, Prisma.SalaryComponentUncheckedUpdateWithoutEmployeeConfigsInput>
+  create: Prisma.XOR<Prisma.SalaryComponentCreateWithoutEmployeeConfigsInput, Prisma.SalaryComponentUncheckedCreateWithoutEmployeeConfigsInput>
   where?: Prisma.SalaryComponentWhereInput
 }
 
-export type SalaryComponentUpdateToOneWithWhereWithoutDetailsInput = {
+export type SalaryComponentUpdateToOneWithWhereWithoutEmployeeConfigsInput = {
   where?: Prisma.SalaryComponentWhereInput
-  data: Prisma.XOR<Prisma.SalaryComponentUpdateWithoutDetailsInput, Prisma.SalaryComponentUncheckedUpdateWithoutDetailsInput>
+  data: Prisma.XOR<Prisma.SalaryComponentUpdateWithoutEmployeeConfigsInput, Prisma.SalaryComponentUncheckedUpdateWithoutEmployeeConfigsInput>
 }
 
-export type SalaryComponentUpdateWithoutDetailsInput = {
+export type SalaryComponentUpdateWithoutEmployeeConfigsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employeeMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutSalaryComponentNestedInput
+  templateDetails?: Prisma.SalaryTemplateDetailUpdateManyWithoutSalaryComponentNestedInput
 }
 
-export type SalaryComponentUncheckedUpdateWithoutDetailsInput = {
+export type SalaryComponentUncheckedUpdateWithoutEmployeeConfigsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employeeMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutSalaryComponentNestedInput
+  templateDetails?: Prisma.SalaryTemplateDetailUncheckedUpdateManyWithoutSalaryComponentNestedInput
+}
+
+export type SalaryComponentCreateWithoutEmployeeMastersInput = {
+  id?: string
+  name: string
+  type: string
+  createdAt?: Date | string
+  employeeConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutSalaryComponentInput
+  templateDetails?: Prisma.SalaryTemplateDetailCreateNestedManyWithoutSalaryComponentInput
+}
+
+export type SalaryComponentUncheckedCreateWithoutEmployeeMastersInput = {
+  id?: string
+  name: string
+  type: string
+  createdAt?: Date | string
+  employeeConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutSalaryComponentInput
+  templateDetails?: Prisma.SalaryTemplateDetailUncheckedCreateNestedManyWithoutSalaryComponentInput
+}
+
+export type SalaryComponentCreateOrConnectWithoutEmployeeMastersInput = {
+  where: Prisma.SalaryComponentWhereUniqueInput
+  create: Prisma.XOR<Prisma.SalaryComponentCreateWithoutEmployeeMastersInput, Prisma.SalaryComponentUncheckedCreateWithoutEmployeeMastersInput>
+}
+
+export type SalaryComponentUpsertWithoutEmployeeMastersInput = {
+  update: Prisma.XOR<Prisma.SalaryComponentUpdateWithoutEmployeeMastersInput, Prisma.SalaryComponentUncheckedUpdateWithoutEmployeeMastersInput>
+  create: Prisma.XOR<Prisma.SalaryComponentCreateWithoutEmployeeMastersInput, Prisma.SalaryComponentUncheckedCreateWithoutEmployeeMastersInput>
+  where?: Prisma.SalaryComponentWhereInput
+}
+
+export type SalaryComponentUpdateToOneWithWhereWithoutEmployeeMastersInput = {
+  where?: Prisma.SalaryComponentWhereInput
+  data: Prisma.XOR<Prisma.SalaryComponentUpdateWithoutEmployeeMastersInput, Prisma.SalaryComponentUncheckedUpdateWithoutEmployeeMastersInput>
+}
+
+export type SalaryComponentUpdateWithoutEmployeeMastersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employeeConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutSalaryComponentNestedInput
+  templateDetails?: Prisma.SalaryTemplateDetailUpdateManyWithoutSalaryComponentNestedInput
+}
+
+export type SalaryComponentUncheckedUpdateWithoutEmployeeMastersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employeeConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutSalaryComponentNestedInput
+  templateDetails?: Prisma.SalaryTemplateDetailUncheckedUpdateManyWithoutSalaryComponentNestedInput
+}
+
+export type SalaryComponentCreateWithoutTemplateDetailsInput = {
+  id?: string
+  name: string
+  type: string
+  createdAt?: Date | string
+  employeeConfigs?: Prisma.EmployeeSalaryConfigCreateNestedManyWithoutSalaryComponentInput
+  employeeMasters?: Prisma.EmployeeSalaryMasterCreateNestedManyWithoutSalaryComponentInput
+}
+
+export type SalaryComponentUncheckedCreateWithoutTemplateDetailsInput = {
+  id?: string
+  name: string
+  type: string
+  createdAt?: Date | string
+  employeeConfigs?: Prisma.EmployeeSalaryConfigUncheckedCreateNestedManyWithoutSalaryComponentInput
+  employeeMasters?: Prisma.EmployeeSalaryMasterUncheckedCreateNestedManyWithoutSalaryComponentInput
+}
+
+export type SalaryComponentCreateOrConnectWithoutTemplateDetailsInput = {
+  where: Prisma.SalaryComponentWhereUniqueInput
+  create: Prisma.XOR<Prisma.SalaryComponentCreateWithoutTemplateDetailsInput, Prisma.SalaryComponentUncheckedCreateWithoutTemplateDetailsInput>
+}
+
+export type SalaryComponentUpsertWithoutTemplateDetailsInput = {
+  update: Prisma.XOR<Prisma.SalaryComponentUpdateWithoutTemplateDetailsInput, Prisma.SalaryComponentUncheckedUpdateWithoutTemplateDetailsInput>
+  create: Prisma.XOR<Prisma.SalaryComponentCreateWithoutTemplateDetailsInput, Prisma.SalaryComponentUncheckedCreateWithoutTemplateDetailsInput>
+  where?: Prisma.SalaryComponentWhereInput
+}
+
+export type SalaryComponentUpdateToOneWithWhereWithoutTemplateDetailsInput = {
+  where?: Prisma.SalaryComponentWhereInput
+  data: Prisma.XOR<Prisma.SalaryComponentUpdateWithoutTemplateDetailsInput, Prisma.SalaryComponentUncheckedUpdateWithoutTemplateDetailsInput>
+}
+
+export type SalaryComponentUpdateWithoutTemplateDetailsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employeeConfigs?: Prisma.EmployeeSalaryConfigUpdateManyWithoutSalaryComponentNestedInput
+  employeeMasters?: Prisma.EmployeeSalaryMasterUpdateManyWithoutSalaryComponentNestedInput
+}
+
+export type SalaryComponentUncheckedUpdateWithoutTemplateDetailsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  employeeConfigs?: Prisma.EmployeeSalaryConfigUncheckedUpdateManyWithoutSalaryComponentNestedInput
+  employeeMasters?: Prisma.EmployeeSalaryMasterUncheckedUpdateManyWithoutSalaryComponentNestedInput
 }
 
 
@@ -359,11 +513,15 @@ export type SalaryComponentUncheckedUpdateWithoutDetailsInput = {
  */
 
 export type SalaryComponentCountOutputType = {
-  details: number
+  employeeConfigs: number
+  employeeMasters: number
+  templateDetails: number
 }
 
 export type SalaryComponentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  details?: boolean | SalaryComponentCountOutputTypeCountDetailsArgs
+  employeeConfigs?: boolean | SalaryComponentCountOutputTypeCountEmployeeConfigsArgs
+  employeeMasters?: boolean | SalaryComponentCountOutputTypeCountEmployeeMastersArgs
+  templateDetails?: boolean | SalaryComponentCountOutputTypeCountTemplateDetailsArgs
 }
 
 /**
@@ -379,8 +537,22 @@ export type SalaryComponentCountOutputTypeDefaultArgs<ExtArgs extends runtime.Ty
 /**
  * SalaryComponentCountOutputType without action
  */
-export type SalaryComponentCountOutputTypeCountDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SalaryStructureDetailWhereInput
+export type SalaryComponentCountOutputTypeCountEmployeeConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmployeeSalaryConfigWhereInput
+}
+
+/**
+ * SalaryComponentCountOutputType without action
+ */
+export type SalaryComponentCountOutputTypeCountEmployeeMastersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmployeeSalaryMasterWhereInput
+}
+
+/**
+ * SalaryComponentCountOutputType without action
+ */
+export type SalaryComponentCountOutputTypeCountTemplateDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SalaryTemplateDetailWhereInput
 }
 
 
@@ -389,7 +561,9 @@ export type SalaryComponentSelect<ExtArgs extends runtime.Types.Extensions.Inter
   name?: boolean
   type?: boolean
   createdAt?: boolean
-  details?: boolean | Prisma.SalaryComponent$detailsArgs<ExtArgs>
+  employeeConfigs?: boolean | Prisma.SalaryComponent$employeeConfigsArgs<ExtArgs>
+  employeeMasters?: boolean | Prisma.SalaryComponent$employeeMastersArgs<ExtArgs>
+  templateDetails?: boolean | Prisma.SalaryComponent$templateDetailsArgs<ExtArgs>
   _count?: boolean | Prisma.SalaryComponentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["salaryComponent"]>
 
@@ -416,7 +590,9 @@ export type SalaryComponentSelectScalar = {
 
 export type SalaryComponentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "type" | "createdAt", ExtArgs["result"]["salaryComponent"]>
 export type SalaryComponentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  details?: boolean | Prisma.SalaryComponent$detailsArgs<ExtArgs>
+  employeeConfigs?: boolean | Prisma.SalaryComponent$employeeConfigsArgs<ExtArgs>
+  employeeMasters?: boolean | Prisma.SalaryComponent$employeeMastersArgs<ExtArgs>
+  templateDetails?: boolean | Prisma.SalaryComponent$templateDetailsArgs<ExtArgs>
   _count?: boolean | Prisma.SalaryComponentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SalaryComponentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -425,7 +601,9 @@ export type SalaryComponentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Ty
 export type $SalaryComponentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "SalaryComponent"
   objects: {
-    details: Prisma.$SalaryStructureDetailPayload<ExtArgs>[]
+    employeeConfigs: Prisma.$EmployeeSalaryConfigPayload<ExtArgs>[]
+    employeeMasters: Prisma.$EmployeeSalaryMasterPayload<ExtArgs>[]
+    templateDetails: Prisma.$SalaryTemplateDetailPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -826,7 +1004,9 @@ readonly fields: SalaryComponentFieldRefs;
  */
 export interface Prisma__SalaryComponentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  details<T extends Prisma.SalaryComponent$detailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalaryComponent$detailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalaryStructureDetailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  employeeConfigs<T extends Prisma.SalaryComponent$employeeConfigsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalaryComponent$employeeConfigsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeSalaryConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  employeeMasters<T extends Prisma.SalaryComponent$employeeMastersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalaryComponent$employeeMastersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeSalaryMasterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  templateDetails<T extends Prisma.SalaryComponent$templateDetailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SalaryComponent$templateDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalaryTemplateDetailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1253,27 +1433,75 @@ export type SalaryComponentDeleteManyArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 /**
- * SalaryComponent.details
+ * SalaryComponent.employeeConfigs
  */
-export type SalaryComponent$detailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type SalaryComponent$employeeConfigsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the SalaryStructureDetail
+   * Select specific fields to fetch from the EmployeeSalaryConfig
    */
-  select?: Prisma.SalaryStructureDetailSelect<ExtArgs> | null
+  select?: Prisma.EmployeeSalaryConfigSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the SalaryStructureDetail
+   * Omit specific fields from the EmployeeSalaryConfig
    */
-  omit?: Prisma.SalaryStructureDetailOmit<ExtArgs> | null
+  omit?: Prisma.EmployeeSalaryConfigOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.SalaryStructureDetailInclude<ExtArgs> | null
-  where?: Prisma.SalaryStructureDetailWhereInput
-  orderBy?: Prisma.SalaryStructureDetailOrderByWithRelationInput | Prisma.SalaryStructureDetailOrderByWithRelationInput[]
-  cursor?: Prisma.SalaryStructureDetailWhereUniqueInput
+  include?: Prisma.EmployeeSalaryConfigInclude<ExtArgs> | null
+  where?: Prisma.EmployeeSalaryConfigWhereInput
+  orderBy?: Prisma.EmployeeSalaryConfigOrderByWithRelationInput | Prisma.EmployeeSalaryConfigOrderByWithRelationInput[]
+  cursor?: Prisma.EmployeeSalaryConfigWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.SalaryStructureDetailScalarFieldEnum | Prisma.SalaryStructureDetailScalarFieldEnum[]
+  distinct?: Prisma.EmployeeSalaryConfigScalarFieldEnum | Prisma.EmployeeSalaryConfigScalarFieldEnum[]
+}
+
+/**
+ * SalaryComponent.employeeMasters
+ */
+export type SalaryComponent$employeeMastersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EmployeeSalaryMaster
+   */
+  select?: Prisma.EmployeeSalaryMasterSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EmployeeSalaryMaster
+   */
+  omit?: Prisma.EmployeeSalaryMasterOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmployeeSalaryMasterInclude<ExtArgs> | null
+  where?: Prisma.EmployeeSalaryMasterWhereInput
+  orderBy?: Prisma.EmployeeSalaryMasterOrderByWithRelationInput | Prisma.EmployeeSalaryMasterOrderByWithRelationInput[]
+  cursor?: Prisma.EmployeeSalaryMasterWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmployeeSalaryMasterScalarFieldEnum | Prisma.EmployeeSalaryMasterScalarFieldEnum[]
+}
+
+/**
+ * SalaryComponent.templateDetails
+ */
+export type SalaryComponent$templateDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SalaryTemplateDetail
+   */
+  select?: Prisma.SalaryTemplateDetailSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SalaryTemplateDetail
+   */
+  omit?: Prisma.SalaryTemplateDetailOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SalaryTemplateDetailInclude<ExtArgs> | null
+  where?: Prisma.SalaryTemplateDetailWhereInput
+  orderBy?: Prisma.SalaryTemplateDetailOrderByWithRelationInput | Prisma.SalaryTemplateDetailOrderByWithRelationInput[]
+  cursor?: Prisma.SalaryTemplateDetailWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SalaryTemplateDetailScalarFieldEnum | Prisma.SalaryTemplateDetailScalarFieldEnum[]
 }
 
 /**
