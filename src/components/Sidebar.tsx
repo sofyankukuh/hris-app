@@ -15,8 +15,11 @@ export default function Sidebar() {
   
   // State untuk mengontrol buka/tutup sub-menu
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({
-    kehadiran: true, // Default terbuka
-  });
+  kehadiran: pathname.startsWith('/attendance') || pathname.startsWith('/leave') || pathname.startsWith('/approvals') || pathname.startsWith('/resign'),
+  reliever: pathname.startsWith('/relievers'),
+  keuangan: pathname.startsWith('/incomes') || pathname.startsWith('/payslips'),
+  sistem: pathname.startsWith('/employees') || pathname.startsWith('/settings'),
+});
 
   const toggleMenu = (menu: string) => {
     setOpenMenus((prev) => ({ ...prev, [menu]: !prev[menu] }));
@@ -71,6 +74,8 @@ export default function Sidebar() {
               <Link href="/attendance" className={subMenuClass(isActive("/attendance"))}>Absensi</Link>
               <Link href="/leave" className={subMenuClass(isActive("/leave"))}>Cuti & Izin</Link>
               <Link href="/approvals" className={subMenuClass(isActive("/approvals"))}>Persetujuan</Link>
+              <Link href="/resign" className={subMenuClass(isActive("/resign"))}>Resign</Link>
+                            <Link href="/business-trip" className={subMenuClass(isActive("/business-trip"))}>Surat Tugas (SPD)</Link>
             </div>
           )}
         </div>
@@ -89,16 +94,19 @@ export default function Sidebar() {
           )}
         </div>
 
-        {/* SUB-MENU: KEUANGAN */}
+                {/* SUB-MENU: KEUANGAN */}
         <div>
-          <button onClick={() => toggleMenu('keuangan')} className={menuClass(isGroupActive(['/incomes', '/payslips']))}>
+          <button onClick={() => toggleMenu('keuangan')} className={menuClass(isGroupActive(['/incomes', '/payslips', '/payroll']))}>
             <div className="flex items-center gap-3"><span className="text-lg">💰</span> Keuangan</div>
             <span className="text-xs text-slate-400">{openMenus['keuangan'] ? '▲' : '▼'}</span>
           </button>
+          
           {openMenus['keuangan'] && (
             <div className="mt-1 space-y-1">
               <Link href="/incomes" className={subMenuClass(isActive("/incomes"))}>Pendapatan Tambahan</Link>
               <Link href="/payslips" className={subMenuClass(isActive("/payslips"))}>Slip Gaji</Link>
+              <Link href="/payroll" className={subMenuClass(isActive("/payroll"))}>Payroll</Link>
+              <Link href="/payroll/settings" className={subMenuClass(isActive("/payroll/settings"))}>Pengaturan Gaji</Link>
             </div>
           )}
         </div>

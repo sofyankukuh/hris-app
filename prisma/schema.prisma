@@ -20,6 +20,10 @@ model Tenant {
   attendances    Attendance[]
   leaveRequests  LeaveRequest[]
   additionalIncomes AdditionalIncome[]
+  resignations   Resignation[]
+  businessTrips   BusinessTrip[]
+  salaryStructures SalaryStructure[]
+  payrolls         Payroll[]
 }
 
 model Employee {
@@ -81,6 +85,12 @@ model Employee {
   approvals      ApprovalStep[] @relation("ApproverSteps")
   leaveBalances  LeaveBalance[]
   additionalIncomes AdditionalIncome[]
+  resignations   Resignation[]
+  resignationApprovals ResignationApproval[] @relation("ResignationApprovals")
+  businessTrips   BusinessTrip[]
+  businessTripApprovals BusinessTripApproval[] @relation("BusinessTripApprovals")
+  salaryStructure  EmployeeSalary?
+  payrolls         Payroll[]
   
   // Relasi AmArea (Wilayah kerja AM)
   amAreas        AmArea[]       @relation("AmAssignments")
@@ -268,6 +278,148 @@ model AdditionalIncome {
 
   @@index([tenantId])
   @@index([employeeId])
+}
+
+// --- MODEL RESIGN ---
+
+model Resignation {
+  id             String   @id @default(cuid())
+  tenantId       String
+  employeeId     String
+  resignDate     DateTime // Tanggal terakhir bekerja
+  reason         String?
+  attachmentUrl  String?
+  status         String   @default("PENDING") // "PENDING", "APPROVED", "REJECTED"
+  
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  tenant         Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  employee       Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  approvals      ResignationApproval[]
+
+  @@index([tenantId])
+}
+
+model ResignationApproval {
+  id             String   @id @default(cuid())
+  resignationId  String
+  approverId     String
+  role           String   // "AM", "HC"
+  status         String   @default("WAITING") // "WAITING", "APPROVED", "REJECTED"
+  notes          String?
+  approvedAt     DateTime?
+  
+  resignation    Resignation @relation(fields: [resignationId], references: [id], onDelete: Cascade)
+  approver       Employee    @relation("ResignationApprovals", fields: [approverId], references: [id], onDelete: Cascade)
+}
+
+// --- MODEL SURAT PERJALANAN DINAS (SPD) ---
+
+model BusinessTrip {
+  id             String   @id @default(cuid())
+  tenantId       String
+  employeeId     String
+  destination    String   // Kota Tujuan
+  startDate      DateTime
+  endDate        DateTime
+  purpose        String   // Keperluan Dinas
+  status         String   @default("PENDING") // "PENDING", "APPROVED", "REJECTED"
+  
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  tenant         Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  employee       Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  approvals      BusinessTripApproval[]
+
+  @@index([tenantId])
+}
+
+model BusinessTripApproval {
+  id             String   @id @default(cuid())
+  businessTripId String
+  approverId     String
+  role           String   // "AM" atau "HC"
+  status         String   @default("WAITING") // "WAITING", "APPROVED", "REJECTED"
+  notes          String?
+  approvedAt     DateTime?
+  
+  businessTrip   BusinessTrip @relation(fields: [businessTripId], references: [id], onDelete: Cascade)
+  approver       Employee     @relation("BusinessTripApprovals", fields: [approverId], references: [id], onDelete: Cascade)
+}
+
+// --- MODEL PAYROLL DINAMIS (SALARY STRUCTURE) ---
+
+// 1. Master Komponen (Bumbu Gaji)
+model SalaryComponent {
+  id          String   @id @default(cuid())
+  name        String   @unique // "Gaji Pokok", "BPJS", "PPh 21"
+  type        String   // "EARNING" (Pendapatan) atau "DEDUCTION" (Potongan)
+  createdAt   DateTime @default(now())
+  
+  details     SalaryStructureDetail[]
+}
+
+// 2. Template Rumus (Resep)
+model SalaryStructure {
+  id          String   @id @default(cuid())
+  tenantId    String
+  name        String   // "Struktur TAD Lapangan", "Struktur Customer A"
+  description String?
+  createdAt   DateTime @default(now())
+  
+  tenant      Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  details     SalaryStructureDetail[]
+  employees   EmployeeSalary[]
+}
+
+// 3. Detail Rumus (Komponen apa saja di dalam resep)
+model SalaryStructureDetail {
+  id                  String   @id @default(cuid())
+  salaryStructureId   String
+  salaryComponentId   String
+  calculationType     String   // "FIXED" (Nominal) atau "PERCENTAGE" (Persen dari Gaji Pokok)
+  defaultValue        Float    // Misal: 500000 (untuk Fixed) atau 2 (untuk 2%)
+  
+  salaryStructure     SalaryStructure @relation(fields: [salaryStructureId], references: [id], onDelete: Cascade)
+  salaryComponent     SalaryComponent @relation(fields: [salaryComponentId], references: [id], onDelete: Cascade)
+}
+
+// 4. Penempelan ke Karyawan
+model EmployeeSalary {
+  id                  String   @id @default(cuid())
+  employeeId          String   @unique // 1 karyawan 1 struktur
+  salaryStructureId   String
+  
+  employee            Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  salaryStructure     SalaryStructure @relation(fields: [salaryStructureId], references: [id], onDelete: Cascade)
+}
+
+// --- MODEL PAYROLL HASIL (Menyimpan hasil hitungan bulanan) ---
+model Payroll {
+  id             String   @id @default(cuid())
+  tenantId       String
+  employeeId     String
+  month          Int      
+  year           Int      
+  
+  basicSalary    Float    @default(0)
+  totalEarnings  Float    @default(0) // Total Pendapatan
+  totalDeductions Float   @default(0) // Total Potongan
+  netSalary      Float    @default(0) // Gaji Bersih
+  
+  status         String   @default("DRAFT") // "DRAFT", "PAID"
+  notes          String?
+  
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  tenant         Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  employee       Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@unique([employeeId, month, year])
+  @@index([tenantId, year, month])
 }
 
 // --- ENUM ---

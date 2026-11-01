@@ -82,3 +82,48 @@ export type RelieverAssignment = Prisma.RelieverAssignmentModel
  * 
  */
 export type AdditionalIncome = Prisma.AdditionalIncomeModel
+/**
+ * Model Resignation
+ * 
+ */
+export type Resignation = Prisma.ResignationModel
+/**
+ * Model ResignationApproval
+ * 
+ */
+export type ResignationApproval = Prisma.ResignationApprovalModel
+/**
+ * Model BusinessTrip
+ * 
+ */
+export type BusinessTrip = Prisma.BusinessTripModel
+/**
+ * Model BusinessTripApproval
+ * 
+ */
+export type BusinessTripApproval = Prisma.BusinessTripApprovalModel
+/**
+ * Model SalaryComponent
+ * 
+ */
+export type SalaryComponent = Prisma.SalaryComponentModel
+/**
+ * Model SalaryStructure
+ * 
+ */
+export type SalaryStructure = Prisma.SalaryStructureModel
+/**
+ * Model SalaryStructureDetail
+ * 
+ */
+export type SalaryStructureDetail = Prisma.SalaryStructureDetailModel
+/**
+ * Model EmployeeSalary
+ * 
+ */
+export type EmployeeSalary = Prisma.EmployeeSalaryModel
+/**
+ * Model Payroll
+ * 
+ */
+export type Payroll = Prisma.PayrollModel
